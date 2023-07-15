@@ -1,0 +1,134 @@
+body {
+    background-color: #ffe7bd;
+    margin: 0;
+}
+
+header {
+    flex-direction: column;
+}
+
+header,
+form {
+    display: flex;
+    gap: 5px;
+}
+
+header,
+main {
+    max-width: 750px;
+    margin: auto;
+}
+
+header,
+ul {
+    text-align: center;
+}
+
+button,
+select {
+    height: 1rem;
+    appearance: none;
+    border: 0;
+    padding: 3px 4px;
+    box-sizing: content-box;
+}
+
+button {
+    background-color: #e5a537;
+
+    &:hover {
+        background-color: orange;
+        cursor: pointer;
+    }
+}
+
+form,
+ul {
+    width: fit-content;
+    margin: auto;
+}
+
+.highlight {
+    background-color: yellow;
+}
+
+ul {
+    list-style-type: none;
+}
+
+main {
+    & > div > div {
+        padding-bottom: 15px;
+    }
+}
+
+small {
+    color: #e5a537;
+}
+
+table {
+    width: 100%;
+
+    &.lines {
+        margin: 1.5rem auto;
+    }
+
+    &#note-buttons {
+        width: fit-content;
+        margin: auto;
+
+        tr,
+        td {
+            display: flex;
+        }
+
+        td {
+            flex-direction: column;
+            gap: 2px;
+
+            button {
+                height: 1rem;
+                width: 1rem;
+                font-weight: bold;
+                line-height: 0;
+
+                &.edit-note-button {
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+
+    td {
+        vertical-align: top;
+
+        &.line-number {
+            font-size: 0.75rem;
+            padding-right: 4px;
+            text-align: right;
+            // user-select: none; /* Standard syntax */
+            // -webkit-user-select: none; /* Safari */
+            // -ms-user-select: none; /* IE 10 and IE 11 */
+            ::selection {
+                // doesn't work for iOS as of 7/2023
+                background: transparent;
+            }
+        }
+
+        &.spacer {
+            line-height: 1.5rem;
+            opacity: 0;
+        }
+    }
+}
+
+.title {
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.warning {
+    color: maroon;
+    text-align: center;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Suttas</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Suttas</h1>
+            <form>
+                <select name="sutta"></select>
+                <button type="submit">find</button>
+            </form>
+            <div>
+                <button id="random">get random</button>
+                <button id="cite">cite</button>
+            </div>
+        </header>
+        <main></main>
+
+        <script type="module">
+            import {addHandlers} from "./handlers.js";
+            addHandlers();
+        </script>
+    </body>
+</html>
