@@ -2,7 +2,7 @@ import { wrapHighlight } from "./cite.js";
 
 let highlighting = false;
 
-function highlightText(lineNumber, line, note) {
+function highlightLine(lineNumber, line, note) {
     if (note) {
         const { starts_at, ends_at, lines } = note,
             isFirstLine = lineNumber === starts_at,
@@ -34,4 +34,4 @@ function getHighlightHTML(line, text) {
     return line.replace(text, wrapHighlight(text));
 }
 
-export { highlightText };
+export { highlightLine };

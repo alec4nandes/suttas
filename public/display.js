@@ -1,7 +1,7 @@
 import { getLines } from "./fetch.js";
 import { getSuttaHierarchyHTML } from "./hierarchy.js";
 import { notes, getNoteButtonsHTML, addNoteButtonsHandlers } from "./notes.js";
-import { highlightText } from "./highlight.js";
+import { highlightLine } from "./highlight.js";
 
 async function handleDisplaySutta(e) {
     e.preventDefault();
@@ -96,7 +96,7 @@ function getLineHTML({ key, value, note }) {
                 </small>
             </td>
             <td>
-                ${highlightText(key, value, note)}
+                ${highlightLine(key, value, note)}
             </td>
         </tr>
     `;

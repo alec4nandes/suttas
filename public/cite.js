@@ -62,11 +62,11 @@ function preformatLines({ text, anchorOffset, anchorNode }) {
         combinedOffset = anchorOffset + firstLine.length,
         { nodeValue } = anchorNode,
         startText = nodeValue.slice(0, anchorOffset),
-        highlightText = nodeValue.slice(anchorOffset, combinedOffset),
+        highlightedText = nodeValue.slice(anchorOffset, combinedOffset),
         endText = nodeValue.slice(combinedOffset),
         newText =
             startText +
-            wrapHighlight(highlightText) +
+            wrapHighlight(highlightedText) +
             endText +
             text.slice(nodeValue.length);
     return getLinesFromText(newText);
