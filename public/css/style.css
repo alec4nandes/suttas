@@ -1,10 +1,27 @@
 body {
   background-color: #ffe7bd;
-  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin: 0 5px;
 }
 
 header {
   flex-direction: column;
+  position: relative;
+}
+header button {
+  padding: 3px 7px;
+}
+header button#cite {
+  height: 50px;
+  width: 50px;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 50px;
+  right: 0;
+  z-index: 1;
+}
+header form input {
+  width: 60px;
 }
 
 header,
@@ -24,23 +41,37 @@ ul {
   text-align: center;
 }
 
+main ul#hierarchy {
+  padding-left: 0;
+}
+
 button,
+input,
 select {
   height: 1rem;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   border: 0;
-  padding: 3px 4px;
   box-sizing: content-box;
+  font-size: 0.9rem;
+  padding: 3px 4px;
 }
 
 button {
   background-color: #e5a537;
+  color: #fff;
+  font-weight: bold;
 }
 button:hover {
   background-color: orange;
   cursor: pointer;
+}
+
+input,
+select {
+  background-color: #fff;
+  color: #000;
 }
 
 form,
@@ -88,7 +119,6 @@ table#note-buttons td {
 table#note-buttons td button {
   height: 1rem;
   width: 1rem;
-  font-weight: bold;
   line-height: 0;
 }
 table#note-buttons td button.edit-note-button {

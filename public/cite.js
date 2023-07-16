@@ -1,7 +1,7 @@
-import { displaySuttaHTML } from "./display.js";
 import { notes } from "./notes.js";
+import { displaySuttaHTML } from "./display.js";
 
-function handleCite({
+async function handleCite({
     anchorNode,
     anchorOffset,
     focusNode,
@@ -19,7 +19,7 @@ function handleCite({
             note = prompt("Note:"),
             result = { starts_at, ends_at, text, note };
         notes.push(result);
-        displaySuttaHTML(null, null, notes.length - 1);
+        await displaySuttaHTML(null, null, notes.length - 1);
         return result;
     } else {
         alert("Could not cite. Outside text selected.");

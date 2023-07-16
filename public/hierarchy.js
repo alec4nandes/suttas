@@ -3,7 +3,7 @@ import { crawled } from "./crawled.js";
 async function getSuttaHierarchyHTML(suttaId) {
     const hier = getSuttaHierarchy(suttaId);
     return `
-        <ul>
+        <ul id="hierarchy">
             ${(await Promise.all(hier.map(getLevelData)))
                 .filter(Boolean)
                 .map((data) => `<li>${getLevelHTML(data)}</li>`)

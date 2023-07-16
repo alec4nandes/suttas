@@ -6,12 +6,19 @@ import { highlightText } from "./highlight.js";
 async function handleDisplaySutta(e) {
     e.preventDefault();
     notes.length = 0;
-    const suttaId = e.target.sutta.value;
-    await displaySuttaHTML(suttaId);
+    const typed = e.target.typed.value.trim(),
+        suttaId = e.target.sutta.value,
+        value = typed || suttaId;
+    e.target.typed.value = value;
+    e.target.sutta.value = value;
+    await displaySuttaHTML(value);
 }
 
 async function displaySuttaHTML(suttaId, lines, noteIndex) {
-    suttaId = suttaId || document.querySelector(`select[name="sutta"]`).value;
+    suttaId =
+        suttaId ||
+        document.querySelector(`input[name="typed"]`).value ||
+        document.querySelector(`select[name="sutta"]`).value;
     lines = lines || (await getLines(suttaId));
     const note = notes[noteIndex],
         displayElem = document.querySelector("main"),

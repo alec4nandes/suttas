@@ -11,6 +11,8 @@ function addHandlers() {
     selectElem.innerHTML = everySuttaId
         .map((id) => `<option value="${id}">${id}</option>`)
         .join("");
+    selectElem.onchange = () =>
+        (document.querySelector(`input[name="typed"]`).value = "");
     randomButton.onclick = () => getRandomSutta(selectElem);
     document.addEventListener("selectionchange", () => {
         // use this approach for mobile highlighting, because
@@ -40,10 +42,11 @@ function addHandlers() {
 
 function removeLineNumbersAndSpacers(text) {
     // trail line numbers with a hidden _ to help regex
-    const lineNumRegex = /.?[A-Za-z]*([0-9]+[.]?)+:?([0-9]+[.]?)*_/g;
+    const lineNumRegex =
+        /\.?-?:?_?[A-Za-z]*([0-9]+[.]?)*-?([0-9]+[.]?)*:?([0-9]+[.]?)*_/g;
     return (
         text
-            .replace(lineNumRegex, "\n")
+            .replace(lineNumRegex, "")
             .replace(/[☸\t]/g, "")
             // .replace(/\n\n\n/g, "\n\n")
             .trim()

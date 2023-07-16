@@ -55,35 +55,42 @@ function addNoteButtonsHandlers() {
 }
 
 function handleGetNote(button) {
-    button.onclick = () => {
+    button.onclick = async () => {
         const { index, note } = getNoteData(button);
-        displaySuttaHTML(null, null, index);
+        await displaySuttaHTML(null, null, index);
+        showHighlight();
         note && setTimeout(() => alert(note), 500);
     };
 }
 
 function handleEditNote(button) {
-    button.onclick = () => {
+    button.onclick = async () => {
         const { index, noteData, note } = getNoteData(button);
-        displaySuttaHTML(null, null, index);
-        setTimeout(() => {
+        await displaySuttaHTML(null, null, index);
+        showHighlight();
+        setTimeout(async () => {
             noteData.note = prompt(`Edit note:`, note || "") ?? note;
-            displaySuttaHTML(null, null, index);
+            await displaySuttaHTML(null, null, index);
         }, 500);
     };
 }
 
 function handleDeleteNote(button) {
-    button.onclick = () => {
+    button.onclick = async () => {
         const { index } = getNoteData(button);
-        displaySuttaHTML(null, null, index);
-        setTimeout(() => {
+        await displaySuttaHTML(null, null, index);
+        showHighlight();
+        setTimeout(async () => {
             if (confirm(`Delete note?`)) {
                 notes.splice(index, 1);
-                displaySuttaHTML();
+                await displaySuttaHTML();
             }
         }, 500);
     };
+}
+
+function showHighlight() {
+    document.querySelector(".highlight").scrollIntoView();
 }
 
 function getNoteData(button) {
