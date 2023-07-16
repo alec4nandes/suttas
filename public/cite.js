@@ -26,6 +26,7 @@ async function handleCite({
                 ? highlightEntireFirstLine(text)
                 : preformatLines({ text, anchorOffset, anchorNode }),
             result = { note, starts_at, ends_at, lines };
+        console.log(result);
         notes.push(result);
         await displaySuttaHTML(null, null, notes.length - 1);
         return result;
@@ -62,12 +63,16 @@ function preformatLines({ text, anchorOffset, anchorNode }) {
         combinedOffset = anchorOffset + firstLine.length,
         { nodeValue } = anchorNode,
         startText = nodeValue.slice(0, anchorOffset),
-        highlightedText = nodeValue.slice(anchorOffset, combinedOffset),
+        highlightedText = nodeValue.trim().slice(anchorOffset, combinedOffset),
         endText = nodeValue.slice(combinedOffset),
+        // line break is lost if at end of nodeValue,
+        // due to text.slice(nodeValue.length)
+        addBreak = combinedOffset === nodeValue.trim().length,
         newText =
             startText +
             wrapHighlight(highlightedText) +
             endText +
+            (addBreak ? "\n" : "") +
             text.slice(nodeValue.length);
     return getLinesFromText(newText);
 }
