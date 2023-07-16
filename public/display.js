@@ -96,20 +96,22 @@ function getLineHTML({ key, value, note }) {
                 </small>
             </td>
             <td>
-                ${highlightLine(key, value, note)}
+                ${highlightLine({ lineNumber: key, line: value, note })}
             </td>
         </tr>
     `;
 }
+
+const spacerChar = "☸";
 
 function getSpacerHTML(lastKey) {
     return `
         <tr data-line-num="${lastKey}">
             <td class="spacer" colspan="2">
-                ☸
+                ${spacerChar}
             </td>
         </tr>
     `;
 }
 
-export { handleDisplaySutta, displaySuttaHTML };
+export { handleDisplaySutta, displaySuttaHTML, spacerChar };

@@ -1,4 +1,4 @@
-import { handleDisplaySutta } from "./display.js";
+import { handleDisplaySutta, spacerChar } from "./display.js";
 import { everySuttaId } from "./crawled.js";
 import { getRandomSutta } from "./fetch.js";
 import { handleCite } from "./cite.js";
@@ -48,7 +48,8 @@ function removeLineNumbersAndSpacers(text) {
     return (
         text
             .replace(lineNumRegex, "")
-            .replace(/[☸\t]/g, "")
+            .replaceAll(spacerChar, "")
+            .replaceAll("\t", "")
             // .replace(/\n\n\n/g, "\n\n")
             .trim()
     );

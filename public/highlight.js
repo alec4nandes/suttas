@@ -1,8 +1,9 @@
+import { spacerChar } from "./display.js";
 import { wrapHighlight } from "./cite.js";
 
 let highlighting = false;
 
-function highlightLine(lineNumber, line, note) {
+function highlightLine({ lineNumber, line, note }) {
     if (note) {
         const { starts_at, ends_at, lines } = note,
             isFirstLine = lineNumber === starts_at,
@@ -11,7 +12,7 @@ function highlightLine(lineNumber, line, note) {
         isFirstLine && (highlighting = true);
         if (highlighting) {
             (isSingleLine || isLastLine) && (highlighting = false);
-            const isSpacer = line.includes("☸");
+            const isSpacer = line.includes(spacerChar);
             if (!isSpacer) {
                 if (isSingleLine || isFirstLine) {
                     // first line is already formatted
