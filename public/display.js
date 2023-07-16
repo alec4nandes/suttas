@@ -69,11 +69,14 @@ function getTitleHTML(value) {
     `;
 }
 
+// the _ is important for regex recognition
 function getLineHTML({ key, value, note }) {
     return `
         <tr data-line-num="${key}">
             <td class="line-number">
-                <small>${key}</small>
+                <small>
+                    ${key}<span class="hidden-regex">_</span>
+                </small>
             </td>
             <td>
                 ${highlightText(key, value, note)}

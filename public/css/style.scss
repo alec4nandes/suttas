@@ -113,6 +113,12 @@ table {
                 // doesn't work for iOS as of 7/2023
                 background: transparent;
             }
+
+            .hidden-regex {
+                width: 0;
+                display: inline-block;
+                opacity: 0;
+            }
         }
 
         &.spacer {

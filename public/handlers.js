@@ -39,7 +39,8 @@ function addHandlers() {
 }
 
 function removeLineNumbersAndSpacers(text) {
-    const lineNumRegex = /[\s]?[a-zA-Z]+([0-9]+[.]?)+:([0-9]+[.]?)+[\s]?/g;
+    // trail line numbers with a hidden _ to help regex
+    const lineNumRegex = /.?[A-Za-z]*([0-9]+[.]?)+:?([0-9]+[.]?)*_/g;
     return (
         text
             .replace(lineNumRegex, "\n")

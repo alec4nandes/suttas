@@ -108,6 +108,11 @@ table td.line-number ::-moz-selection {
 table td.line-number ::selection {
   background: transparent;
 }
+table td.line-number .hidden-regex {
+  width: 0;
+  display: inline-block;
+  opacity: 0;
+}
 table td.spacer {
   line-height: 1.5rem;
   opacity: 0;
