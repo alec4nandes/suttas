@@ -44,6 +44,13 @@ async function handleCite({
     }
 }
 
+function getLinesFromText(text) {
+    return removeLineNumbersAndSpacers(text)
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean);
+}
+
 function highlightEntireFirstLine(text) {
     const lines = getLinesFromText(text);
     lines[0] = wrapHighlight(lines[0]);
@@ -64,13 +71,6 @@ function preformatLines({ text, anchorOffset, anchorNode }) {
             endText +
             text.slice(nodeValue.length);
     return getLinesFromText(newText);
-}
-
-function getLinesFromText(text) {
-    return removeLineNumbersAndSpacers(text)
-        .split("\n")
-        .map((line) => line.trim())
-        .filter(Boolean);
 }
 
 function wrapHighlight(text) {
