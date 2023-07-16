@@ -26,7 +26,6 @@ async function handleCite({
                 ? highlightEntireFirstLine(text)
                 : preformatLines({ text, anchorOffset, anchorNode }),
             result = { note, starts_at, ends_at, lines };
-        console.log(lines);
         notes.push(result);
         await displaySuttaHTML(null, null, notes.length - 1);
         return result;
