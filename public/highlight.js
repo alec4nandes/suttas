@@ -1,30 +1,27 @@
-/*
-    The text value of a note object contains a string
-    with embedded line numbers copied from the lines table.
-    If the text includes lineNumber, highlight the entire line.
-*/
+import { wrapHighlight } from "./cite.js";
 
 let highlighting = false;
 
 function highlightText(lineNumber, line, note) {
     if (note) {
-        const { starts_at, ends_at, lines, text } = note,
-            startsWithNewLine = !text.indexOf("\n"),
+        const { starts_at, ends_at, lines } = note,
             isFirstLine = lineNumber === starts_at,
             isLastLine = lineNumber === ends_at,
-            isSpacer = line.includes("☸");
+            isSingleLine = starts_at === ends_at;
         isFirstLine && (highlighting = true);
-        if (highlighting && !isSpacer) {
-            isLastLine && (highlighting = false);
-            if ((isFirstLine && !startsWithNewLine) || starts_at === ends_at) {
-                // first line is already formatted
-                return lines[0];
-            }
-            if (isLastLine) {
-                const lastLine = lines.at(-1);
-                return getHighlightHTML(line, lastLine);
-            }
-            if (!isFirstLine) {
+        if (highlighting) {
+            (isSingleLine || isLastLine) && (highlighting = false);
+            const isSpacer = line.includes("☸");
+            if (!isSpacer) {
+                if (isSingleLine || isFirstLine) {
+                    // first line is already formatted
+                    const firstLine = lines[0];
+                    return firstLine;
+                }
+                if (isLastLine) {
+                    const lastLine = lines.at(-1);
+                    return getHighlightHTML(line, lastLine);
+                }
                 // middle line, full highlight
                 return getHighlightHTML(line, line);
             }
@@ -34,8 +31,7 @@ function highlightText(lineNumber, line, note) {
 }
 
 function getHighlightHTML(line, text) {
-    const replaced = `<span class="highlight">${text}</span>`;
-    return line.replace(text, replaced);
+    return line.replace(text, wrapHighlight(text));
 }
 
-export { highlightText, getHighlightHTML };
+export { highlightText };

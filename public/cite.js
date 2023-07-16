@@ -1,6 +1,6 @@
 import { notes } from "./notes.js";
 import { displaySuttaHTML } from "./display.js";
-import { removeLineNumbersAndSpacers } from "./handlers.js";
+import { lineNumRegex, removeLineNumbersAndSpacers } from "./handlers.js";
 
 async function handleCite({
     anchorNode,
@@ -14,22 +14,19 @@ async function handleCite({
         anchorNum = getLineNum(anchorNode),
         focusNum = getLineNum(focusNode);
     if (anchorNum && focusNum) {
-        const [starts_at, ends_at] = [anchorNum, focusNum].sort(() =>
+        const note = prompt("Note:"),
+            [starts_at, ends_at] = [anchorNum, focusNum].sort(() =>
                 selectionIsBackwards() ? -1 : 1
             ),
-            note = prompt("Note:");
-        let lines = getLinesFromText(text);
-        const combinedOffset = anchorOffset + lines[0].length;
-        text = text.indexOf("\n")
-            ? anchorNode.nodeValue.slice(0, anchorOffset) +
-              `<span class="highlight">${anchorNode.nodeValue
-                  .slice(anchorOffset, combinedOffset)
-                  .trim()}</span>` +
-              anchorNode.nodeValue.slice(combinedOffset) +
-              text.slice(anchorNode.nodeValue.length)
-            : text;
-        lines = getLinesFromText(text);
-        const result = { starts_at, ends_at, note, lines, text };
+            startsWithNewLine = !text.indexOf("\n"),
+            startsWithLineNumber = !text.search(lineNumRegex),
+            lines = startsWithNewLine
+                ? getLinesFromText(text)
+                : startsWithLineNumber
+                ? highlightEntireFirstLine(text)
+                : preformatLines({ text, anchorOffset, anchorNode }),
+            result = { note, starts_at, ends_at, lines };
+        console.log(lines);
         notes.push(result);
         await displaySuttaHTML(null, null, notes.length - 1);
         return result;
@@ -47,6 +44,28 @@ async function handleCite({
     }
 }
 
+function highlightEntireFirstLine(text) {
+    const lines = getLinesFromText(text);
+    lines[0] = wrapHighlight(lines[0]);
+    return lines;
+}
+
+function preformatLines({ text, anchorOffset, anchorNode }) {
+    const lines = getLinesFromText(text),
+        firstLine = lines[0],
+        combinedOffset = anchorOffset + firstLine.length,
+        { nodeValue } = anchorNode,
+        startText = nodeValue.slice(0, anchorOffset),
+        highlightText = nodeValue.slice(anchorOffset, combinedOffset),
+        endText = nodeValue.slice(combinedOffset),
+        newText =
+            startText +
+            wrapHighlight(highlightText) +
+            endText +
+            text.slice(nodeValue.length);
+    return getLinesFromText(newText);
+}
+
 function getLinesFromText(text) {
     return removeLineNumbersAndSpacers(text)
         .split("\n")
@@ -54,4 +73,8 @@ function getLinesFromText(text) {
         .filter(Boolean);
 }
 
-export { handleCite };
+function wrapHighlight(text) {
+    return `<span class="highlight">${text}</span>`;
+}
+
+export { handleCite, wrapHighlight };

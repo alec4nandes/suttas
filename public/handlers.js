@@ -40,10 +40,11 @@ function addHandlers() {
     });
 }
 
+const lineNumRegex =
+    /\.?-?:?_?[A-Za-z]*([0-9]+[.]?)*-?([0-9]+[.]?)*:?([0-9]+[.]?)*_/g;
+
 function removeLineNumbersAndSpacers(text) {
     // trail line numbers with a hidden _ to help regex
-    const lineNumRegex =
-        /\.?-?:?_?[A-Za-z]*([0-9]+[.]?)*-?([0-9]+[.]?)*:?([0-9]+[.]?)*_/g;
     return (
         text
             .replace(lineNumRegex, "")
@@ -53,4 +54,4 @@ function removeLineNumbersAndSpacers(text) {
     );
 }
 
-export { addHandlers, removeLineNumbersAndSpacers };
+export { addHandlers, lineNumRegex, removeLineNumbersAndSpacers };

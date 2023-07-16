@@ -31,11 +31,19 @@ async function displaySuttaHTML(suttaId, lines, noteIndex) {
     addNoteButtonsHandlers();
 }
 
-function getLinesHTML(lines, note) {
-    return `<table class="lines">${getRowsRecursiveHTML(lines, note)}</table>`;
-}
+let pastTitle = false,
+    lastKey = "";
 
-let lastKey;
+function getLinesHTML(lines, note) {
+    const result = `
+        <table class="lines">
+            ${getRowsRecursiveHTML(lines, note)}
+        </table>
+    `;
+    pastTitle = false;
+    lastKey = "";
+    return result;
+}
 
 function getRowsRecursiveHTML(lines, note) {
     if (!lines) {
@@ -43,17 +51,19 @@ function getRowsRecursiveHTML(lines, note) {
     }
     return Object.entries(lines)
         .map(([key, value], i, a) => {
-            const isLine = typeof value === "string",
-                nums = key.split(":")[1],
-                isTitle = isLine && nums.split(".")[0] === "0",
+            const nums = key.split(":")[1],
+                isString = typeof value === "string",
+                isTitle = isString && nums.split(".")[0] === "0",
+                isLine = isString && !isTitle,
                 isLast = i === a.length - 1;
-            isLine && (lastKey = key);
-            return isLine
-                ? isTitle
-                    ? getTitleHTML(value)
-                    : getLineHTML({ key, value, note })
+            isLine && (pastTitle = true);
+            isLine && pastTitle && (lastKey = key);
+            return isTitle
+                ? getTitleHTML(value)
+                : isLine
+                ? getLineHTML({ key, value, note })
                 : getRowsRecursiveHTML(value, note) +
-                      (isLast ? getSpacerHTML(lastKey) : "");
+                  (isLast ? getSpacerHTML(lastKey) : "");
         })
         .join("");
 }
