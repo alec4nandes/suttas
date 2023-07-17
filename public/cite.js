@@ -19,19 +19,20 @@ async function handleCite({
         return;
     }
     const getLineNumberRow = (node) =>
-            node &&
-            (node.dataset?.lineNum ? node : getLineNumberRow(node.parentNode)),
-        anchorRow = getLineNumberRow(anchorNode),
+        node &&
+        (node.dataset?.lineNum ? node : getLineNumberRow(node.parentNode));
+    let anchorRow = getLineNumberRow(anchorNode),
         focusRow = getLineNumberRow(focusNode);
     if (anchorRow && focusRow) {
+        const isBackwards = selectionIsBackwards(),
+            sorter = () => (isBackwards ? -1 : 1);
+        [anchorRow, focusRow] = [anchorRow, focusRow].sort(sorter);
+        [anchorNode, focusNode] = [anchorNode, focusNode].sort(sorter);
+        [anchorOffset, focusOffset] = [anchorOffset, focusOffset].sort(sorter);
         const note = prompt("Note:"),
             startsWithNewLine = !text.indexOf("\n"),
             getLineNum = (row) => row.dataset.lineNum,
-            rowIsSpacer = (row) => getLineNum(row) === "x",
-            isBackwards = selectionIsBackwards(),
-            sorter = () => (isBackwards ? -1 : 1);
-        [anchorNode, focusNode] = [anchorNode, focusNode].sort(sorter);
-        [anchorOffset, focusOffset] = [anchorOffset, focusOffset].sort(sorter);
+            rowIsSpacer = (row) => getLineNum(row) === "x";
         let firstRow = anchorRow,
             lastRow = focusRow;
         startsWithNewLine && (firstRow = firstRow.nextElementSibling);
@@ -62,7 +63,7 @@ async function handleCite({
         alert("Could not cite. Outside text selected.");
     }
 
-    // ENCLOSED FUNCTIONS
+    // ENCLOSED FUNCTIONS FOR handleCite
 
     function getLinesFromText(text) {
         return removeLineNumbersAndSpacers(text)
@@ -112,7 +113,7 @@ async function handleCite({
             last_line = formatLastLine({ line: focusLine, lines });
         return { first_line, last_line };
 
-        // ENCLOSED FUNCTIONS
+        // ENCLOSED FUNCTIONS FOR getFirstAndLastLines
 
         function getAllChildNodes(node) {
             return getAllChildNodesHelper(node).flat(Infinity);
