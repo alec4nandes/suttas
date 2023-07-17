@@ -9,16 +9,13 @@ async function handleDisplaySutta(e) {
     const typed = e.target.typed.value.trim(),
         suttaId = e.target.sutta.value,
         value = typed || suttaId;
-    e.target.typed.value = value;
-    e.target.sutta.value = value;
     await displaySuttaHTML(value);
 }
 
 async function displaySuttaHTML(suttaId, lines, noteIndex) {
-    suttaId =
-        suttaId ||
-        document.querySelector(`input[name="typed"]`).value ||
-        document.querySelector(`select[name="sutta"]`).value;
+    const typedInput = document.querySelector(`input[name="typed"]`),
+        suttaSelect = document.querySelector(`select[name="sutta"]`);
+    suttaId = suttaId || typedInput.value || suttaSelect.value;
     lines = lines || (await getLines(suttaId));
     const note = notes[noteIndex],
         displayElem = document.querySelector("main"),
@@ -29,6 +26,8 @@ async function displaySuttaHTML(suttaId, lines, noteIndex) {
             getLinesHTML(lines, note);
     displayElem.innerHTML = html;
     addNoteButtonsHandlers();
+    typedInput.value = suttaId;
+    suttaSelect.value = suttaId;
 }
 
 function getLinesHTML(lines, note) {

@@ -11,11 +11,6 @@ async function handleCite({
 }) {
     const lines = getLinesFromText(text),
         noLines = !lines[0],
-        getNodeWithClass = (node, className) =>
-            node &&
-            (node.classList?.contains(className)
-                ? node
-                : getNodeWithClass(node.parentNode, className)),
         lineNumAnchor = getNodeWithClass(anchorNode, "line-number"),
         lineNumFocus = getNodeWithClass(focusNode, "line-number"),
         onlyLineNum =
@@ -34,8 +29,8 @@ async function handleCite({
         focusLineNumNode = getLineNumberNode(focusNode);
     if (anchorLineNumNode && focusLineNumNode) {
         const note = prompt("Note:"),
-            rowIsSpacer = (row) => row.dataset.lineNum === "x",
-            startsWithNewLine = !text.indexOf("\n");
+            startsWithNewLine = !text.indexOf("\n"),
+            rowIsSpacer = (row) => row.dataset.lineNum === "x";
         let firstRow = anchorLineNumNode,
             lastRow = focusLineNumNode;
         startsWithNewLine && (firstRow = firstRow.nextElementSibling);
@@ -51,24 +46,21 @@ async function handleCite({
             getCell = (row) => row.children[1],
             anchorCell = getCell(firstRow),
             focusCell = getCell(lastRow),
-            getNodeValueHelper = (node) =>
-                node.childNodes?.length
-                    ? [...node.childNodes].map((node) => getNodeValue(node))
-                    : [node.nodeValue],
             getNodeValue = (node) =>
-                getNodeValueHelper(node).flat(Infinity).join(""),
+                getAllChildNodes(node)
+                    .map((node) => node.nodeValue)
+                    .join(""),
             anchorText = getNodeValue(anchorCell),
             focusText = getNodeValue(focusCell),
-            offset =
-                !startsWithNewLine && getNodeWithClass(anchorNode, "line")
-                    ? anchorOffset
-                    : 0,
-            highlightNode = getNodeWithClass(anchorNode, "highlight"),
+            calculateOffset =
+                !startsWithNewLine && getNodeWithClass(anchorNode, "line"),
+            offset = calculateOffset ? anchorOffset : 0,
             first_line = formatFirstLine({
                 line: anchorText,
+                anchorNode,
                 offset,
+                calculateOffset,
                 lines,
-                highlightNode,
             }),
             last_line = formatLastLine(focusText, lines),
             result = {
@@ -80,7 +72,7 @@ async function handleCite({
             };
         notes.push(result);
         await displaySuttaHTML(null, null, notes.length - 1);
-        console.log(result, text);
+        console.log(result);
     } else {
         alert("Could not cite. Outside text selected.");
     }
@@ -102,16 +94,30 @@ function getLinesFromText(text) {
         .filter(Boolean);
 }
 
-function formatFirstLine({ line, offset, lines, highlightNode }) {
+function getNodeWithClass(node, className) {
+    return (
+        node &&
+        (node.classList?.contains(className)
+            ? node
+            : getNodeWithClass(node.parentNode, className))
+    );
+}
+
+function getAllChildNodes(node) {
+    return getAllChildNodesHelper(node).flat(Infinity);
+}
+
+function getAllChildNodesHelper(node) {
+    return node.childNodes?.length
+        ? [...node.childNodes].map((node) => getAllChildNodes(node))
+        : [node];
+}
+
+function formatFirstLine({ line, anchorNode, offset, calculateOffset, lines }) {
+    offset += calculateOffset
+        ? getCalculatedOffset(getNodeWithClass(anchorNode, "line"), anchorNode)
+        : 0;
     line = offset ? line : line.trim();
-    if (highlightNode) {
-        for (const node of highlightNode.parentNode.childNodes) {
-            if (node === highlightNode) {
-                break;
-            }
-            offset += node.nodeValue.length;
-        }
-    }
     const firstLine = lines[0],
         combinedOffset = offset + firstLine.length,
         start = line.slice(0, offset),
@@ -121,13 +127,25 @@ function formatFirstLine({ line, offset, lines, highlightNode }) {
     return result.trim();
 }
 
-function formatLastLine(line, lines) {
-    const lastLine = lines.at(-1);
-    return line.replace(lastLine, wrapHighlight(lastLine)).trim();
+function getCalculatedOffset(node, targetNode) {
+    const children = getAllChildNodes(node);
+    let offset = 0;
+    for (const child of children) {
+        if (child === targetNode) {
+            break;
+        }
+        offset += child.nodeValue.length;
+    }
+    return offset;
 }
 
 function wrapHighlight(text) {
     return `<span class="highlight">${text}</span>`;
+}
+
+function formatLastLine(line, lines) {
+    const lastLine = lines.at(-1);
+    return line.replace(lastLine, wrapHighlight(lastLine)).trim();
 }
 
 export { handleCite, wrapHighlight };
