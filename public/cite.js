@@ -121,7 +121,7 @@ async function handleCite({
 
         function getAllChildNodesHelper(node) {
             return node.childNodes?.length
-                ? [...node.childNodes].map((node) => getAllChildNodes(node))
+                ? [...node.childNodes].map(getAllChildNodesHelper)
                 : [node];
         }
 
