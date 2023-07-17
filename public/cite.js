@@ -18,21 +18,22 @@ async function handleCite({
     if (noLines || onlyLineNum) {
         return;
     }
-    const isBackwards = selectionIsBackwards(),
-        sorter = () => (isBackwards ? -1 : 1);
-    [anchorNode, focusNode] = [anchorNode, focusNode].sort(sorter);
-    [anchorOffset, focusOffset] = [anchorOffset, focusOffset].sort(sorter);
-    const getLineNumberNode = (node) =>
+    const getLineNumberRow = (node) =>
             node &&
-            (node.dataset?.lineNum ? node : getLineNumberNode(node.parentNode)),
-        anchorLineNumNode = getLineNumberNode(anchorNode),
-        focusLineNumNode = getLineNumberNode(focusNode);
-    if (anchorLineNumNode && focusLineNumNode) {
+            (node.dataset?.lineNum ? node : getLineNumberRow(node.parentNode)),
+        anchorRow = getLineNumberRow(anchorNode),
+        focusRow = getLineNumberRow(focusNode);
+    if (anchorRow && focusRow) {
         const note = prompt("Note:"),
             startsWithNewLine = !text.indexOf("\n"),
-            rowIsSpacer = (row) => row.dataset.lineNum === "x";
-        let firstRow = anchorLineNumNode,
-            lastRow = focusLineNumNode;
+            getLineNum = (row) => row.dataset.lineNum,
+            rowIsSpacer = (row) => getLineNum(row) === "x",
+            isBackwards = selectionIsBackwards(),
+            sorter = () => (isBackwards ? -1 : 1);
+        [anchorNode, focusNode] = [anchorNode, focusNode].sort(sorter);
+        [anchorOffset, focusOffset] = [anchorOffset, focusOffset].sort(sorter);
+        let firstRow = anchorRow,
+            lastRow = focusRow;
         startsWithNewLine && (firstRow = firstRow.nextElementSibling);
         while (rowIsSpacer(firstRow)) {
             firstRow = firstRow.nextElementSibling;
@@ -40,29 +41,13 @@ async function handleCite({
         while (rowIsSpacer(lastRow)) {
             lastRow = lastRow.previousElementSibling;
         }
-        const getLineNum = (row) => row.getAttribute("data-line-num"),
-            starts_at = getLineNum(firstRow),
+        const starts_at = getLineNum(firstRow),
             ends_at = getLineNum(lastRow),
-            getCell = (row) => row.children[1],
-            anchorCell = getCell(firstRow),
-            focusCell = getCell(lastRow),
-            getNodeValue = (node) =>
-                getAllChildNodes(node)
-                    .map((node) => node.nodeValue)
-                    .join(""),
-            anchorText = getNodeValue(anchorCell),
-            focusText = getNodeValue(focusCell),
-            calculateOffset =
-                !startsWithNewLine && getNodeWithClass(anchorNode, "line"),
-            offset = calculateOffset ? anchorOffset : 0,
-            first_line = formatFirstLine({
-                line: anchorText,
-                anchorNode,
-                offset,
-                calculateOffset,
-                lines,
+            { first_line, last_line } = getFirstAndLastLines({
+                firstRow,
+                lastRow,
+                startsWithNewLine,
             }),
-            last_line = formatLastLine(focusText, lines),
             result = {
                 note,
                 starts_at,
@@ -77,6 +62,24 @@ async function handleCite({
         alert("Could not cite. Outside text selected.");
     }
 
+    // ENCLOSED FUNCTIONS
+
+    function getLinesFromText(text) {
+        return removeLineNumbersAndSpacers(text)
+            .split("\n")
+            .map((line) => line.trim())
+            .filter(Boolean);
+    }
+
+    function getNodeWithClass(node, className) {
+        return (
+            node &&
+            (node.classList?.contains(className)
+                ? node
+                : getNodeWithClass(node.parentNode, className))
+        );
+    }
+
     function selectionIsBackwards() {
         const range = document.createRange();
         range.setStart(anchorNode, anchorOffset);
@@ -85,67 +88,74 @@ async function handleCite({
         range.detach();
         return isBackwards;
     }
-}
 
-function getLinesFromText(text) {
-    return removeLineNumbersAndSpacers(text)
-        .split("\n")
-        .map((line) => line.trim())
-        .filter(Boolean);
-}
+    function getFirstAndLastLines({ firstRow, lastRow, startsWithNewLine }) {
+        const getCell = (row) => row.children[1],
+            anchorCell = getCell(firstRow),
+            focusCell = getCell(lastRow),
+            getFullLine = (node) =>
+                getAllChildNodes(node)
+                    .map((node) => node.nodeValue)
+                    .join(""),
+            anchorLine = getFullLine(anchorCell),
+            focusLine = getFullLine(focusCell),
+            anchorLineNode = getNodeWithClass(anchorNode, "line"),
+            calculateOffset = !startsWithNewLine && anchorLineNode,
+            offset = calculateOffset
+                ? anchorOffset + getCalculatedOffset(anchorLineNode, anchorNode)
+                : 0,
+            first_line = formatFirstLine({
+                line: anchorLine,
+                offset,
+                lines,
+            }),
+            last_line = formatLastLine({ line: focusLine, lines });
+        return { first_line, last_line };
 
-function getNodeWithClass(node, className) {
-    return (
-        node &&
-        (node.classList?.contains(className)
-            ? node
-            : getNodeWithClass(node.parentNode, className))
-    );
-}
+        // ENCLOSED FUNCTIONS
 
-function getAllChildNodes(node) {
-    return getAllChildNodesHelper(node).flat(Infinity);
-}
-
-function getAllChildNodesHelper(node) {
-    return node.childNodes?.length
-        ? [...node.childNodes].map((node) => getAllChildNodes(node))
-        : [node];
-}
-
-function formatFirstLine({ line, anchorNode, offset, calculateOffset, lines }) {
-    offset += calculateOffset
-        ? getCalculatedOffset(getNodeWithClass(anchorNode, "line"), anchorNode)
-        : 0;
-    line = offset ? line : line.trim();
-    const firstLine = lines[0],
-        combinedOffset = offset + firstLine.length,
-        start = line.slice(0, offset),
-        highlightedText = line.slice(offset, combinedOffset),
-        end = line.slice(combinedOffset),
-        result = start + wrapHighlight(highlightedText) + end;
-    return result.trim();
-}
-
-function getCalculatedOffset(node, targetNode) {
-    const children = getAllChildNodes(node);
-    let offset = 0;
-    for (const child of children) {
-        if (child === targetNode) {
-            break;
+        function getAllChildNodes(node) {
+            return getAllChildNodesHelper(node).flat(Infinity);
         }
-        offset += child.nodeValue.length;
+
+        function getAllChildNodesHelper(node) {
+            return node.childNodes?.length
+                ? [...node.childNodes].map((node) => getAllChildNodes(node))
+                : [node];
+        }
+
+        function getCalculatedOffset(node, targetNode) {
+            const children = getAllChildNodes(node);
+            let offset = 0;
+            for (const child of children) {
+                if (child === targetNode) {
+                    break;
+                }
+                offset += child.nodeValue.length;
+            }
+            return offset;
+        }
+
+        function formatFirstLine({ line, offset, lines }) {
+            line = offset ? line : line.trim();
+            const firstLine = lines[0],
+                combinedOffset = offset + firstLine.length,
+                start = line.slice(0, offset),
+                highlightedText = line.slice(offset, combinedOffset),
+                end = line.slice(combinedOffset),
+                result = start + wrapHighlight(highlightedText) + end;
+            return result.trim();
+        }
+
+        function formatLastLine({ line, lines }) {
+            const lastLine = lines.at(-1);
+            return line.replace(lastLine, wrapHighlight(lastLine)).trim();
+        }
     }
-    return offset;
 }
 
 function wrapHighlight(text) {
     return `<span class="highlight">${text}</span>`;
-}
-
-function formatLastLine(line, lines) {
-    const lastLine = lines.at(-1);
-    return line.replace(lastLine, wrapHighlight(lastLine)).trim();
 }
 
 export { handleCite, wrapHighlight };
