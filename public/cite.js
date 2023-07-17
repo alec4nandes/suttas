@@ -11,16 +11,15 @@ async function handleCite({
 }) {
     const lines = getLinesFromText(text),
         noLines = !lines[0],
-        onlyLineNumHighlighted = (node) =>
+        getNodeWithClass = (node, className) =>
             node &&
-            (node.classList?.contains("line-number")
+            (node.classList?.contains(className)
                 ? node
-                : onlyLineNumHighlighted(node.parentNode)),
-        onlyLineNumAnchor = onlyLineNumHighlighted(anchorNode),
-        onlyLineNumFocus = onlyLineNumHighlighted(focusNode),
+                : getNodeWithClass(node.parentNode, className)),
+        lineNumAnchor = getNodeWithClass(anchorNode, "line-number"),
+        lineNumFocus = getNodeWithClass(focusNode, "line-number"),
         onlyLineNum =
-            (onlyLineNumAnchor || onlyLineNumFocus) &&
-            onlyLineNumAnchor === onlyLineNumFocus;
+            (lineNumAnchor || lineNumFocus) && lineNumAnchor === lineNumFocus;
     if (noLines || onlyLineNum) {
         return;
     }
@@ -34,11 +33,12 @@ async function handleCite({
         anchorLineNumNode = getLineNumberNode(anchorNode),
         focusLineNumNode = getLineNumberNode(focusNode);
     if (anchorLineNumNode && focusLineNumNode) {
-        const note = "", // prompt("Note:"),
-            getRow = (node) => node.nextElementSibling.previousElementSibling,
-            rowIsSpacer = (row) => row.getAttribute("data-line-num") === "x";
-        let firstRow = getRow(anchorLineNumNode),
-            lastRow = getRow(focusLineNumNode);
+        const note = prompt("Note:"),
+            rowIsSpacer = (row) => row.dataset.lineNum === "x",
+            startsWithNewLine = !text.indexOf("\n");
+        let firstRow = anchorLineNumNode,
+            lastRow = focusLineNumNode;
+        startsWithNewLine && (firstRow = firstRow.nextElementSibling);
         while (rowIsSpacer(firstRow)) {
             firstRow = firstRow.nextElementSibling;
         }
@@ -59,12 +59,10 @@ async function handleCite({
                 getNodeValueHelper(node).flat(Infinity).join(""),
             anchorText = getNodeValue(anchorCell),
             focusText = getNodeValue(focusCell),
-            getNodeWithClass = (node, className) =>
-                node &&
-                (node.classList?.contains(className)
-                    ? node
-                    : getNodeWithClass(node.parentNode, className)),
-            offset = getNodeWithClass(anchorNode, "line") ? anchorOffset : 0,
+            offset =
+                !startsWithNewLine && getNodeWithClass(anchorNode, "line")
+                    ? anchorOffset
+                    : 0,
             highlightNode = getNodeWithClass(anchorNode, "highlight"),
             first_line = formatFirstLine({
                 line: anchorText,
@@ -82,7 +80,7 @@ async function handleCite({
             };
         notes.push(result);
         await displaySuttaHTML(null, null, notes.length - 1);
-        console.log(result);
+        console.log(result, text);
     } else {
         alert("Could not cite. Outside text selected.");
     }
