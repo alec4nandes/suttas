@@ -80,7 +80,7 @@ function getLineHTML({ key, value, note, isTitle }) {
                     ${key}<span class="hidden-regex">_</span>
                 </small>
             </td>
-            <td class="${isTitle ? "title" : ""}">
+            <td class="${isTitle ? "title " : ""}line">
                 ${highlightLine({ lineNumber: key, line: value, note })}
             </td>
         </tr>

@@ -34,7 +34,7 @@ async function handleCite({
         anchorLineNumNode = getLineNumberNode(anchorNode),
         focusLineNumNode = getLineNumberNode(focusNode);
     if (anchorLineNumNode && focusLineNumNode) {
-        const note = prompt("Note:"),
+        const note = "", // prompt("Note:"),
             getRow = (node) => node.nextElementSibling.previousElementSibling,
             rowIsSpacer = (row) => row.getAttribute("data-line-num") === "x";
         let firstRow = getRow(anchorLineNumNode),
@@ -48,13 +48,30 @@ async function handleCite({
         const getLineNum = (row) => row.getAttribute("data-line-num"),
             starts_at = getLineNum(firstRow),
             ends_at = getLineNum(lastRow),
-            getNode = (row) => row.children[1].childNodes[0],
-            realAnchorNode = getNode(firstRow),
-            realFocusNode = getNode(lastRow),
-            anchorText = realAnchorNode.nodeValue,
-            focusText = realFocusNode.nodeValue,
-            offset = anchorNode === realAnchorNode ? anchorOffset : 0,
-            first_line = formatFirstLine(anchorText, offset, lines),
+            getCell = (row) => row.children[1],
+            anchorCell = getCell(firstRow),
+            focusCell = getCell(lastRow),
+            getNodeValueHelper = (node) =>
+                node.childNodes?.length
+                    ? [...node.childNodes].map((node) => getNodeValue(node))
+                    : [node.nodeValue],
+            getNodeValue = (node) =>
+                getNodeValueHelper(node).flat(Infinity).join(""),
+            anchorText = getNodeValue(anchorCell),
+            focusText = getNodeValue(focusCell),
+            getNodeWithClass = (node, className) =>
+                node &&
+                (node.classList?.contains(className)
+                    ? node
+                    : getNodeWithClass(node.parentNode, className)),
+            offset = getNodeWithClass(anchorNode, "line") ? anchorOffset : 0,
+            highlightNode = getNodeWithClass(anchorNode, "highlight"),
+            first_line = formatFirstLine({
+                line: anchorText,
+                offset,
+                lines,
+                highlightNode,
+            }),
             last_line = formatLastLine(focusText, lines),
             result = {
                 note,
@@ -87,8 +104,16 @@ function getLinesFromText(text) {
         .filter(Boolean);
 }
 
-function formatFirstLine(line, offset, lines) {
+function formatFirstLine({ line, offset, lines, highlightNode }) {
     line = offset ? line : line.trim();
+    if (highlightNode) {
+        for (const node of highlightNode.parentNode.childNodes) {
+            if (node === highlightNode) {
+                break;
+            }
+            offset += node.nodeValue.length;
+        }
+    }
     const firstLine = lines[0],
         combinedOffset = offset + firstLine.length,
         start = line.slice(0, offset),
