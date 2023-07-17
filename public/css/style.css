@@ -100,7 +100,7 @@ small {
 table {
   width: 100%;
 }
-table.lines {
+table#lines {
   margin: 1.5rem auto;
 }
 table#note-buttons {

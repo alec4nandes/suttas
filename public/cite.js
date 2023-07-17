@@ -1,6 +1,6 @@
 import { notes } from "./notes.js";
 import { displaySuttaHTML } from "./display.js";
-import { lineNumRegex, removeLineNumbersAndSpacers } from "./handlers.js";
+import { removeLineNumbersAndSpacers } from "./handlers.js";
 
 async function handleCite({
     anchorNode,
@@ -9,27 +9,63 @@ async function handleCite({
     focusOffset,
     text,
 }) {
-    const getLineNum = (node) =>
-            node && (node.dataset?.lineNum || getLineNum(node.parentNode)),
-        anchorNum = getLineNum(anchorNode),
-        focusNum = getLineNum(focusNode);
-    if (anchorNum && focusNum) {
+    const lines = getLinesFromText(text),
+        noLines = !lines[0],
+        onlyLineNumHighlighted = (node) =>
+            node &&
+            (node.classList?.contains("line-number")
+                ? node
+                : onlyLineNumHighlighted(node.parentNode)),
+        onlyLineNumAnchor = onlyLineNumHighlighted(anchorNode),
+        onlyLineNumFocus = onlyLineNumHighlighted(focusNode),
+        onlyLineNum =
+            (onlyLineNumAnchor || onlyLineNumFocus) &&
+            onlyLineNumAnchor === onlyLineNumFocus;
+    if (noLines || onlyLineNum) {
+        return;
+    }
+    const isBackwards = selectionIsBackwards(),
+        sorter = () => (isBackwards ? -1 : 1);
+    [anchorNode, focusNode] = [anchorNode, focusNode].sort(sorter);
+    [anchorOffset, focusOffset] = [anchorOffset, focusOffset].sort(sorter);
+    const getLineNumberNode = (node) =>
+            node &&
+            (node.dataset?.lineNum ? node : getLineNumberNode(node.parentNode)),
+        anchorLineNumNode = getLineNumberNode(anchorNode),
+        focusLineNumNode = getLineNumberNode(focusNode);
+    if (anchorLineNumNode && focusLineNumNode) {
         const note = prompt("Note:"),
-            [starts_at, ends_at] = [anchorNum, focusNum].sort(() =>
-                selectionIsBackwards() ? -1 : 1
-            ),
-            startsWithNewLine = !text.indexOf("\n"),
-            startsWithLineNumber = !text.search(lineNumRegex),
-            lines = startsWithNewLine
-                ? getLinesFromText(text)
-                : startsWithLineNumber
-                ? highlightEntireFirstLine(text)
-                : preformatLines({ text, anchorOffset, anchorNode }),
-            result = { note, starts_at, ends_at, lines };
-        console.log(result);
+            getRow = (node) => node.nextElementSibling.previousElementSibling,
+            rowIsSpacer = (row) => row.getAttribute("data-line-num") === "x";
+        let firstRow = getRow(anchorLineNumNode),
+            lastRow = getRow(focusLineNumNode);
+        while (rowIsSpacer(firstRow)) {
+            firstRow = firstRow.nextElementSibling;
+        }
+        while (rowIsSpacer(lastRow)) {
+            lastRow = lastRow.previousElementSibling;
+        }
+        const getLineNum = (row) => row.getAttribute("data-line-num"),
+            starts_at = getLineNum(firstRow),
+            ends_at = getLineNum(lastRow),
+            getNode = (row) => row.children[1].childNodes[0],
+            realAnchorNode = getNode(firstRow),
+            realFocusNode = getNode(lastRow),
+            anchorText = realAnchorNode.nodeValue,
+            focusText = realFocusNode.nodeValue,
+            offset = anchorNode === realAnchorNode ? anchorOffset : 0,
+            first_line = formatFirstLine(anchorText, offset, lines),
+            last_line = formatLastLine(focusText, lines),
+            result = {
+                note,
+                starts_at,
+                ends_at,
+                first_line,
+                last_line,
+            };
         notes.push(result);
         await displaySuttaHTML(null, null, notes.length - 1);
-        return result;
+        console.log(result);
     } else {
         alert("Could not cite. Outside text selected.");
     }
@@ -51,30 +87,20 @@ function getLinesFromText(text) {
         .filter(Boolean);
 }
 
-function highlightEntireFirstLine(text) {
-    const lines = getLinesFromText(text);
-    lines[0] = wrapHighlight(lines[0]);
-    return lines;
+function formatFirstLine(line, offset, lines) {
+    line = offset ? line : line.trim();
+    const firstLine = lines[0],
+        combinedOffset = offset + firstLine.length,
+        start = line.slice(0, offset),
+        highlightedText = line.slice(offset, combinedOffset),
+        end = line.slice(combinedOffset),
+        result = start + wrapHighlight(highlightedText) + end;
+    return result.trim();
 }
 
-function preformatLines({ text, anchorOffset, anchorNode }) {
-    const lines = getLinesFromText(text),
-        firstLine = lines[0],
-        combinedOffset = anchorOffset + firstLine.length,
-        { nodeValue } = anchorNode,
-        startText = nodeValue.slice(0, anchorOffset),
-        highlightedText = nodeValue.trim().slice(anchorOffset, combinedOffset),
-        endText = nodeValue.slice(combinedOffset),
-        // line break is lost if at end of nodeValue,
-        // due to text.slice(nodeValue.length)
-        addBreak = combinedOffset === nodeValue.trim().length,
-        newText =
-            startText +
-            wrapHighlight(highlightedText) +
-            endText +
-            (addBreak ? "\n" : "") +
-            text.slice(nodeValue.length);
-    return getLinesFromText(newText);
+function formatLastLine(line, lines) {
+    const lastLine = lines.at(-1);
+    return line.replace(lastLine, wrapHighlight(lastLine)).trim();
 }
 
 function wrapHighlight(text) {

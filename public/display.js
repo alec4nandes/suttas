@@ -31,17 +31,12 @@ async function displaySuttaHTML(suttaId, lines, noteIndex) {
     addNoteButtonsHandlers();
 }
 
-let pastTitle = false,
-    lastKey = "";
-
 function getLinesHTML(lines, note) {
     const result = `
-        <table class="lines">
+        <table id="lines">
             ${getRowsRecursiveHTML(lines, note)}
         </table>
     `;
-    pastTitle = false;
-    lastKey = "";
     return result;
 }
 
@@ -56,14 +51,12 @@ function getRowsRecursiveHTML(lines, note) {
                 isTitle = isString && nums.split(".")[0] === "0",
                 isLine = isString && !isTitle,
                 isLast = i === a.length - 1;
-            isLine && (pastTitle = true);
-            isLine && pastTitle && (lastKey = key);
             return isTitle
-                ? getTitleHTML(value)
+                ? getLineHTML({ key, value, note, isTitle: true })
                 : isLine
                 ? getLineHTML({ key, value, note })
                 : getRowsRecursiveHTML(value, note) +
-                  (isLast ? getSpacerHTML(lastKey) : "");
+                  (isLast ? getSpacerHTML() : "");
         })
         .join("");
 }
@@ -78,16 +71,8 @@ function getWarningHTML() {
     `;
 }
 
-function getTitleHTML(value) {
-    return `
-        <tr>
-            <td class="title" colspan="2">${value}</td>
-        </tr>
-    `;
-}
-
 // the _ is important for regex recognition
-function getLineHTML({ key, value, note }) {
+function getLineHTML({ key, value, note, isTitle }) {
     return `
         <tr data-line-num="${key}">
             <td class="line-number">
@@ -95,7 +80,7 @@ function getLineHTML({ key, value, note }) {
                     ${key}<span class="hidden-regex">_</span>
                 </small>
             </td>
-            <td>
+            <td class="${isTitle ? "title" : ""}">
                 ${highlightLine({ lineNumber: key, line: value, note })}
             </td>
         </tr>
@@ -104,9 +89,9 @@ function getLineHTML({ key, value, note }) {
 
 const spacerChar = "☸";
 
-function getSpacerHTML(lastKey) {
+function getSpacerHTML() {
     return `
-        <tr data-line-num="${lastKey}">
+        <tr data-line-num="x">
             <td class="spacer" colspan="2">
                 ${spacerChar}
             </td>

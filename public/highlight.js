@@ -5,34 +5,24 @@ let highlighting = false;
 
 function highlightLine({ lineNumber, line, note }) {
     if (note) {
-        const { starts_at, ends_at, lines } = note,
+        const { starts_at, ends_at, first_line, last_line } = note,
             isFirstLine = lineNumber === starts_at,
             isLastLine = lineNumber === ends_at,
             isSingleLine = starts_at === ends_at;
         isFirstLine && (highlighting = true);
         if (highlighting) {
-            (isSingleLine || isLastLine) && (highlighting = false);
             const isSpacer = line.includes(spacerChar);
             if (!isSpacer) {
-                if (isSingleLine || isFirstLine) {
-                    // first line is already formatted
-                    const firstLine = lines[0];
-                    return firstLine;
-                }
-                if (isLastLine) {
-                    const lastLine = lines.at(-1);
-                    return getHighlightHTML(line, lastLine);
-                }
-                // middle line, full highlight
-                return getHighlightHTML(line, line);
+                isLastLine && (highlighting = false);
+                return isSingleLine || isFirstLine
+                    ? first_line
+                    : isLastLine
+                    ? last_line
+                    : wrapHighlight(line);
             }
         }
     }
     return line;
-}
-
-function getHighlightHTML(line, text) {
-    return line.replace(text, wrapHighlight(text));
 }
 
 export { highlightLine };
