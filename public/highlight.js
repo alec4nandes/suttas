@@ -8,13 +8,13 @@ function highlightLine({ lineNumber, line, note }) {
         const { starts_at, ends_at, first_line, last_line } = note,
             isFirstLine = lineNumber === starts_at,
             isLastLine = lineNumber === ends_at,
-            isSingleLine = starts_at === ends_at;
+            isSingleLine = !last_line;
         isFirstLine && (highlighting = true);
         if (highlighting) {
             const isSpacer = line.includes(spacerChar);
             if (!isSpacer) {
-                isLastLine && (highlighting = false);
-                return isSingleLine || isFirstLine
+                (isLastLine || isSingleLine) && (highlighting = false);
+                return isFirstLine
                     ? first_line
                     : isLastLine
                     ? last_line

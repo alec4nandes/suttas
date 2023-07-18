@@ -9,32 +9,48 @@ async function handleCite({
     focusOffset,
     text,
 }) {
+    // see if any sutta text is actually selected
+    // (cannot annotate only line numbers)
     const lines = getLinesFromText(text),
         noLines = !lines[0],
         lineNumAnchor = getNodeWithClass(anchorNode, "line-number"),
         lineNumFocus = getNodeWithClass(focusNode, "line-number"),
         onlyLineNum =
-            (lineNumAnchor || lineNumFocus) && lineNumAnchor === lineNumFocus;
+            (lineNumAnchor || lineNumFocus) && lineNumAnchor === lineNumFocus,
+        showWarning = () =>
+            alert(
+                "Could not cite. Either non-sutta text selected or only whitespace."
+            );
     if (noLines || onlyLineNum) {
+        showWarning();
         return;
     }
+    // recursively travel up the parent nodes to make sure
+    // both the anchor and focus nodes reside in, or are,
+    // rows with line-number data
     const getLineNumberRow = (node) =>
         node &&
         (node.dataset?.lineNum ? node : getLineNumberRow(node.parentNode));
     let anchorRow = getLineNumberRow(anchorNode),
         focusRow = getLineNumberRow(focusNode);
     if (anchorRow && focusRow) {
+        // sort the nodes based on the the dragging direction of the highlight
         const isBackwards = selectionIsBackwards(),
             sorter = () => (isBackwards ? -1 : 1);
         [anchorRow, focusRow] = [anchorRow, focusRow].sort(sorter);
         [anchorNode, focusNode] = [anchorNode, focusNode].sort(sorter);
         [anchorOffset, focusOffset] = [anchorOffset, focusOffset].sort(sorter);
+        // ask user for custom note
         const note = prompt("Note:"),
             startsWithNewLine = !text.indexOf("\n"),
             getLineNum = (row) => row.dataset.lineNum,
             rowIsSpacer = (row) => getLineNum(row) === "x";
+        // determine first and last lines to cite
         let firstRow = anchorRow,
             lastRow = focusRow;
+        // move forward the anchor node if it is in a spacer row
+        // or if the highlighted text starts with the trailing newline
+        // character from the end of the previous row
         startsWithNewLine && (firstRow = firstRow.nextElementSibling);
         while (rowIsSpacer(firstRow)) {
             firstRow = firstRow.nextElementSibling;
@@ -42,25 +58,36 @@ async function handleCite({
         while (rowIsSpacer(lastRow)) {
             lastRow = lastRow.previousElementSibling;
         }
+        // get the line numbers for where the citation starts and ends
         const starts_at = getLineNum(firstRow),
             ends_at = getLineNum(lastRow),
+            // wrap the highlighted sections of the first
+            // and last lines in the annotation
+            isSingleLine = starts_at === ends_at,
             { first_line, last_line } = getFirstAndLastLines({
                 firstRow,
                 lastRow,
                 startsWithNewLine,
-            }),
-            result = {
-                note,
-                starts_at,
-                ends_at,
-                first_line,
-                last_line,
-            };
+                isSingleLine,
+            });
+        // prepare data
+        let result = {
+            note,
+            starts_at,
+            first_line,
+        };
+        // add last line info if not a single-line citation
+        if (last_line) {
+            result = { ...result, ends_at, last_line };
+        }
+        // add note to global notes object
         notes.push(result);
-        await displaySuttaHTML(null, null, notes.length - 1);
+        // update UI to show newly added note
+        const lastNoteIndex = notes.length - 1;
+        await displaySuttaHTML(null, null, lastNoteIndex);
         console.log(result);
     } else {
-        alert("Could not cite. Outside text selected.");
+        showWarning();
     }
 
     // ENCLOSED FUNCTIONS FOR handleCite
@@ -90,27 +117,40 @@ async function handleCite({
         return isBackwards;
     }
 
-    function getFirstAndLastLines({ firstRow, lastRow, startsWithNewLine }) {
+    function getFirstAndLastLines({
+        firstRow,
+        lastRow,
+        startsWithNewLine,
+        isSingleLine,
+    }) {
+        // get the table cell that has the line of sutta text
         const getCell = (row) => row.children[1],
             anchorCell = getCell(firstRow),
-            focusCell = getCell(lastRow),
             getFullLine = (node) =>
                 getAllChildNodes(node)
                     .map((node) => node.nodeValue)
                     .join(""),
             anchorLine = getFullLine(anchorCell),
-            focusLine = getFullLine(focusCell),
-            anchorLineNode = getNodeWithClass(anchorNode, "line"),
-            calculateOffset = !startsWithNewLine && anchorLineNode,
+            // only get an offset if the anchor node is in the table
+            // cell that has the line of sutta text, and if the
+            // highlighted text does NOT begin with a newline character
+            // from the end of the previous row
+            anchorLineParent = getNodeWithClass(anchorCell, "line"),
+            calculateOffset = !startsWithNewLine && anchorLineParent,
             offset = calculateOffset
-                ? anchorOffset + getCalculatedOffset(anchorLineNode, anchorNode)
+                ? anchorOffset + getCalculatedOffset(anchorLineParent)
                 : 0,
             first_line = formatFirstLine({
                 line: anchorLine,
                 offset,
                 lines,
-            }),
+            });
+        let last_line;
+        if (!isSingleLine) {
+            const focusCell = getCell(lastRow),
+                focusLine = getFullLine(focusCell);
             last_line = formatLastLine({ line: focusLine, lines });
+        }
         return { first_line, last_line };
 
         // ENCLOSED FUNCTIONS FOR getFirstAndLastLines
@@ -125,11 +165,13 @@ async function handleCite({
                 : [node];
         }
 
-        function getCalculatedOffset(node, targetNode) {
+        function getCalculatedOffset(node) {
+            // add up all the other nodes' lengths that come before the
+            // anchor node in table cell that has the line of sutta text
             const children = getAllChildNodes(node);
             let offset = 0;
             for (const child of children) {
-                if (child === targetNode) {
+                if (child === anchorNode) {
                     break;
                 }
                 offset += child.nodeValue.length;
@@ -138,6 +180,7 @@ async function handleCite({
         }
 
         function formatFirstLine({ line, offset, lines }) {
+            // if no offset, then no need for bookend white space
             line = offset ? line : line.trim();
             const firstLine = lines[0],
                 combinedOffset = offset + firstLine.length,
