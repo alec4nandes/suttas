@@ -6,6 +6,7 @@ import {
 import { everySuttaId } from "./crawled.js";
 import { getRandomSutta } from "./fetch.js";
 import { handleCite } from "./cite.js";
+import { notes } from "./notes.js";
 
 function addHandlers() {
     const formElem = document.querySelector("form"),

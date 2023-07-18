@@ -8,19 +8,32 @@ body {
   align-items: center;
   background-color: #ffdb9c;
   flex-direction: column;
+  padding-top: 5px;
   position: sticky;
   top: 0;
 }
 #sticky-nav,
+#sticky-nav div,
 #sticky-nav form {
+  align-items: center;
+  justify-content: center;
   display: flex;
   gap: 5px;
+}
+#sticky-nav > div {
+  flex-direction: column;
 }
 #sticky-nav button {
   padding: 3px 7px;
 }
 #sticky-nav form input {
   width: 60px;
+}
+#sticky-nav #sticky-notes {
+  gap: 5px 5px 0;
+}
+#sticky-nav #sticky-notes button {
+  margin-bottom: 5px;
 }
 
 header,

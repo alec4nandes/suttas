@@ -30,9 +30,7 @@ function getNoteButtonsHTML() {
 function getCellHTML(i) {
     return `
         <td data-index="${i}">
-            <button class="note-button">
-                ${i + 1}
-            </button>
+            ${getNumberedNoteButton(i)}
             <button class="edit-note-button">
                 ✎
             </button>
@@ -41,6 +39,10 @@ function getCellHTML(i) {
             </button>
         </td>
     `;
+}
+
+function getNumberedNoteButton(i) {
+    return `<button class="note-button">${i + 1}</button>`;
 }
 
 function addNoteButtonsHandlers() {
@@ -94,10 +96,16 @@ function showHighlight() {
 }
 
 function getNoteData(button) {
-    const { index } = button.parentNode.dataset,
+    console.log(notes, +button.textContent - 1);
+    const index = button.parentNode.dataset.index || +button.textContent - 1,
         noteData = notes[index],
         { note } = noteData;
     return { index, noteData, note };
 }
 
-export { notes, getNoteButtonsHTML, addNoteButtonsHandlers };
+export {
+    notes,
+    getNoteButtonsHTML,
+    addNoteButtonsHandlers,
+    getNumberedNoteButton,
+};

@@ -8,13 +8,21 @@ body {
     align-items: center;
     background-color: #ffdb9c;
     flex-direction: column;
+    padding-top: 5px;
     position: sticky;
     top: 0;
 
     &,
+    div,
     form {
+        align-items: center;
+        justify-content: center;
         display: flex;
         gap: 5px;
+    }
+
+    & > div {
+        flex-direction: column;
     }
 
     button {
@@ -24,6 +32,14 @@ body {
     form {
         input {
             width: 60px;
+        }
+    }
+
+    #sticky-notes {
+        gap: 5px 5px 0;
+
+        button {
+            margin-bottom: 5px;
         }
     }
 }
