@@ -10,17 +10,14 @@ async function handleCite({
     text,
 }) {
     // see if any sutta text is actually selected
-    // (cannot annotate only line numbers)
+    // (cannot annotate only beginning line number fragments)
     const lines = getLinesFromText(text),
         noLines = !lines[0];
     let lineNumAnchor = getNodeWithClass(anchorNode, "line-number"),
         lineNumFocus = getNodeWithClass(focusNode, "line-number");
     const onlyLineNum =
             (lineNumAnchor || lineNumFocus) && lineNumAnchor === lineNumFocus,
-        showWarning = () =>
-            alert(
-                "Could not cite. Either non-sutta text selected or only whitespace."
-            );
+        showWarning = () => alert("Could not cite. No valid text selected.");
     if (noLines || onlyLineNum) {
         showWarning();
         return;
@@ -46,13 +43,15 @@ async function handleCite({
         // ask user for custom note
         const note = prompt("Note:"),
             startsWithNewLine = !text.indexOf("\n"),
-            endsWithNewLine = text.charAt(text.length - 1) === "\n",
+            lastChar = text.charAt(text.length - 1),
+            endsWithNewLine = lastChar === "\n",
+            endsWithTab = lastChar === "\t",
             getLineNum = (row) => row.dataset.lineNum,
             rowIsSpacer = (row) => getLineNum(row) === "x";
-        // determine first and last lines to cite
+        // determine first and last line numbers to cite
         let firstRow = anchorRow,
             lastRow = focusRow;
-        // move forward the anchor node if it is in a spacer row
+        // move forward the first row if it is a spacer row
         // or if the highlighted text starts with the newline
         // character from the end of the previous row
         if (startsWithNewLine) {
@@ -61,15 +60,21 @@ async function handleCite({
         while (rowIsSpacer(firstRow)) {
             firstRow = firstRow.nextElementSibling;
         }
-        // move backward the focus node if it is in a spacer row
-        // or if it's in the line-number cell of the next line
-        if (lineNumFocus) {
+        // move backward the last row if it's a spacer row,
+        // or if the focus node is in the line-number cell of the next line,
+        // or if the highlighted text ends with the first \t of the next cell*
+        // (*sutta text cell containing the focus node with nothing really
+        // highlighted: very rare user mistake)
+        if (lineNumFocus || endsWithTab) {
             lastRow = lastRow.previousElementSibling;
-            // remove last line (line number fragment)
-            // (lines are split at \n with empty strings filtered out,
-            // so there's no need to remove the last line if the
-            // highlighted text ends with \n)
-            !endsWithNewLine && lines.pop();
+            // remove the last line if it's a beginning line number fragment
+            // (if the highlighted text ends in \n or \t, then there's
+            // either no copied line number or a full one. Line numbers
+            // are replaced with empty strings before the text is split at \n,
+            // then each line is trimmed and filtered. So the final line will
+            // be correct and not a beginning line number fragment)
+            !endsWithNewLine && !endsWithTab && lines.pop();
+            console.log(endsWithTab);
         }
         while (rowIsSpacer(lastRow)) {
             lastRow = lastRow.previousElementSibling;
