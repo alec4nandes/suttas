@@ -90,7 +90,7 @@ function handleDeleteNote(button) {
 }
 
 function showHighlight() {
-    document.querySelector(".highlight").scrollIntoView();
+    document.querySelector(".highlight").scrollIntoView({ block: "center" });
 }
 
 function getNoteData(button) {
