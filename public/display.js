@@ -1,6 +1,7 @@
 import { getLines } from "./fetch.js";
 import { getSuttaHierarchyHTML } from "./hierarchy.js";
 import {
+    text,
     notes,
     getNoteButtonsHTML,
     addNoteButtonsHandlers,
@@ -23,6 +24,9 @@ async function displaySuttaHTML(suttaId, lines, noteIndex) {
         stickyNotes = document.querySelector("#sticky-notes");
     suttaId = suttaId || typedInput.value || suttaSelect.value;
     lines = lines || (await getLines(suttaId));
+    // assign to global variable
+    text.length = 0;
+    text.push([lines].filter(Boolean));
     const note = notes[noteIndex],
         displayElem = document.querySelector("main"),
         html =

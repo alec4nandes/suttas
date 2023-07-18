@@ -6,14 +6,17 @@ import {
 import { everySuttaId } from "./crawled.js";
 import { getRandomSutta } from "./fetch.js";
 import { handleCite } from "./cite.js";
-import { notes } from "./notes.js";
+import { text, notes } from "./notes.js";
+import { db } from "./database.js";
+import { doc, setDoc } from "firebase/firestore";
 
 function addHandlers() {
     const formElem = document.querySelector("form"),
         selectElem = formElem.querySelector(`select[name="sutta"]`),
         previousButton = document.querySelector("button#previous"),
         nextButton = document.querySelector("button#next"),
-        randomButton = document.querySelector("button#random");
+        randomButton = document.querySelector("button#random"),
+        saveButton = document.querySelector("button#save");
     formElem.onsubmit = handleDisplaySutta;
     selectElem.innerHTML = everySuttaId
         .map((id) => `<option value="${id}">${id}</option>`)
@@ -23,6 +26,7 @@ function addHandlers() {
     previousButton.onclick = handlePreviousSutta;
     nextButton.onclick = handleNextSutta;
     randomButton.onclick = getRandomSutta;
+    saveButton.onclick = handleSave;
     document.addEventListener("selectionchange", () => {
         // use this approach for mobile highlighting, because
         // the selection object gets stale when passed
@@ -58,9 +62,30 @@ async function handleNextSutta() {
     navigationHelper(false);
 }
 
-async function navigationHelper(isPrevious) {
+async function handleSave() {
+    const proceed = confirm("Save changes?");
+    if (proceed) {
+        const currentSutta = getSuttaId();
+        try {
+            await setDoc(doc(db, "suttas", currentSutta), {
+                text: text[0],
+                notes,
+            });
+        } catch (err) {
+            console.error(err);
+            alert("Could not save!");
+        }
+    }
+}
+
+function getSuttaId() {
     const selectElem = document.querySelector(`select[name="sutta"]`),
-        currentSutta = selectElem.value,
+        currentSutta = selectElem.value;
+    return currentSutta;
+}
+
+async function navigationHelper(isPrevious) {
+    const currentSutta = getSuttaId(),
         index = everySuttaId.indexOf(currentSutta),
         previousSutta = everySuttaId[index + (isPrevious ? -1 : 1)];
     if (previousSutta) {

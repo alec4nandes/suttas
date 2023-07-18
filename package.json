@@ -1,0 +1,28 @@
+{
+    "name": "suttas",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack",
+        "webpack-dev": "webpack --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alec4nandes/suttas.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/alec4nandes/suttas/issues"
+    },
+    "homepage": "https://github.com/alec4nandes/suttas#readme",
+    "dependencies": {
+        "firebase": "^10.0.0"
+    },
+    "devDependencies": {
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4"
+    }
+}

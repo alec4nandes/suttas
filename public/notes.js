@@ -1,6 +1,7 @@
 import { displaySuttaHTML } from "./display.js";
 
-const notes = [],
+const text = [],
+    notes = [],
     testNotes = [
         {
             starts_at: "1.1.2",
@@ -103,6 +104,7 @@ function getNoteData(button) {
 }
 
 export {
+    text,
     notes,
     getNoteButtonsHTML,
     addNoteButtonsHandlers,

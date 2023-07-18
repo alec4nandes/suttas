@@ -76,14 +76,19 @@ button:hover {
   background-color: orange;
   cursor: pointer;
 }
-button#cite {
+button#cite, button#save {
   height: 50px;
   width: 50px;
   box-sizing: border-box;
   position: fixed;
-  bottom: 50px;
   right: 0;
   z-index: 1;
+}
+button#cite {
+  bottom: 105px;
+}
+button#save {
+  bottom: 50px;
 }
 
 input,
