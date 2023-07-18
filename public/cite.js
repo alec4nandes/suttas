@@ -134,6 +134,7 @@ async function handleCite({
                 line: anchorLine,
                 offset,
                 lines,
+                startsWithNewLine,
             });
         let last_line;
         if (!isSingleLine) {
@@ -169,10 +170,12 @@ async function handleCite({
             return offset;
         }
 
-        function formatFirstLine({ line, offset, lines }) {
+        function formatFirstLine({ line, offset, lines, startsWithNewLine }) {
             // if no offset, then no need for bookend white space
-            line = offset ? line : line.trim();
-            const firstLine = lines[0],
+            line = startsWithNewLine ? line.trim() : line;
+            const firstLine = startsWithNewLine
+                    ? lines[0].trimStart()
+                    : lines[0], // remove \t from table
                 combinedOffset = offset + firstLine.length,
                 start = line.slice(0, offset),
                 highlightedText = line.slice(offset, combinedOffset),
