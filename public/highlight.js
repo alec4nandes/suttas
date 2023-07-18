@@ -1,4 +1,3 @@
-import { spacerChar } from "./display.js";
 import { wrapHighlight } from "./cite.js";
 
 let highlighting = false;
@@ -11,15 +10,12 @@ function highlightLine({ lineNumber, line, note }) {
             isSingleLine = !last_line;
         isFirstLine && (highlighting = true);
         if (highlighting) {
-            const isSpacer = line.includes(spacerChar);
-            if (!isSpacer) {
-                (isLastLine || isSingleLine) && (highlighting = false);
-                return isFirstLine
-                    ? first_line
-                    : isLastLine
-                    ? last_line
-                    : wrapHighlight(line);
-            }
+            (isLastLine || isSingleLine) && (highlighting = false);
+            return isFirstLine
+                ? first_line
+                : isLastLine
+                ? last_line
+                : wrapHighlight(line);
         }
     }
     return line;

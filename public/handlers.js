@@ -1,4 +1,4 @@
-import { handleDisplaySutta, spacerChar } from "./display.js";
+import { handleDisplaySutta, regexSuffix } from "./display.js";
 import { everySuttaId } from "./crawled.js";
 import { getRandomSutta } from "./fetch.js";
 import { handleCite } from "./cite.js";
@@ -40,19 +40,13 @@ function addHandlers() {
     });
 }
 
-const lineNumRegex =
-    /\.?-?:?_?[A-Za-z]*([0-9]+[.]?)*-?([0-9]+[.]?)*:?([0-9]+[.]?)*_/g;
-
 function removeLineNumbersAndSpacers(text) {
-    // trail line numbers with a hidden _ to help regex
-    return (
-        text
-            .replace(lineNumRegex, "")
-            .replaceAll(spacerChar, "")
-            .replaceAll("\t", "")
-            // .replace(/\n\n\n/g, "\n\n")
-            .trim()
-    );
+    const getIndex = (line) => line.indexOf(regexSuffix) + 1,
+        result = text
+            .split("\n")
+            .map((line) => line.slice(getIndex(line)).trim())
+            .join("\n");
+    return result;
 }
 
-export { addHandlers, lineNumRegex, removeLineNumbersAndSpacers };
+export { addHandlers, removeLineNumbersAndSpacers };

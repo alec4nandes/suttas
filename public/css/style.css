@@ -112,39 +112,33 @@ table#note-buttons tr,
 table#note-buttons td {
   display: flex;
 }
-table#note-buttons td {
+table#note-buttons tr td {
   flex-direction: column;
   gap: 2px;
 }
-table#note-buttons td button {
+table#note-buttons tr td button {
   height: 1rem;
   width: 1rem;
   line-height: 0;
 }
-table#note-buttons td button.edit-note-button {
+table#note-buttons tr td button.edit-note-button {
   font-weight: normal;
 }
-table td {
+table tr td {
   vertical-align: top;
 }
-table td.line-number {
+table tr td.line-number {
   font-size: 0.75rem;
   padding-right: 4px;
   text-align: right;
+  -moz-user-select: none;
+       user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
 }
-table td.line-number ::-moz-selection {
-  background: transparent;
-}
-table td.line-number ::selection {
-  background: transparent;
-}
-table td.line-number .hidden-regex {
+table tr td.line-number .hidden-regex {
   width: 0;
   display: inline-block;
-  opacity: 0;
-}
-table td.spacer {
-  line-height: 1.5rem;
   opacity: 0;
 }
 

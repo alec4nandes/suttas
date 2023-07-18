@@ -70,13 +70,15 @@ function getWarningHTML() {
     `;
 }
 
-// the _ is important for regex recognition
+// this is important for regex recognition
+const regexSuffix = "_";
+
 function getLineHTML({ key, value, note, isTitle }) {
     return `
         <tr data-line-num="${key}">
             <td class="line-number">
                 <small>
-                    ${key}<span class="hidden-regex">_</span>
+                    ${key}<span class="hidden-regex">${regexSuffix}</span>
                 </small>
             </td>
             <td class="${isTitle ? "title " : ""}line">
@@ -86,16 +88,15 @@ function getLineHTML({ key, value, note, isTitle }) {
     `;
 }
 
-const spacerChar = "☸";
-
 function getSpacerHTML() {
     return `
-        <tr data-line-num="x">
-            <td class="spacer" colspan="2">
-                ${spacerChar}
+        <tr class="spacer">
+            <td class="line-number"></td>
+            <td>
+                <br/>
             </td>
         </tr>
     `;
 }
 
-export { handleDisplaySutta, displaySuttaHTML, spacerChar };
+export { handleDisplaySutta, displaySuttaHTML, regexSuffix };

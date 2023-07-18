@@ -10,71 +10,54 @@ async function handleCite({
     text,
 }) {
     // see if any sutta text is actually selected
-    // (cannot annotate only beginning line number fragments)
     const lines = getLinesFromText(text),
-        noLines = !lines[0];
-    let lineNumAnchor = getNodeWithClass(anchorNode, "line-number"),
-        lineNumFocus = getNodeWithClass(focusNode, "line-number");
-    const onlyLineNum =
-            (lineNumAnchor || lineNumFocus) && lineNumAnchor === lineNumFocus,
+        noLines = !lines[0],
         showWarning = () => alert("Could not cite. No valid text selected.");
-    if (noLines || onlyLineNum) {
+    if (noLines) {
         showWarning();
         return;
     }
     // recursively travel up the parent nodes to make sure
-    // both the anchor and focus nodes reside in, or are,
-    // rows with line-number data
-    const getLineNumberRow = (node) =>
-        node &&
-        (node.dataset?.lineNum ? node : getLineNumberRow(node.parentNode));
-    let anchorRow = getLineNumberRow(anchorNode),
-        focusRow = getLineNumberRow(focusNode);
-    if (anchorRow && focusRow) {
+    // both the anchor and focus nodes reside in the lines table
+    const isLinesTableChild = (node) =>
+            node &&
+            (node.id === "lines" ? node : isLinesTableChild(node.parentNode)),
+        entireSelectionIsInTable =
+            isLinesTableChild(anchorNode) && isLinesTableChild(focusNode);
+    if (entireSelectionIsInTable) {
+        const getLineNumberRow = (node) =>
+            node &&
+            (node.dataset?.lineNum || node.classList?.contains("spacer")
+                ? node
+                : getLineNumberRow(node.parentNode));
+        let anchorRow = getLineNumberRow(anchorNode),
+            focusRow = getLineNumberRow(focusNode);
         // sort the nodes based on the the dragging direction of the highlight
         const isBackwards = selectionIsBackwards(),
             sorter = () => (isBackwards ? -1 : 1);
         [anchorRow, focusRow] = [anchorRow, focusRow].sort(sorter);
         [anchorNode, focusNode] = [anchorNode, focusNode].sort(sorter);
         [anchorOffset, focusOffset] = [anchorOffset, focusOffset].sort(sorter);
-        [lineNumAnchor, lineNumFocus] = [lineNumAnchor, lineNumFocus].sort(
-            sorter
-        );
         // ask user for custom note
         const note = prompt("Note:"),
             startsWithNewLine = !text.indexOf("\n"),
-            lastChar = text.charAt(text.length - 1),
-            endsWithNewLine = lastChar === "\n",
-            endsWithTab = lastChar === "\t",
-            getLineNum = (row) => row.dataset.lineNum,
-            rowIsSpacer = (row) => getLineNum(row) === "x";
+            endsWithTab = text.charAt(text.length - 1) === "\t",
+            getLineNum = (row) => row.dataset?.lineNum,
+            rowIsSpacer = (row) => !getLineNum(row);
         // determine first and last line numbers to cite
         let firstRow = anchorRow,
             lastRow = focusRow;
-        // move forward the first row if it is a spacer row
-        // or if the highlighted text starts with the newline
-        // character from the end of the previous row
-        if (startsWithNewLine) {
-            firstRow = firstRow.nextElementSibling;
-        }
+        // move the first row forward if it's a spacer row
+        // or if the highlighted text starts with the final
+        // newline character from the previous line
+        startsWithNewLine && (firstRow = firstRow.nextElementSibling);
         while (rowIsSpacer(firstRow)) {
             firstRow = firstRow.nextElementSibling;
         }
-        // move backward the last row if it's a spacer row,
-        // or if the focus node is in the line-number cell of the next line,
-        // or if the highlighted text ends with the first \t of the next cell*
-        // (*sutta text cell containing the focus node with nothing really
-        // highlighted: very rare user mistake)
-        if (lineNumFocus || endsWithTab) {
-            lastRow = lastRow.previousElementSibling;
-            // remove the last line if it's a beginning line number fragment
-            // (if the highlighted text ends in \n or \t, then there's
-            // either no copied line number or a full one. Line numbers
-            // are replaced with empty strings before the text is split at \n,
-            // then each line is trimmed and filtered. So the final line will
-            // be correct and not a beginning line number fragment)
-            !endsWithNewLine && !endsWithTab && lines.pop();
-        }
+        // move the last row backward if it's a spacer row,
+        // or if the highlighted text ends with the first \t
+        // of the next line
+        endsWithTab && (lastRow = lastRow.previousElementSibling);
         while (rowIsSpacer(lastRow)) {
             lastRow = lastRow.previousElementSibling;
         }
@@ -119,15 +102,6 @@ async function handleCite({
             .filter(Boolean);
     }
 
-    function getNodeWithClass(node, className) {
-        return (
-            node &&
-            (node.classList?.contains(className)
-                ? node
-                : getNodeWithClass(node.parentNode, className))
-        );
-    }
-
     function selectionIsBackwards() {
         const range = document.createRange();
         range.setStart(anchorNode, anchorOffset);
@@ -151,15 +125,12 @@ async function handleCite({
                     .map((node) => node.nodeValue)
                     .join(""),
             anchorLine = getFullLine(anchorCell),
-            // only get an offset if the anchor node is in the table
-            // cell that has the line of sutta text, and if the
-            // highlighted text does NOT begin with a newline character
+            // only get an offset if the highlighted text
+            // does NOT begin with a newline character
             // from the end of the previous row
-            anchorLineParent = getNodeWithClass(anchorNode, "line"),
-            calculateOffset = !startsWithNewLine && anchorLineParent,
-            offset = calculateOffset
-                ? anchorOffset + getCalculatedOffset(anchorLineParent)
-                : 0,
+            offset = startsWithNewLine
+                ? 0
+                : anchorOffset + getCalculatedOffset(anchorCell),
             first_line = formatFirstLine({
                 line: anchorLine,
                 offset,
