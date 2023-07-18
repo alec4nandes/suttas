@@ -57,14 +57,13 @@ function organizeLines(value) {
     return result;
 }
 
-async function getRandomSutta(selectElem) {
+async function getRandomSutta() {
     notes.length = 0;
     let lines, id;
     while (!lines) {
         id = getRandomId();
         lines = await getLines(id);
     }
-    selectElem.value = id;
     await displaySuttaHTML(id, lines);
 }
 

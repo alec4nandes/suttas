@@ -4,22 +4,21 @@ body {
     margin: 0 5px;
 }
 
-header {
+#sticky-nav {
+    align-items: center;
+    background-color: #ffdb9c;
     flex-direction: column;
-    position: relative;
+    position: sticky;
+    top: 0;
+
+    &,
+    form {
+        display: flex;
+        gap: 5px;
+    }
 
     button {
         padding: 3px 7px;
-
-        &#cite {
-            height: 50px;
-            width: 50px;
-            box-sizing: border-box;
-            position: fixed;
-            bottom: 50px;
-            right: 0;
-            z-index: 1;
-        }
     }
 
     form {
@@ -30,13 +29,8 @@ header {
 }
 
 header,
-form {
-    display: flex;
-    gap: 5px;
-}
-
-header,
-main {
+main,
+#sticky-nav {
     max-width: 750px;
     margin: auto;
 }
@@ -71,6 +65,16 @@ button {
     &:hover {
         background-color: orange;
         cursor: pointer;
+    }
+
+    &#cite {
+        height: 50px;
+        width: 50px;
+        box-sizing: border-box;
+        position: fixed;
+        bottom: 50px;
+        right: 0;
+        z-index: 1;
     }
 }
 

@@ -9,16 +9,20 @@
     <body>
         <header>
             <h1>Suttas</h1>
+        </header>
+        <div id="sticky-nav">
             <form>
                 <select name="sutta"></select>
                 <label><input name="typed" type="text"/></label>
                 <button type="submit">find</button>
             </form>
             <div>
+                <button id="previous">previous</button>
+                <button id="next">next</button>
                 <button id="random">get random</button>
-                <button id="cite">cite</button>
             </div>
-        </header>
+        </div>
+        <button id="cite">cite</button>
         <main></main>
 
         <script type="module">

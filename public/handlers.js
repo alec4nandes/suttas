@@ -1,4 +1,8 @@
-import { handleDisplaySutta, regexSuffix } from "./display.js";
+import {
+    displaySuttaHTML,
+    handleDisplaySutta,
+    regexSuffix,
+} from "./display.js";
 import { everySuttaId } from "./crawled.js";
 import { getRandomSutta } from "./fetch.js";
 import { handleCite } from "./cite.js";
@@ -6,6 +10,8 @@ import { handleCite } from "./cite.js";
 function addHandlers() {
     const formElem = document.querySelector("form"),
         selectElem = formElem.querySelector(`select[name="sutta"]`),
+        previousButton = document.querySelector("button#previous"),
+        nextButton = document.querySelector("button#next"),
         randomButton = document.querySelector("button#random");
     formElem.onsubmit = handleDisplaySutta;
     selectElem.innerHTML = everySuttaId
@@ -13,7 +19,9 @@ function addHandlers() {
         .join("");
     selectElem.onchange = () =>
         (document.querySelector(`input[name="typed"]`).value = "");
-    randomButton.onclick = () => getRandomSutta(selectElem);
+    previousButton.onclick = handlePreviousSutta;
+    nextButton.onclick = handleNextSutta;
+    randomButton.onclick = getRandomSutta;
     document.addEventListener("selectionchange", () => {
         // use this approach for mobile highlighting, because
         // the selection object gets stale when passed
@@ -39,6 +47,27 @@ function addHandlers() {
         );
         event.preventDefault();
     });
+}
+
+async function handlePreviousSutta() {
+    navigationHelper(true);
+}
+
+async function handleNextSutta() {
+    navigationHelper(false);
+}
+
+async function navigationHelper(isPrevious) {
+    const selectElem = document.querySelector(`select[name="sutta"]`),
+        currentSutta = selectElem.value,
+        index = everySuttaId.indexOf(currentSutta),
+        previousSutta = everySuttaId[index + (isPrevious ? -1 : 1)];
+    if (previousSutta) {
+        await displaySuttaHTML(previousSutta);
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    } else {
+        alert(`No ${isPrevious ? "previous" : "next"} sutta!`);
+    }
 }
 
 function removeLineNumsFromHighlightedText(text, trimLines) {
