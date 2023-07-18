@@ -72,7 +72,6 @@ function handleEditNote(button) {
         showHighlight();
         setTimeout(async () => {
             noteData.note = prompt(`Edit note:`, note || "") ?? note;
-            await displaySuttaHTML(null, null, index);
         }, 500);
     };
 }
