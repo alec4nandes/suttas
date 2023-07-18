@@ -30,9 +30,11 @@ body {
   width: 60px;
 }
 #sticky-nav #sticky-notes {
-  gap: 5px 5px 0;
+  gap: 0 5px;
+  overflow-x: auto;
 }
 #sticky-nav #sticky-notes button {
+  background-color: brown;
   margin-bottom: 5px;
 }
 
@@ -123,6 +125,7 @@ table#note-buttons {
   width: -moz-fit-content;
   width: fit-content;
   margin: auto;
+  overflow-x: auto;
 }
 table#note-buttons tr,
 table#note-buttons td {
