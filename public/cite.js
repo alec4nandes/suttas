@@ -171,8 +171,10 @@ async function handleCite({
         }
 
         function formatFirstLine({ line, offset, lines, startsWithNewLine }) {
-            // if no offset, then no need for bookend white space
-            line = startsWithNewLine ? line.trim() : line;
+            // if the highlighted text starts with a new line,
+            // then the first actual line will be fully highlighted.
+            // trim down for slicing from index 0
+            line = startsWithNewLine ? line.trimStart() : line;
             const firstLine = startsWithNewLine
                     ? lines[0].trimStart()
                     : lines[0], // remove \t from table
