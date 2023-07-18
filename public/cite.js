@@ -12,10 +12,10 @@ async function handleCite({
     // see if any sutta text is actually selected
     // (cannot annotate only line numbers)
     const lines = getLinesFromText(text),
-        noLines = !lines[0],
-        lineNumAnchor = getNodeWithClass(anchorNode, "line-number"),
-        lineNumFocus = getNodeWithClass(focusNode, "line-number"),
-        onlyLineNum =
+        noLines = !lines[0];
+    let lineNumAnchor = getNodeWithClass(anchorNode, "line-number"),
+        lineNumFocus = getNodeWithClass(focusNode, "line-number");
+    const onlyLineNum =
             (lineNumAnchor || lineNumFocus) && lineNumAnchor === lineNumFocus,
         showWarning = () =>
             alert(
@@ -40,20 +40,36 @@ async function handleCite({
         [anchorRow, focusRow] = [anchorRow, focusRow].sort(sorter);
         [anchorNode, focusNode] = [anchorNode, focusNode].sort(sorter);
         [anchorOffset, focusOffset] = [anchorOffset, focusOffset].sort(sorter);
+        [lineNumAnchor, lineNumFocus] = [lineNumAnchor, lineNumFocus].sort(
+            sorter
+        );
         // ask user for custom note
         const note = prompt("Note:"),
             startsWithNewLine = !text.indexOf("\n"),
+            endsWithNewLine = text.charAt(text.length - 1) === "\n",
             getLineNum = (row) => row.dataset.lineNum,
             rowIsSpacer = (row) => getLineNum(row) === "x";
         // determine first and last lines to cite
         let firstRow = anchorRow,
             lastRow = focusRow;
         // move forward the anchor node if it is in a spacer row
-        // or if the highlighted text starts with the trailing newline
+        // or if the highlighted text starts with the newline
         // character from the end of the previous row
-        startsWithNewLine && (firstRow = firstRow.nextElementSibling);
+        if (startsWithNewLine) {
+            firstRow = firstRow.nextElementSibling;
+        }
         while (rowIsSpacer(firstRow)) {
             firstRow = firstRow.nextElementSibling;
+        }
+        // move backward the focus node if it is in a spacer row
+        // or if it's in the line-number cell of the next line
+        if (lineNumFocus) {
+            lastRow = lastRow.previousElementSibling;
+            // remove last line (line number fragment)
+            // (lines are split at \n with empty strings filtered out,
+            // so there's no need to remove the last line if the
+            // highlighted text ends with \n)
+            !endsWithNewLine && lines.pop();
         }
         while (rowIsSpacer(lastRow)) {
             lastRow = lastRow.previousElementSibling;
@@ -135,7 +151,7 @@ async function handleCite({
             // cell that has the line of sutta text, and if the
             // highlighted text does NOT begin with a newline character
             // from the end of the previous row
-            anchorLineParent = getNodeWithClass(anchorCell, "line"),
+            anchorLineParent = getNodeWithClass(anchorNode, "line"),
             calculateOffset = !startsWithNewLine && anchorLineParent,
             offset = calculateOffset
                 ? anchorOffset + getCalculatedOffset(anchorLineParent)
