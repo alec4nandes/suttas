@@ -74,7 +74,6 @@ async function handleCite({
             // then each line is trimmed and filtered. So the final line will
             // be correct and not a beginning line number fragment)
             !endsWithNewLine && !endsWithTab && lines.pop();
-            console.log(endsWithTab);
         }
         while (rowIsSpacer(lastRow)) {
             lastRow = lastRow.previousElementSibling;
