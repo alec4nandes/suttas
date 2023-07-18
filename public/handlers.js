@@ -1,6 +1,7 @@
 import {
     displaySuttaHTML,
     handleDisplaySutta,
+    getDbSuttaButtons,
     regexSuffix,
 } from "./display.js";
 import { everySuttaId } from "./crawled.js";
@@ -71,6 +72,7 @@ async function handleSave() {
                 text: text[0],
                 notes,
             });
+            await getDbSuttaButtons();
         } catch (err) {
             console.error(err);
             alert("Could not save!");

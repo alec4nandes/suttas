@@ -8,6 +8,8 @@ import {
     getNumberedNoteButton,
 } from "./notes.js";
 import { highlightLine } from "./highlight.js";
+import { db } from "./database.js";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 
 async function handleDisplaySutta(e) {
     e.preventDefault();
@@ -39,8 +41,36 @@ async function displaySuttaHTML(suttaId, lines, noteIndex) {
         .map((note, i) => getNumberedNoteButton(i))
         .join("");
     addNoteButtonsHandlers();
+    await getDbSuttaButtons();
     typedInput.value = suttaId;
     suttaSelect.value = suttaId;
+}
+
+async function getDbSuttaButtons() {
+    const querySnapshot = await getDocs(collection(db, "suttas")),
+        allIds = [];
+    querySnapshot.forEach((doc) => allIds.push(doc.id));
+    const html = allIds
+        .map((suttaId) => `<button class="sutta-button">${suttaId}</button>`)
+        .join("");
+    document.querySelector("#sutta-buttons").innerHTML = html;
+    addDbSuttaButtonHandlers();
+}
+
+function addDbSuttaButtonHandlers() {
+    const suttaButtons = document.querySelectorAll(".sutta-button");
+    suttaButtons.forEach((button) => (button.onclick = handleSuttaButton));
+}
+
+async function handleSuttaButton(e) {
+    const suttaId = e.target.textContent,
+        docRef = doc(db, "suttas", suttaId),
+        { text: dbText, notes: dbNotes } = (await getDoc(docRef)).data();
+    text.length = 0;
+    notes.length = 0;
+    text.push(dbText);
+    notes.push(...dbNotes);
+    await displaySuttaHTML(suttaId, dbText);
 }
 
 function getLinesHTML(lines, note) {
@@ -112,4 +142,4 @@ function getSpacerHTML() {
     `;
 }
 
-export { handleDisplaySutta, displaySuttaHTML, regexSuffix };
+export { handleDisplaySutta, displaySuttaHTML, getDbSuttaButtons, regexSuffix };

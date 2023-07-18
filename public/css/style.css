@@ -29,13 +29,15 @@ body {
 #sticky-nav form input {
   width: 60px;
 }
+#sticky-nav #sutta-buttons,
 #sticky-nav #sticky-notes {
-  gap: 0 5px;
   overflow-x: auto;
+}
+#sticky-nav #sutta-buttons button {
+  background-color: chocolate;
 }
 #sticky-nav #sticky-notes button {
   background-color: brown;
-  margin-bottom: 5px;
 }
 
 header,
