@@ -1,6 +1,6 @@
 import { notes } from "./notes.js";
 import { displaySuttaHTML } from "./display.js";
-import { removeLineNumbersAndSpacers } from "./handlers.js";
+import { removeLineNumsFromHighlightedText } from "./handlers.js";
 
 async function handleCite({
     anchorNode,
@@ -96,10 +96,9 @@ async function handleCite({
     // ENCLOSED FUNCTIONS FOR handleCite
 
     function getLinesFromText(text) {
-        return removeLineNumbersAndSpacers(text)
+        return removeLineNumsFromHighlightedText(text)
             .split("\n")
-            .map((line) => line.trim())
-            .filter(Boolean);
+            .filter((line) => line.trim());
     }
 
     function selectionIsBackwards() {
@@ -183,7 +182,7 @@ async function handleCite({
         }
 
         function formatLastLine({ line, lines }) {
-            const lastLine = lines.at(-1);
+            const lastLine = lines.at(-1).trimStart(); // remove \t from table
             return line.replace(lastLine, wrapHighlight(lastLine)).trim();
         }
     }

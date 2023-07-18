@@ -32,21 +32,26 @@ function addHandlers() {
             });
     });
     document.addEventListener("copy", (event) => {
+        const highlightedText = window.getSelection().toString();
         event.clipboardData.setData(
             "text/plain",
-            removeLineNumbersAndSpacers(window.getSelection().toString())
+            removeLineNumsFromHighlightedText(highlightedText, true)
         );
         event.preventDefault();
     });
 }
 
-function removeLineNumbersAndSpacers(text) {
-    const getIndex = (line) => line.indexOf(regexSuffix) + 1,
+function removeLineNumsFromHighlightedText(text, trimLines) {
+    const getIndex = (line) => {
+            const index = line.indexOf(regexSuffix);
+            return index >= 0 ? index + regexSuffix.length : 0;
+        },
         result = text
             .split("\n")
-            .map((line) => line.slice(getIndex(line)).trim())
+            .map((line) => line.slice(getIndex(line)))
+            .map((line) => (trimLines ? line.trim() : line))
             .join("\n");
     return result;
 }
 
-export { addHandlers, removeLineNumbersAndSpacers };
+export { addHandlers, removeLineNumsFromHighlightedText };
