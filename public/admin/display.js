@@ -8,7 +8,7 @@ import {
     getNumberedNoteButton,
 } from "./notes.js";
 import { highlightLine } from "./highlight.js";
-import { db } from "./database.js";
+import { db } from "../database.js";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 
 async function handleDisplaySutta(e) {
@@ -20,15 +20,22 @@ async function handleDisplaySutta(e) {
     await displaySuttaHTML(value);
 }
 
-async function displaySuttaHTML(suttaId, lines, noteIndex) {
+async function displaySuttaHTML(suttaId, lines, noteIndex, dbNotes) {
     const typedInput = document.querySelector(`input[name="typed"]`),
         suttaSelect = document.querySelector(`select[name="sutta"]`),
         stickyNotes = document.querySelector("#sticky-notes");
     suttaId = suttaId || typedInput.value || suttaSelect.value;
-    lines = lines || (await getLines(suttaId));
-    // assign to global variable
+    let dbData = {};
+    if (!lines || !dbNotes) {
+        dbData = await getDbLines(suttaId);
+    }
+    lines = lines || dbData.lines || (await getLines(suttaId));
+    dbNotes = dbNotes || dbData.notes || notes;
+    // assign to global text variable
     text.length = 0;
-    text.push([lines].filter(Boolean));
+    notes.length = 0;
+    text.push(lines);
+    notes.push(...dbNotes);
     const note = notes[noteIndex],
         displayElem = document.querySelector("main"),
         html =
@@ -64,13 +71,13 @@ function addDbSuttaButtonHandlers() {
 
 async function handleSuttaButton(e) {
     const suttaId = e.target.textContent,
-        docRef = doc(db, "suttas", suttaId),
-        { text: dbText, notes: dbNotes } = (await getDoc(docRef)).data();
-    text.length = 0;
-    notes.length = 0;
-    text.push(dbText);
-    notes.push(...dbNotes);
-    await displaySuttaHTML(suttaId, dbText);
+        { text, notes } = await getDbLines(suttaId);
+    await displaySuttaHTML(suttaId, text, null, notes);
+}
+
+async function getDbLines(suttaId) {
+    const docRef = doc(db, "suttas", suttaId);
+    return (await getDoc(docRef)).data() || {};
 }
 
 function getLinesHTML(lines, note) {

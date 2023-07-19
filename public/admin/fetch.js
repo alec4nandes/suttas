@@ -21,7 +21,7 @@ async function getLines(suttaId) {
         Object.entries(lines).forEach(
             ([key, value]) => (lines[key] = organizeLines(value))
         );
-        return lines;
+        return Object.values(lines)[0];
     } catch (err) {
         // this usually occurs because there is not
         // a translation by Bhikkhu Sujato

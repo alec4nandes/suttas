@@ -8,17 +8,20 @@ import { everySuttaId } from "./crawled.js";
 import { getRandomSutta } from "./fetch.js";
 import { handleCite } from "./cite.js";
 import { text, notes } from "./notes.js";
-import { db } from "./database.js";
+import { db, auth } from "../database.js";
 import { doc, setDoc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 
 function addHandlers() {
-    const formElem = document.querySelector("form"),
-        selectElem = formElem.querySelector(`select[name="sutta"]`),
-        previousButton = document.querySelector("button#previous"),
-        nextButton = document.querySelector("button#next"),
-        randomButton = document.querySelector("button#random"),
+    const stickyNav = document.querySelector("#sticky-nav"),
+        suttaForm = stickyNav.querySelector("form"),
+        selectElem = suttaForm.querySelector(`select[name="sutta"]`),
+        previousButton = stickyNav.querySelector("button#previous"),
+        nextButton = stickyNav.querySelector("button#next"),
+        randomButton = stickyNav.querySelector("button#random"),
+        signOutButton = stickyNav.querySelector("button#sign-out"),
         saveButton = document.querySelector("button#save");
-    formElem.onsubmit = handleDisplaySutta;
+    suttaForm.onsubmit = handleDisplaySutta;
     selectElem.innerHTML = everySuttaId
         .map((id) => `<option value="${id}">${id}</option>`)
         .join("");
@@ -27,6 +30,7 @@ function addHandlers() {
     previousButton.onclick = handlePreviousSutta;
     nextButton.onclick = handleNextSutta;
     randomButton.onclick = getRandomSutta;
+    signOutButton.onclick = handleSignOut;
     saveButton.onclick = handleSave;
     document.addEventListener("selectionchange", () => {
         // use this approach for mobile highlighting, because
@@ -73,6 +77,7 @@ async function handleSave() {
                 notes,
             });
             await getDbSuttaButtons();
+            alert("Changes saved!");
         } catch (err) {
             console.error(err);
             alert("Could not save!");
@@ -111,4 +116,23 @@ function removeLineNumsFromHighlightedText(text, trimLines) {
     return result;
 }
 
-export { addHandlers, removeLineNumsFromHighlightedText };
+function handleSignOut() {
+    signOut(auth)
+        .then(() => {
+            toggleViews({ isSignedIn: false });
+        })
+        .catch((error) => {
+            const { code, message } = error;
+            alert("Error signing out. Try clearing cache.");
+            console.error(code + ": " + message);
+        });
+}
+
+function toggleViews({ isSignedIn }) {
+    const signInForm = document.querySelector("form#sign-in"),
+        citePage = document.querySelector("#cite-page");
+    signInForm.style.display = isSignedIn ? "none" : "block";
+    citePage.style.display = isSignedIn ? "block" : "none";
+}
+
+export { addHandlers, removeLineNumsFromHighlightedText, toggleViews };
