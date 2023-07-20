@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "webpack",
         "webpack-dev": "webpack --watch",
-        "admin": "cd public && rmdir /s /q admin && cd ../admin-react && npm run build && cd .."
+        "admin": "cd public && rmdir /s /q admin && cd ../admin-react && npm run build && cd ..",
+        "start-admin": "cd admin-react && npm start"
     },
     "repository": {
         "type": "git",
