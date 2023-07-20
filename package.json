@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "webpack",
-        "webpack-dev": "webpack --watch"
+        "webpack-dev": "webpack --watch",
+        "admin": "cd public && rmdir /s /q admin && cd ../admin-react && npm run build && cd .."
     },
     "repository": {
         "type": "git",
