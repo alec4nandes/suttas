@@ -3,7 +3,7 @@ import { everySuttaId } from "../../scripts/crawled";
 export default function FindForm({
     suttaId,
     setSuttaId,
-    isSujatoTranslation,
+    isEnglishTranslation,
     setFormValues,
     selectRef,
     inputRef,
@@ -11,11 +11,11 @@ export default function FindForm({
     async function handleFindSutta(e) {
         e.preventDefault();
         const id = e.target.typed.value.trim() || e.target.sutta.value.trim();
-        if (await isSujatoTranslation(id)) {
+        if (await isEnglishTranslation(id)) {
             setFormValues(id);
             setSuttaId(id);
         } else {
-            alert("No translation (yet?) by Bhikkhu Sujato. Try another.");
+            alert("No English translation yet. Try another sutta ID.");
             const value = suttaId || everySuttaId[0];
             setFormValues(value);
         }

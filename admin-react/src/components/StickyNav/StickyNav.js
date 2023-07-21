@@ -56,8 +56,8 @@ export default function StickyNav({
         }
     }, [deletingIndex, note, scrollToHighlight, setAllNotes, setNote]);
 
-    async function isSujatoTranslation(suttaId) {
-        const endpoint = `https://suttacentral.net/api/bilarasuttas/${suttaId}/sujato`,
+    async function isEnglishTranslation(suttaId) {
+        const endpoint = `https://suttacentral.net/api/bilarasuttas/${suttaId}/en`,
             data = await (await fetch(endpoint)).json();
         return !!data.translation_text;
     }
@@ -78,7 +78,7 @@ export default function StickyNav({
                 {...{
                     suttaId,
                     setSuttaId,
-                    isSujatoTranslation,
+                    isEnglishTranslation,
                     setFormValues,
                     selectRef,
                     inputRef,
@@ -91,7 +91,7 @@ export default function StickyNav({
                             suttaId,
                             setSuttaId,
                             setFormValues,
-                            isSujatoTranslation,
+                            isEnglishTranslation,
                         }}
                     />
                     <button id="sign-out" onClick={handleSignOut}>

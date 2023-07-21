@@ -4,7 +4,7 @@ export default function NavigationButtons({
     suttaId,
     setSuttaId,
     setFormValues,
-    isSujatoTranslation,
+    isEnglishTranslation,
 }) {
     async function handlePrevious() {
         navigationHelper(true);
@@ -29,7 +29,7 @@ export default function NavigationButtons({
         const getRandomId = () =>
             everySuttaId[~~(Math.random() * everySuttaId.length)];
         let randomId = getRandomId();
-        while (!(await isSujatoTranslation(randomId))) {
+        while (!(await isEnglishTranslation(randomId))) {
             randomId = getRandomId();
         }
         setFormValues(randomId);

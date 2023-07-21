@@ -27,7 +27,7 @@ export default async function getSuttaData({
     }
 
     async function getSuttaLinesFromSC() {
-        const endpoint = `https://suttacentral.net/api/bilarasuttas/${suttaId}/sujato`,
+        const endpoint = `https://suttacentral.net/api/bilarasuttas/${suttaId}/en`,
             data = await (await fetch(endpoint)).json(),
             { translation_text } = data,
             lines = Object.entries(translation_text)
