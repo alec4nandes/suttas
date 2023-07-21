@@ -12,6 +12,15 @@ permalink: "suttas/{{ post.id | slugify }}.html"
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sutta Basket &mdash; {{ post.title }}</title>
+        <style>
+            .highlight {
+                background-color: yellow;
+            }
+
+            .title {
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body>
         <main>
@@ -25,7 +34,7 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                     <figure>
                         <img src="{{ post.image_url }}" />
                         {% if post.image_caption != "" %}
-                            <figcaption">{{ post.image_caption }}</figcaption>
+                            <figcaption>{{ post.image_caption }}</figcaption>
                         {% endif %}
                     </figure>
                 {% endif %}
@@ -42,12 +51,29 @@ permalink: "suttas/{{ post.id | slugify }}.html"
             </article>
             <hr/>
             <section id="sutta">
-                {% for line in suttas.all_suttas[post.id] %}
-                    <p>{{ line }}</p>
-                {% endfor %}    
+                <div id="note-buttons">
+                    {% for note in suttas.all_suttas[post.id].notes %}
+                        <button>{{ forloop.index }}</button>
+                    {% endfor %}
+                </div>
+                <table id="text">
+                    {% for line in suttas.all_suttas[post.id].text %}
+                        <tr>
+                            <td
+                                class="line-number">{{ line[0] }}</td>
+                            <td
+                                {% if line[0] contains ":0" or line[0] contains ".0" %}class="line title"{% else %}class="line"{% endif %}>{{ line[1] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
             </section>
+
+            <xmp id="notes-json" style="display: none">
+                {{ suttas.all_suttas[post.id].notes | json }}
+            </xmp>
         </main>
 
         <script src="/scripts/format-local-dates.js"></script>
+        <script src="/scripts/add-note-handlers.js"></script>
     </body>
 </html>

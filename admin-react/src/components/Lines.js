@@ -6,9 +6,10 @@ export default function Lines({ lines, note }) {
 
     function RowsRecursiveHTML({ lines }) {
         return Object.entries(lines).map(([lineNumber, line], i, a) => {
-            const nums = lineNumber.split(":")[1],
-                isString = typeof line === "string",
-                isTitle = isString && nums.split(".")[0] === "0",
+            const isString = typeof line === "string",
+                isTitle =
+                    isString &&
+                    (lineNumber.includes(".0") || lineNumber.includes(":0")),
                 isLine = isString && !isTitle,
                 isLast = i === a.length - 1;
             return isTitle || isLine ? (
