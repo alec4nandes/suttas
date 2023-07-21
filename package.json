@@ -8,7 +8,8 @@
         "build": "webpack",
         "webpack-dev": "webpack --watch",
         "admin": "cd public && rmdir /s /q admin && cd ../admin-react && npm run build && cd ..",
-        "start-admin": "cd admin-react && npm start"
+        "start-admin": "cd admin-react && npm start",
+        "elev": "npx @11ty/eleventy"
     },
     "repository": {
         "type": "git",
