@@ -102,6 +102,11 @@ main {
             box-sizing: border-box;
         }
 
+        input,
+        textarea {
+            background-color: rgba(255, 219, 156, 1);
+        }
+
         input {
             padding: 15px 5px;
         }
@@ -128,7 +133,8 @@ main {
 
 button,
 input,
-select {
+select,
+textarea {
     height: 1rem;
     appearance: none;
     border: 0;
@@ -265,7 +271,6 @@ table {
 .title {
     margin: 0;
     font-weight: bold;
-    text-align: center;
 }
 
 .warning {

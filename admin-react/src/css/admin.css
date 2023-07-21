@@ -84,6 +84,10 @@ main ul#hierarchy {
   width: 100%;
   box-sizing: border-box;
 }
+#blog-form form input,
+#blog-form form textarea {
+  background-color: rgb(255, 219, 156);
+}
 #blog-form form input {
   padding: 15px 5px;
 }
@@ -104,7 +108,8 @@ main ul#hierarchy {
 
 button,
 input,
-select {
+select,
+textarea {
   height: 1rem;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -224,7 +229,6 @@ table tr td.line-number .hidden-regex {
 .title {
   margin: 0;
   font-weight: bold;
-  text-align: center;
 }
 
 .warning {
