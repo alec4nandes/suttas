@@ -4,6 +4,7 @@ import { db } from "../scripts/database.js";
 import { addCopyListener, addHighlightListener } from "../scripts/listen.js";
 import getSuttaData from "../scripts/fetch.js";
 import StickyNav from "./StickyNav/StickyNav";
+import BlogForm from "./BlogForm";
 import Hierarchy from "./Hierarchy";
 import Lines from "./Lines";
 import EditSaveDelete from "./EditSaveDelete/EditSaveDelete";
@@ -77,14 +78,21 @@ export default function Admin() {
                     allNotes,
                     getAllSuttaIds,
                     setAllSuttaIds,
+                    setAllNotes,
+                    setNote,
                 }}
             />
             <main>
-                {lines && (
+                {suttaId && lines ? (
                     <>
+                        <br />
+                        <BlogForm {...{ suttaId }} />
+                        <hr />
                         <Hierarchy {...{ suttaId }} />
                         <Lines {...{ lines, note }} />
                     </>
+                ) : (
+                    <></>
                 )}
             </main>
         </>

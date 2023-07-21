@@ -7,12 +7,16 @@ export default function EditSaveDelete({
     allNotes,
     getAllSuttaIds,
     setAllSuttaIds,
+    setAllNotes,
+    setNote,
 }) {
     return (
         <>
             <button id="cite">cite</button>
             <SaveButton {...{ suttaId, lines, allNotes, getAllSuttaIds }} />
-            <DeleteButton {...{ suttaId, setAllSuttaIds }} />
+            <DeleteButton
+                {...{ suttaId, setAllSuttaIds, setAllNotes, setNote }}
+            />
         </>
     );
 }

@@ -8,7 +8,7 @@ export default async function getSuttaData({
     setAllNotes,
 }) {
     window.scrollTo(0, 0);
-    setNote();
+    setNote({});
     const existing = await getSuttaFromDb();
     if (existing) {
         setLines(existing.text);

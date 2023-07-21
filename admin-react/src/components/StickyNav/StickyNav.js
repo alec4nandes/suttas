@@ -46,7 +46,7 @@ export default function StickyNav({
             setTimeout(() => {
                 const proceed = window.confirm("Delete note?");
                 if (proceed) {
-                    setNote();
+                    setNote({});
                     setAllNotes((allNotes) =>
                         allNotes.toSpliced(deletingIndex, 1)
                     );
