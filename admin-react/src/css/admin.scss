@@ -97,8 +97,17 @@ main {
         display: flex;
         flex-direction: column;
 
-        & > * {
+        & > *:not(button[type="submit"]) {
             width: 100%;
+            box-sizing: border-box;
+        }
+
+        input {
+            padding: 15px 5px;
+        }
+
+        textarea {
+            padding: 5px;
         }
 
         label {

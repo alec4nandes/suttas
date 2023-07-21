@@ -80,8 +80,15 @@ main ul#hierarchy {
   display: flex;
   flex-direction: column;
 }
-#blog-form form > * {
+#blog-form form > *:not(button[type=submit]) {
   width: 100%;
+  box-sizing: border-box;
+}
+#blog-form form input {
+  padding: 15px 5px;
+}
+#blog-form form textarea {
+  padding: 5px;
 }
 #blog-form form label {
   margin-top: 15px;
