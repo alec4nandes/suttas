@@ -86,7 +86,9 @@ export default function Admin() {
                 {suttaId && lines ? (
                     <>
                         <br />
-                        <BlogForm {...{ suttaId }} />
+                        <BlogForm
+                            {...{ suttaId, allNotes, lines, getAllSuttaIds }}
+                        />
                         <hr />
                         <Hierarchy {...{ suttaId }} />
                         <Lines {...{ lines, note }} />

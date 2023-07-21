@@ -1,0 +1,53 @@
+---
+pagination:
+    data: posts.all_posts
+    size: 1
+    alias: post
+permalink: "suttas/{{ post.id | slugify }}.html"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sutta {{ post.id }}</title>
+    </head>
+    <body>
+        <main>
+            <article>
+                <h1>{{ post.title }}</h1>
+                {% if post.subtitle != "" %}
+                    <h2>{{ post.subtitle }}</h2>
+                {% endif %}
+                <p class="date">{{ post.date.seconds }}</p>
+                {% if post.image_url != "" %}
+                    <figure>
+                        <img src="{{ post.image_url }}" />
+                        {% if post.image_caption != "" %}
+                            <figcaption">{{ post.image_caption }}</figcaption>
+                        {% endif %}
+                    </figure>
+                {% endif %}
+                <section id="content">
+                    {{ post.content }}
+                </section>
+                {% if post.tags.length > 0 %}
+                    <ul>
+                        {% for tag in post.tags %}
+                            <li>{{ tag }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </article>
+            <hr/>
+            <section id="sutta">
+                {% for line in suttas.all_suttas[post.id] %}
+                    <p>{{ line }}</p>
+                {% endfor %}    
+            </section>
+        </main>
+
+        <script src="/scripts/format-local-dates.js"></script>
+    </body>
+</html>

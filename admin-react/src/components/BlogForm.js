@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../scripts/database";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
-export default function BlogForm({ suttaId }) {
+export default function BlogForm({ suttaId, allNotes, lines, getAllSuttaIds }) {
     const [dbPost, setDbPost] = useState({});
 
     useEffect(() => {
@@ -87,7 +87,6 @@ export default function BlogForm({ suttaId }) {
     );
 
     function parseDate(ms) {
-        console.log(new Date(dbPost.date?.seconds * 1000));
         const date = new Date(ms),
             pad = (num) => ("" + num).padStart(2, "0"),
             mm = pad(date.getMonth() + 1),
@@ -127,8 +126,11 @@ export default function BlogForm({ suttaId }) {
                 date: getDate(date),
             };
         try {
-            const docRef = doc(db, "posts", suttaId);
+            let docRef = doc(db, "posts", suttaId);
             await setDoc(docRef, data);
+            docRef = doc(db, "suttas", suttaId);
+            await setDoc(docRef, { notes: allNotes, text: lines });
+            await getAllSuttaIds();
             alert("Post saved!");
         } catch (err) {
             const { code, message } = err;

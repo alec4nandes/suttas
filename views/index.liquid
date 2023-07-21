@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Suttas &mdash; Home</title>
+    </head>
+    <body>
+        <h1>Suttas Blog</h1>
+        <ul>
+            {% for post in posts.all_posts %}
+                <li>
+                    <a href="/suttas/{{ post.id | slugify }}.html">{{ post.title }}</a>
+                    (<span class="date">{{ post.date.seconds }}</span>)
+                </li>
+            {% endfor %}
+        </ul>
+
+        <script src="/scripts/format-local-dates.js"></script>
+    </body>
+</html>
