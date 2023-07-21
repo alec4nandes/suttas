@@ -209,4 +209,4 @@ function removeLineNumsFromHighlightedText(text, trimLines) {
     return result;
 }
 
-export { removeLineNumsFromHighlightedText, regexSuffix };
+export { removeLineNumsFromHighlightedText, regexSuffix, wrapHighlight };

@@ -1,5 +1,5 @@
 import React from "react";
-import { regexSuffix } from "../scripts/cite.js";
+import { regexSuffix, wrapHighlight } from "../scripts/cite.js";
 
 export default function Lines({ lines, note }) {
     let highlighting = false;
@@ -33,17 +33,16 @@ export default function Lines({ lines, note }) {
                     isSingleLine = !last_line;
                 isFirstLine && (highlighting = true);
                 if (highlighting) {
-                    result = isFirstLine ? (
-                        <PreformattedLine line={first_line} />
-                    ) : isLastLine ? (
-                        <PreformattedLine line={last_line} />
-                    ) : (
-                        <WrapHighlight {...{ text: line }} />
-                    );
                     (isLastLine || isSingleLine) && (highlighting = false);
+                    const html = isFirstLine
+                        ? first_line
+                        : isLastLine
+                        ? last_line
+                        : wrapHighlight(line);
+                    result = <PreformattedLine line={html} />;
                 }
             }
-            return result || <>{line}</>;
+            return result || <PreformattedLine {...{ line }} />;
 
             function PreformattedLine({ line }) {
                 return <div dangerouslySetInnerHTML={{ __html: line }}></div>;
@@ -85,8 +84,4 @@ export default function Lines({ lines, note }) {
     );
 }
 
-function WrapHighlight({ text }) {
-    return <span className="highlight">{text}</span>;
-}
-
-export { regexSuffix, WrapHighlight };
+export { regexSuffix };

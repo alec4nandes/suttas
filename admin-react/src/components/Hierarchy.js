@@ -62,7 +62,7 @@ export default function Hierarchy({ suttaId }) {
         return blurb ? (
             <details>
                 <summary>{summary}</summary>
-                <p>{blurb}</p>
+                <p dangerouslySetInnerHTML={{ __html: blurb }}></p>
             </details>
         ) : (
             <>{summary}</>
