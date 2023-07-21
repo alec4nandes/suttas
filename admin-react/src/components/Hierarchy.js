@@ -54,7 +54,7 @@ export default function Hierarchy({ suttaId }) {
             summary = (
                 <>
                     {root_name}
-                    {translated_name ? ":" : ""}
+                    {translated_name ? ": " : ""}
                     {translated_name || ""}
                     {acro && <small>({acro})</small>}
                 </>
