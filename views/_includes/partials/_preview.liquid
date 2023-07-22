@@ -4,6 +4,7 @@
     </h2>
     <h3>{{ post.subtitle }}</h3>
     <p class="date">{{ post.date.seconds }}</p>
+    <p class="sutta-name">Sutta: {{ suttas.all_suttas[post.id].name }}</p>
     {% include "partials/_figure.liquid" %}
     {% if post.tags.length > 0 %}
         <ul>

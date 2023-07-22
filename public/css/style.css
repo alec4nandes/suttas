@@ -29,6 +29,9 @@ main article {
 main article.newest-post {
   max-width: 100%;
 }
+main article .sutta-name {
+  font-style: italic;
+}
 main article figure {
   width: 100%;
   background-color: #ddd;
