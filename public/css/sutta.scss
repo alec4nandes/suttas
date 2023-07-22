@@ -1,0 +1,148 @@
+:root {
+    --nav-height: 60px;
+}
+
+body {
+    margin: 0;
+}
+
+main {
+    height: 100vh;
+    position: relative;
+
+    .scroll-wrapper {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: auto;
+        padding: clamp(10px, 4vw, 30px);
+    }
+
+    article,
+    #sutta {
+        position: absolute;
+        left: 0;
+        right: 0;
+
+        .max-width-wrapper {
+            max-width: 900px;
+            margin: auto;
+        }
+    }
+
+    article {
+        height: calc(100vh - var(--nav-height));
+        bottom: 0;
+
+        .scroll-wrapper {
+            height: 100%;
+
+            h1,
+            h2,
+            .date,
+            figure {
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            figure {
+                width: 100%;
+                background-color: #eee;
+                margin: 0 0 2.4rem;
+
+                img {
+                    width: 100%;
+                }
+
+                figcaption {
+                    font-style: italic;
+                }
+            }
+
+            #content {
+                p:first-child::first-letter {
+                    float: left;
+                    font-size: 3.5rem;
+                    line-height: 0.65;
+                    margin: 0.1em 0.1em 0.2em 0;
+                }
+            }
+        }
+    }
+
+    #sutta {
+        height: 100vh;
+        background-color: #333;
+        color: #eee;
+        display: flex;
+        flex-direction: column;
+        top: calc(-100vh + var(--nav-height));
+        transition: top 1.2s;
+
+        #note-buttons {
+            background-color: #777;
+            text-align: center;
+        }
+
+        .scroll-wrapper {
+            flex: 1;
+
+            table#text {
+                tr {
+                    td {
+                        &.title {
+                            font-weight: bold;
+                        }
+
+                        &.line-number {
+                            color: #777;
+                            font-size: 0.75rem;
+                            padding-right: 8px;
+                            text-align: right;
+                            user-select: none; /* Standard syntax */
+                            -webkit-user-select: none; /* Safari */
+                            -ms-user-select: none; /* IE 10 and IE 11 */
+                        }
+
+                        .highlight {
+                            background-color: #777;
+                        }
+                    }
+                }
+            }
+        }
+
+        nav {
+            height: var(--nav-height);
+            background-color: #777;
+
+            & > * {
+                height: 50%;
+                width: 100%;
+            }
+
+            #nav-links {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            #toggle-sutta {
+                appearance: none;
+                background-color: lavender;
+                border: 0;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

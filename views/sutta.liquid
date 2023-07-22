@@ -12,60 +12,67 @@ permalink: "suttas/{{ post.id | slugify }}.html"
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sutta Basket &mdash; {{ post.title }}</title>
-        <style>
-            .highlight {
-                background-color: yellow;
-            }
-
-            .title {
-                font-weight: bold;
-            }
-        </style>
+        <link rel="stylesheet" href="/css/sutta.css">
     </head>
     <body>
         <main>
             <article>
-                <h1>{{ post.title }}</h1>
-                {% if post.subtitle != "" %}
-                    <h2>{{ post.subtitle }}</h2>
-                {% endif %}
-                <p class="date">{{ post.date.seconds }}</p>
-                {% if post.image_url != "" %}
-                    <figure>
-                        <img src="{{ post.image_url }}" />
-                        {% if post.image_caption != "" %}
-                            <figcaption>{{ post.image_caption }}</figcaption>
+                <div class="scroll-wrapper">
+                    <div class="max-width-wrapper">
+                        <h1>{{ post.title }}</h1>
+                        {% if post.subtitle != "" %}
+                            <h2>{{ post.subtitle }}</h2>
                         {% endif %}
-                    </figure>
-                {% endif %}
-                <section id="content">
-                    {{ post.content }}
-                </section>
-                {% if post.tags.length > 0 %}
-                    <ul>
-                        {% for tag in post.tags %}
-                            <li>{{ tag }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                        <p class="date">{{ post.date.seconds }}</p>
+                        {% if post.image_url != "" %}
+                            <figure>
+                                <img src="{{ post.image_url }}" />
+                                {% if post.image_caption != "" %}
+                                    <figcaption>{{ post.image_caption }}</figcaption>
+                                {% endif %}
+                            </figure>
+                        {% endif %}
+                        <section id="content">
+                            {{ post.content }}
+                        </section>
+                        {% if post.tags.length > 0 %}
+                            <ul>
+                                {% for tag in post.tags %}
+                                    <li>{{ tag }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
             </article>
-            <hr/>
             <section id="sutta">
                 <div id="note-buttons">
                     {% for note in suttas.all_suttas[post.id].notes %}
                         <button>{{ forloop.index }}</button>
                     {% endfor %}
                 </div>
-                <table id="text">
-                    {% for line in suttas.all_suttas[post.id].text %}
-                        <tr>
-                            <td
-                                class="line-number">{{ line[0] }}</td>
-                            <td
-                                {% if line[0] contains ":0" or line[0] contains ".0" %}class="line title"{% else %}class="line"{% endif %}>{{ line[1] }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
+                <div class="scroll-wrapper">
+                    <div class="max-width-wrapper">
+                        <table id="text">
+                            {% for line in suttas.all_suttas[post.id].text %}
+                                <tr>
+                                    <td class="line-number">{{ line[0] }}</td>
+                                    <td {% if line[0] contains ":0" or line[0] contains ".0" %}class="line title"{% else %}class="line"{% endif %}>{{ line[1] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <nav>
+                    <div id="nav-links">
+                        <a href="/">home</a>
+                        |
+                        <a href="/tags">tags</a>
+                        |
+                        <a href="/about">about</a>
+                    </div>
+                    <button id="toggle-sutta" data-status="hidden">show sutta {{ post.id }}</button>
+                </nav>
             </section>
 
             <xmp id="notes-json" style="display: none">
@@ -74,6 +81,7 @@ permalink: "suttas/{{ post.id | slugify }}.html"
         </main>
 
         <script src="/scripts/format-local-dates.js"></script>
+        <script src="/scripts/add-toggle-handler.js"></script>
         <script src="/scripts/add-note-handlers.js"></script>
     </body>
 </html>

@@ -1,0 +1,121 @@
+:root {
+  --nav-height: 60px;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  height: 100vh;
+  position: relative;
+}
+main .scroll-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+  padding: clamp(10px, 4vw, 30px);
+}
+main article,
+main #sutta {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+main article .max-width-wrapper,
+main #sutta .max-width-wrapper {
+  max-width: 900px;
+  margin: auto;
+}
+main article {
+  height: calc(100vh - var(--nav-height));
+  bottom: 0;
+}
+main article .scroll-wrapper {
+  height: 100%;
+}
+main article .scroll-wrapper h1,
+main article .scroll-wrapper h2,
+main article .scroll-wrapper .date,
+main article .scroll-wrapper figure {
+  text-align: center;
+}
+main article .scroll-wrapper h1 {
+  font-size: 2rem;
+}
+main article .scroll-wrapper h2 {
+  font-size: 1.5rem;
+}
+main article .scroll-wrapper figure {
+  width: 100%;
+  background-color: #eee;
+  margin: 0 0 2.4rem;
+}
+main article .scroll-wrapper figure img {
+  width: 100%;
+}
+main article .scroll-wrapper figure figcaption {
+  font-style: italic;
+}
+main article .scroll-wrapper #content p:first-child::first-letter {
+  float: left;
+  font-size: 3.5rem;
+  line-height: 0.65;
+  margin: 0.1em 0.1em 0.2em 0;
+}
+main #sutta {
+  height: 100vh;
+  background-color: #333;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  top: calc(-100vh + var(--nav-height));
+  transition: top 1.2s;
+}
+main #sutta #note-buttons {
+  background-color: #777;
+  text-align: center;
+}
+main #sutta .scroll-wrapper {
+  flex: 1;
+}
+main #sutta .scroll-wrapper table#text tr td.title {
+  font-weight: bold;
+}
+main #sutta .scroll-wrapper table#text tr td.line-number {
+  color: #777;
+  font-size: 0.75rem;
+  padding-right: 8px;
+  text-align: right;
+  -moz-user-select: none;
+       user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+}
+main #sutta .scroll-wrapper table#text tr td .highlight {
+  background-color: #777;
+}
+main #sutta nav {
+  height: var(--nav-height);
+  background-color: #777;
+}
+main #sutta nav > * {
+  height: 50%;
+  width: 100%;
+}
+main #sutta nav #nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+main #sutta nav #toggle-sutta {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: lavender;
+  border: 0;
+}
+main #sutta nav #toggle-sutta:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=sutta.css.map */

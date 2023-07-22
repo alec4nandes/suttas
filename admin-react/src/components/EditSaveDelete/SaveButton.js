@@ -16,10 +16,11 @@ export default function SaveButton({
                     notes: allNotes,
                 });
                 await getAllSuttaIds();
-                alert("Changes saved!");
+                alert("Notes saved!");
             } catch (err) {
-                console.error(err);
-                alert("Could not save!");
+                const { code, message } = err;
+                console.error(`${code}: ${message}`);
+                alert("Could not save notes!");
             }
         }
     }
