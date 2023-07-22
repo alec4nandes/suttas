@@ -1,0 +1,8 @@
+{% if post.image_url != "" %}
+    <figure>
+        <img src="{{ post.image_url }}" />
+        {% if post.image_caption != "" %}
+            <figcaption>{{ post.image_caption }}</figcaption>
+        {% endif %}
+    </figure>
+{% endif %}

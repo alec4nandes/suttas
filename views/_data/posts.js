@@ -9,7 +9,19 @@ module.exports = async function () {
         return allPosts;
     }
 
+    const all_posts = await getAllPosts();
     return {
-        all_posts: await getAllPosts(),
+        all_posts,
+        tags: sortPostsByTag(all_posts),
     };
 };
+
+function sortPostsByTag(posts) {
+    return Object.entries(
+        posts.reduce((acc, post) => {
+            const { tags } = post;
+            tags.forEach((tag) => acc[tag]?.push(post) || (acc[tag] = [post]));
+            return acc;
+        }, {})
+    );
+}

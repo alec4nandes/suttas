@@ -1,0 +1,19 @@
+<article>
+    <h2>
+        <a href="/suttas/{{ post.id | slugify }}.html">{{ post.title }}</a>
+    </h2>
+    <h3>{{ post.subtitle }}</h3>
+    <p class="date">{{ post.date.seconds }}</p>
+    {% include "partials/_figure.liquid" %}
+    {% if post.tags.length > 0 %}
+        <ul>
+            tags:
+            {% for tag in post.tags %}
+                <li>
+                    <a href="/tags/{{ tag | slugify }}.html">{{ tag }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="/suttas/{{ post.id | slugify }}.html">read more</a>
+</article>

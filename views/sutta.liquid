@@ -24,24 +24,21 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                             <h2>{{ post.subtitle }}</h2>
                         {% endif %}
                         <p class="date">{{ post.date.seconds }}</p>
-                        {% if post.image_url != "" %}
-                            <figure>
-                                <img src="{{ post.image_url }}" />
-                                {% if post.image_caption != "" %}
-                                    <figcaption>{{ post.image_caption }}</figcaption>
-                                {% endif %}
-                            </figure>
-                        {% endif %}
+                        {% include "partials/_figure.liquid" %}
                         <section id="content">
                             {{ post.content }}
                         </section>
                         {% if post.tags.length > 0 %}
                             <ul>
+                                tags:
                                 {% for tag in post.tags %}
-                                    <li>{{ tag }}</li>
+                                    <li>
+                                        <a href="/tags/{{ tag | slugify }}.html">{{ tag }}</a>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
+                        <a href="suttas/{{ post.id | slugify }}.html">read more</a>
                     </div>
                 </div>
             </article>
