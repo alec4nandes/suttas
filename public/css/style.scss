@@ -9,9 +9,9 @@ footer {
 }
 
 main {
-    --gap: 15px; // naive variable for mixed-unit calc()
+    --gap: 15px; // native variable for mixed-unit calc()
     $gap: 15px; // sass variable for media query below
-    --min-width: 250px; // naive variable for mixed-unit calc()
+    --min-width: 250px; // native variable for mixed-unit calc()
     $min-width: 250px; // sass variable for media query below
 
     max-width: 1000px;
