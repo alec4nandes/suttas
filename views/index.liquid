@@ -16,12 +16,14 @@
             </nav>
         </header>
         <main>
+            {% assign isHome = true %}
             {% for post in posts.all_posts %}
                 {% include "partials/_preview.liquid" %}
             {% endfor %}
-            <a href="/admin">admin</a>
         </main>
-
+        <footer>
+            <a href="/admin">admin</a>
+        </footer>
         <script src="/scripts/format-local-dates.js"></script>
     </body>
 </html>

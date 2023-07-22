@@ -2,23 +2,36 @@ body {
     margin: 0;
 }
 
-header {
+header,
+footer {
     text-align: center;
+    padding: 15px;
 }
 
 main {
-    max-width: 900px;
+    --gap: 15px; // naive variable for mixed-unit calc()
+    $gap: 15px; // sass variable for media query below
+    --min-width: 250px; // naive variable for mixed-unit calc()
+    $min-width: 250px; // sass variable for media query below
+
+    max-width: 1000px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: var(--gap);
     justify-content: center;
 
     article {
-        width: clamp(250px, 30vw, 500px);
+        width: 100%;
+        max-width: calc(50% - (var(--gap) / 2));
+        min-width: var(--min-width);
         background-color: #eee;
         box-sizing: border-box;
-        padding: 5px;
+        padding: 15px;
+
+        &.newest-post {
+            max-width: 100%;
+        }
 
         figure {
             width: 100%;
@@ -32,6 +45,12 @@ main {
             figcaption {
                 font-style: italic;
             }
+        }
+    }
+
+    @media only screen and (max-width: ($min-width * 2 + $gap)) {
+        article {
+            max-width: 100%;
         }
     }
 }

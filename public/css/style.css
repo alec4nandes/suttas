@@ -2,23 +2,32 @@ body {
   margin: 0;
 }
 
-header {
+header,
+footer {
   text-align: center;
+  padding: 15px;
 }
 
 main {
-  max-width: 900px;
+  --gap: 15px;
+  --min-width: 250px;
+  max-width: 1000px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: var(--gap);
   justify-content: center;
 }
 main article {
-  width: clamp(250px, 30vw, 500px);
+  width: 100%;
+  max-width: calc(50% - var(--gap) / 2);
+  min-width: var(--min-width);
   background-color: #eee;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 15px;
+}
+main article.newest-post {
+  max-width: 100%;
 }
 main article figure {
   width: 100%;
@@ -30,4 +39,9 @@ main article figure img {
 }
 main article figure figcaption {
   font-style: italic;
+}
+@media only screen and (max-width: 515px) {
+  main article {
+    max-width: 100%;
+  }
 }/*# sourceMappingURL=style.css.map */

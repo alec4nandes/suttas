@@ -1,4 +1,4 @@
-<article>
+<article {% if isHome == true and forloop.index == 1 %}class="newest-post"{% endif %}>
     <h2>
         <a href="/suttas/{{ post.id | slugify }}.html">{{ post.title }}</a>
     </h2>
