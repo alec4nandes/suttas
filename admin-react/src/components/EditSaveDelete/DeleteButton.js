@@ -8,7 +8,9 @@ export default function DeleteButton({
     setNote,
 }) {
     async function handleDelete() {
-        const proceed = window.confirm("Delete record from database?");
+        const proceed = window.confirm(
+            `Delete notes AND blog post for ${suttaId} from database?`
+        );
         if (proceed) {
             try {
                 let docRef = doc(db, "suttas", suttaId);
@@ -18,7 +20,7 @@ export default function DeleteButton({
                 setAllNotes([]);
                 setNote({});
                 setAllSuttaIds((ids) => ids.toSpliced(ids.indexOf(suttaId), 1));
-                alert("Record deleted!");
+                alert(`Notes and blog post deleted for ${suttaId}.`);
             } catch (err) {
                 const { code, message } = err;
                 console.error(code + ": " + message);
@@ -30,6 +32,8 @@ export default function DeleteButton({
     return (
         <button id="delete" onClick={handleDelete}>
             delete
+            <br />
+            all
         </button>
     );
 }

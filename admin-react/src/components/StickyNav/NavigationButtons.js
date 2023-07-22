@@ -15,8 +15,15 @@ export default function NavigationButtons({
     }
 
     async function navigationHelper(isPrevious) {
-        const index = everySuttaId.indexOf(suttaId),
-            neighbor = everySuttaId[index + (isPrevious ? -1 : 1)];
+        let index = everySuttaId.indexOf(suttaId),
+            getNeighbor = () => {
+                index = index + (isPrevious ? -1 : 1);
+                return everySuttaId[index];
+            },
+            neighbor = getNeighbor();
+        while (neighbor && !(await isEnglishTranslation(neighbor))) {
+            neighbor = getNeighbor();
+        }
         if (neighbor) {
             setFormValues(neighbor);
             setSuttaId(neighbor);
@@ -35,6 +42,7 @@ export default function NavigationButtons({
         setFormValues(randomId);
         setSuttaId(randomId);
     }
+
     return (
         <>
             <button id="previous" onClick={handlePrevious}>

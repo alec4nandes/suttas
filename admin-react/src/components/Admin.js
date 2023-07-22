@@ -20,10 +20,17 @@ export default function Admin() {
     /* CALLBACKS */
 
     const getAllSuttaIds = useCallback(async function () {
-        const querySnapshot = await getDocs(collection(db, "suttas")),
-            allIds = [];
-        querySnapshot.forEach(({ id }) => allIds.push(id));
+        const suttaDbIds = await helper("suttas"),
+            postsDbIds = await helper("posts"),
+            allIds = [...new Set([...suttaDbIds, ...postsDbIds])].sort();
         setAllSuttaIds(allIds);
+
+        async function helper(coll) {
+            const querySnapshot = await getDocs(collection(db, coll)),
+                all = [];
+            querySnapshot.forEach(({ id }) => all.push(id));
+            return all;
+        }
     }, []);
 
     const scrollToHighlight = useCallback(function () {
@@ -87,7 +94,10 @@ export default function Admin() {
                     <>
                         <br />
                         <BlogForm
-                            {...{ suttaId, allNotes, lines, getAllSuttaIds }}
+                            {...{
+                                suttaId,
+                                getAllSuttaIds,
+                            }}
                         />
                         <hr />
                         <Hierarchy {...{ suttaId }} />

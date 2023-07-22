@@ -1,4 +1,6 @@
-const notes = JSON.parse(document.querySelector("#notes-json").textContent),
+const notes = JSON.parse(
+        document.querySelector("#notes-json").textContent.trim() || "{}"
+    ),
     textTable = document.querySelector("table#text"),
     noteButtons = document
         .querySelector("#note-buttons")

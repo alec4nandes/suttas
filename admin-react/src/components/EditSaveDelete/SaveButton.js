@@ -27,6 +27,8 @@ export default function SaveButton({
     return (
         <button id="save" onClick={handleSave}>
             save
+            <br />
+            notes
         </button>
     );
 }
