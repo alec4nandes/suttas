@@ -2,12 +2,17 @@
   --nav-height: 60px;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
 }
 
 main {
-  height: 100vh;
+  height: 100%;
   position: relative;
 }
 main .scroll-wrapper {
@@ -28,7 +33,7 @@ main #sutta .max-width-wrapper {
   margin: auto;
 }
 main article {
-  height: calc(100vh - var(--nav-height));
+  height: calc(100% - var(--nav-height));
   bottom: 0;
 }
 main article .scroll-wrapper {
@@ -64,12 +69,12 @@ main article .scroll-wrapper #content p:first-child::first-letter {
   margin: 0.1em 0.1em 0.2em 0;
 }
 main #sutta {
-  height: 100vh;
+  height: 100%;
   background-color: #333;
   color: #eee;
   display: flex;
   flex-direction: column;
-  top: calc(-100vh + var(--nav-height));
+  top: calc(-100% + var(--nav-height));
   transition: top 1.2s;
 }
 main #sutta #note-buttons {

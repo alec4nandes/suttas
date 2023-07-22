@@ -2,12 +2,17 @@
     --nav-height: 60px;
 }
 
+html,
+body {
+    height: 100%;
+}
+
 body {
     margin: 0;
 }
 
 main {
-    height: 100vh;
+    height: 100%;
     position: relative;
 
     .scroll-wrapper {
@@ -30,7 +35,7 @@ main {
     }
 
     article {
-        height: calc(100vh - var(--nav-height));
+        height: calc(100% - var(--nav-height));
         bottom: 0;
 
         .scroll-wrapper {
@@ -77,12 +82,12 @@ main {
     }
 
     #sutta {
-        height: 100vh;
+        height: 100%;
         background-color: #333;
         color: #eee;
         display: flex;
         flex-direction: column;
-        top: calc(-100vh + var(--nav-height));
+        top: calc(-100% + var(--nav-height));
         transition: top 1.2s;
 
         #note-buttons {

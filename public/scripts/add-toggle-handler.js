@@ -6,7 +6,7 @@ document.querySelector("#toggle-sutta").onclick = (e) => {
         ? 0
         : // match px with --nav-height var
           // in ../css/sutta.scss
-          "calc(-100vh + 60px)";
+          "calc(-100% + 60px)";
     dataset.status = isHidden ? "showing" : "hidden";
     e.target.textContent = e.target.textContent.replace(
         isHidden ? "sutta" : "blog post for sutta",
