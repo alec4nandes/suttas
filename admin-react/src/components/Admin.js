@@ -15,7 +15,8 @@ export default function Admin() {
         [suttaId, setSuttaId] = useState(""),
         [allNotes, setAllNotes] = useState([]),
         [note, setNote] = useState({}),
-        [lines, setLines] = useState({});
+        [lines, setLines] = useState({}),
+        [hierarchy, setHierarchy] = useState({});
 
     /* CALLBACKS */
 
@@ -87,6 +88,7 @@ export default function Admin() {
                     setAllSuttaIds,
                     setAllNotes,
                     setNote,
+                    hierarchy,
                 }}
             />
             <main>
@@ -100,7 +102,7 @@ export default function Admin() {
                             }}
                         />
                         <hr />
-                        <Hierarchy {...{ suttaId }} />
+                        <Hierarchy {...{ suttaId, setHierarchy }} />
                         <Lines {...{ lines, note }} />
                     </>
                 ) : (

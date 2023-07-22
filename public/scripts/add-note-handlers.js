@@ -19,7 +19,7 @@ function getLinesHTML(note) {
     textTable.innerHTML = allLines.map(getRowHTML).join("");
     const firstHighlight = document.querySelector(".highlight");
     firstHighlight.scrollIntoView({ behavior: "smooth", block: "center" });
-    note.note && setTimeout(() => alert(note.note), 500);
+    note.note && setTimeout(() => alert(note.note), 800);
 
     function getRowHTML(pair) {
         const [lineNum, line] = pair,

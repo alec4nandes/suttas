@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { crawled } from "../scripts/crawled.js";
 
-export default function Hierarchy({ suttaId }) {
+export default function Hierarchy({ suttaId, setHierarchy }) {
     const [levels, setLevels] = useState([]);
 
     useEffect(() => {
@@ -10,6 +10,7 @@ export default function Hierarchy({ suttaId }) {
         async function getLevels() {
             const hier = getSuttaHierarchy(),
                 result = await Promise.all(hier.map(getLevelData));
+            setHierarchy(result);
             setLevels(result);
         }
 
@@ -39,12 +40,14 @@ export default function Hierarchy({ suttaId }) {
             }
             return result;
         }
-    }, [suttaId]);
+    }, [suttaId, setHierarchy]);
 
     async function getLevelData(level) {
         const endpoint = `https://suttacentral.net/api/menu/${level}`,
-            data = await (await fetch(endpoint)).json();
-        return data[0];
+            data = await (await fetch(endpoint)).json(),
+            { translated_name, root_name, child_range, acronym, blurb } =
+                data[0];
+        return { translated_name, root_name, child_range, acronym, blurb };
     }
 
     function LevelHTML({ data }) {

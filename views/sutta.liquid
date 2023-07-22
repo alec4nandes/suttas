@@ -53,6 +53,51 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                 </div>
                 <div class="scroll-wrapper">
                     <div class="max-width-wrapper">
+                        <div id="hierarchy">
+                            {% for hierarchy in suttas.all_suttas[post.id].hierarchy %}
+                                {% if hierarchy.blurb %}
+                                    <details>
+                                        <summary>
+                                            {{ hierarchy.root_name }}
+                                            {% if hierarchy.translated_name %}
+                                                &mdash;
+                                                {{ hierarchy.translated_name }}
+                                            {% endif %}
+                                            {% if hierarchy.acronym or hierarchy.child_range %}
+                                                &mdash;
+                                                <small>
+                                                    {% if hierarchy.acronym %}
+                                                        ({{ hierarchy.acronym }})
+                                                    {% else %}
+                                                        ({{ hierarchy.child_range }})
+                                                    {% endif %}
+                                                </small>
+                                            {% endif %}
+                                        </summary>
+                                        <p>{{ hierarchy.blurb }}</p>
+                                    </details>
+                                {% else %}
+                                    <p>
+                                        {{ hierarchy.root_name }}
+                                        {% if hierarchy.translated_name %}
+                                            &mdash;
+                                            {{ hierarchy.translated_name }}
+                                        {% endif %}
+                                        {% if hierarchy.acronym or hierarchy.child_range %}
+                                            &mdash;
+                                            <small>
+                                                {% if hierarchy.acronym %}
+                                                    ({{ hierarchy.acronym }})
+                                                {% else %}
+                                                    ({{ hierarchy.child_range }})
+                                                {% endif %}
+                                            </small>
+                                        {% endif %}
+                                    </p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <hr/>
                         <table id="text">
                             {% for line in suttas.all_suttas[post.id].text %}
                                 <tr>
@@ -71,7 +116,9 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                         |
                         <a href="/about">about</a>
                     </div>
-                    <button id="toggle-sutta" data-status="hidden">show sutta {{ post.id }}</button>
+                    <button id="toggle-sutta" data-status="hidden">
+                        read {{ suttas.all_suttas[post.id].name }}
+                    </button>
                 </nav>
             </section>
 

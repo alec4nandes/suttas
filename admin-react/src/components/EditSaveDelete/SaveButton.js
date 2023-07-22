@@ -6,6 +6,7 @@ export default function SaveButton({
     lines,
     allNotes,
     getAllSuttaIds,
+    hierarchy,
 }) {
     async function handleSave() {
         const proceed = window.confirm("Save changes?");
@@ -14,6 +15,8 @@ export default function SaveButton({
                 await setDoc(doc(db, "suttas", suttaId), {
                     text: lines,
                     notes: allNotes,
+                    hierarchy,
+                    name: hierarchy.at(-1).root_name,
                 });
                 await getAllSuttaIds();
                 alert("Notes saved!");

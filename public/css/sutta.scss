@@ -98,6 +98,18 @@ main {
         .scroll-wrapper {
             flex: 1;
 
+            #hierarchy {
+                & > details,
+                & > p {
+                    margin: 10px;
+                }
+
+                details summary,
+                & > p {
+                    font-style: italic;
+                }
+            }
+
             table#text {
                 tr {
                     td {

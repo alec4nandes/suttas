@@ -6,8 +6,9 @@ module.exports = async function () {
         const querySnapshot = await getDocs(collection(db, "suttas")),
             allSuttas = {};
         querySnapshot.forEach((d) => {
-            const { notes, text } = d.data();
-            allSuttas[d.id] = { notes, text: getAllLines(text) };
+            const data = d.data(),
+                { text } = data;
+            allSuttas[d.id] = { ...data, text: getAllLines(text) };
         });
         return allSuttas;
     }

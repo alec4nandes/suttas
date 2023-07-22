@@ -9,11 +9,14 @@ export default function EditSaveDelete({
     setAllSuttaIds,
     setAllNotes,
     setNote,
+    hierarchy,
 }) {
     return (
         <>
             <button id="cite">cite</button>
-            <SaveButton {...{ suttaId, lines, allNotes, getAllSuttaIds }} />
+            <SaveButton
+                {...{ suttaId, lines, allNotes, getAllSuttaIds, hierarchy }}
+            />
             <DeleteButton
                 {...{ suttaId, setAllSuttaIds, setAllNotes, setNote }}
             />

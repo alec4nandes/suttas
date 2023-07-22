@@ -8,8 +8,10 @@ document.querySelector("#toggle-sutta").onclick = (e) => {
           // in ../css/sutta.scss
           "calc(-100% + 60px)";
     dataset.status = isHidden ? "showing" : "hidden";
+    const readSutta = "read",
+        readBlog = "read blog post for";
     e.target.textContent = e.target.textContent.replace(
-        isHidden ? "sutta" : "blog post for sutta",
-        isHidden ? "blog post for sutta" : "sutta"
+        isHidden ? readSutta : readBlog,
+        isHidden ? readBlog : readSutta
     );
 };

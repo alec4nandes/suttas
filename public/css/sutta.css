@@ -84,6 +84,12 @@ main #sutta #note-buttons {
 main #sutta .scroll-wrapper {
   flex: 1;
 }
+main #sutta .scroll-wrapper #hierarchy > details, main #sutta .scroll-wrapper #hierarchy > p {
+  margin: 10px;
+}
+main #sutta .scroll-wrapper #hierarchy details summary, main #sutta .scroll-wrapper #hierarchy > p {
+  font-style: italic;
+}
 main #sutta .scroll-wrapper table#text tr td.title {
   font-weight: bold;
 }
