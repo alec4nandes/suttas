@@ -52,7 +52,7 @@ function getLinesHTML(note) {
 function getAllLines() {
     return [...textTable.querySelectorAll("tr")].map((row) => {
         const lineNum = row.querySelector(".line-number").textContent,
-            line = row.querySelector(".line").textContent;
+            line = row.querySelector(".line").innerHTML;
         return [lineNum, line.trim() ? line : "<br/>"];
     });
 }
