@@ -1,0 +1,21 @@
+{% assign page_num = pagination.pageNumber | plus: 1 %}
+{% assign max_pages = pagination.hrefs.length %}
+<div class="pagination">
+    {% if page_num > 1 %}
+        <span>
+            &lt;&lt; previous:
+            <a href="{{ pagination.href.previous }}">
+                {{ pagination.page.previous.title }}
+            </a>
+        </span>
+    {% endif %}
+    {% if page_num < max_pages %}
+        <span>
+            next:
+            <a href="{{ pagination.href.next }}">
+                {{ pagination.page.next.title }}
+            </a>
+            &gt;&gt;
+        </span>
+    {% endif %}
+</div>

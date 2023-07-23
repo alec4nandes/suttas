@@ -1,3 +1,6 @@
+@import "./social.css";
+@import "./comma-list.css";
+
 body {
     margin: 0;
 }
@@ -22,15 +25,50 @@ main {
     justify-content: center;
 
     article {
+        $article-padding: 15px;
+
         width: 100%;
         max-width: calc(50% - (var(--gap) / 2));
         min-width: var(--min-width);
         background-color: #eee;
         box-sizing: border-box;
-        padding: 15px;
+        padding: $article-padding;
+        text-align: center;
 
         &.newest-post {
             max-width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+
+            #heading-and-image {
+                display: flex;
+                flex: 1;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                #heading,
+                figure {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                #heading {
+                    min-width: 200px;
+                    width: 25%;
+                    box-sizing: border-box;
+                    padding: 0 15px;
+                }
+
+                figure {
+                    min-width: 400px;
+                    flex: 1;
+                }
+            }
+
+            .tags {
+                width: 100%;
+            }
         }
 
         .sutta-name {
@@ -40,7 +78,7 @@ main {
         figure {
             width: 100%;
             background-color: #ddd;
-            margin: 0 0 2.4rem;
+            margin: 0;
 
             img {
                 width: 100%;
@@ -50,11 +88,27 @@ main {
                 font-style: italic;
             }
         }
+
+        ul.tags.commas {
+            width: 100%;
+            background-color: #ccc;
+            box-sizing: border-box;
+            margin: 15px 0 0;
+            padding: 10px;
+        }
     }
 
     @media only screen and (max-width: ($min-width * 2 + $gap)) {
         article {
             max-width: 100%;
+
+            &.newest-post {
+                #heading-and-image {
+                    figure {
+                        min-width: 100%;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,3 +1,5 @@
+@import "./social.css";
+@import "./comma-list.css";
 :root {
   --nav-height: 60px;
 }
@@ -67,6 +69,9 @@ main article .scroll-wrapper #content p:first-child::first-letter {
   font-size: 3.5rem;
   line-height: 0.65;
   margin: 0.1em 0.1em 0.2em 0;
+}
+main article .scroll-wrapper .tags.commas {
+  font-weight: bold;
 }
 main #sutta {
   height: 100%;

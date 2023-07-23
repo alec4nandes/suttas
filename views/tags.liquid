@@ -4,17 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sutta Basket &mdash; All Tags</title>
-        <style>
-            body {
-                text-align: center;
-            }
-
-            ul {
-                width: fit-content;
-                margin: 30px auto;
-                text-align: left;
-            }
-        </style>
+        <link rel="stylesheet" href="/css/tags.css">
     </head>
     <body>
         <header>
@@ -23,6 +13,8 @@
                 <a href="/">home</a>
                 |
                 <a href="/about">about</a>
+                |
+                {% include "partials/_social.liquid" %}
             </nav>
         </header>
         <main>

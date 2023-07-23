@@ -1,20 +1,17 @@
 <article {% if isHome == true and forloop.index == 1 %}class="newest-post"{% endif %}>
-    <h2>
-        <a href="/suttas/{{ post.id | slugify }}.html">{{ post.title }}</a>
-    </h2>
-    <h3>{{ post.subtitle }}</h3>
-    <p class="date">{{ post.date.seconds }}</p>
-    <p class="sutta-name">Sutta: {{ suttas.all_suttas[post.id].name }}</p>
-    {% include "partials/_figure.liquid" %}
-    {% if post.tags.length > 0 %}
-        <ul>
-            tags:
-            {% for tag in post.tags %}
-                <li>
-                    <a href="/tags/{{ tag | slugify }}.html">{{ tag }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <a href="/suttas/{{ post.id | slugify }}.html">read more</a>
+    <div id="heading-and-image">
+        <div id="heading">
+            <div>
+                <h2>
+                    <a href="/suttas/{{ post.id | slugify }}.html">{{ post.title }}</a>
+                </h2>
+                <h3>{{ post.subtitle }}</h3>
+                <p class="date">{{ post.date.seconds }}</p>
+                <p class="sutta-name">Sutta: {{ suttas.all_suttas[post.id].name }}</p>
+                <a href="/suttas/{{ post.id | slugify }}.html">read more</a>
+            </div>
+        </div>
+        {% include "partials/_figure.liquid" %}
+    </div>
+    {% include "partials/_tags.liquid" %}
 </article>

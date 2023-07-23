@@ -6,6 +6,7 @@ module.exports = async function () {
         const querySnapshot = await getDocs(collection(db, "posts")),
             allPosts = [];
         querySnapshot.forEach((d) => allPosts.push({ ...d.data(), id: d.id }));
+        allPosts.sort((a, b) => b.date.seconds - a.date.seconds);
         return allPosts;
     }
 
@@ -23,5 +24,5 @@ function sortPostsByTag(posts) {
             tags.forEach((tag) => acc[tag]?.push(post) || (acc[tag] = [post]));
             return acc;
         }, {})
-    );
+    ).sort((a, b) => a[0].localeCompare(b[0]));
 }

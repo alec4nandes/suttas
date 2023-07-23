@@ -1,3 +1,5 @@
+@import "./social.css";
+@import "./comma-list.css";
 body {
   margin: 0;
 }
@@ -25,9 +27,37 @@ main article {
   background-color: #eee;
   box-sizing: border-box;
   padding: 15px;
+  text-align: center;
 }
 main article.newest-post {
   max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+main article.newest-post #heading-and-image {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+main article.newest-post #heading-and-image #heading,
+main article.newest-post #heading-and-image figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+main article.newest-post #heading-and-image #heading {
+  min-width: 200px;
+  width: 25%;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+main article.newest-post #heading-and-image figure {
+  min-width: 400px;
+  flex: 1;
+}
+main article.newest-post .tags {
+  width: 100%;
 }
 main article .sutta-name {
   font-style: italic;
@@ -35,7 +65,7 @@ main article .sutta-name {
 main article figure {
   width: 100%;
   background-color: #ddd;
-  margin: 0 0 2.4rem;
+  margin: 0;
 }
 main article figure img {
   width: 100%;
@@ -43,8 +73,18 @@ main article figure img {
 main article figure figcaption {
   font-style: italic;
 }
+main article ul.tags.commas {
+  width: 100%;
+  background-color: #ccc;
+  box-sizing: border-box;
+  margin: 15px 0 0;
+  padding: 10px;
+}
 @media only screen and (max-width: 515px) {
   main article {
     max-width: 100%;
+  }
+  main article.newest-post #heading-and-image figure {
+    min-width: 100%;
   }
 }/*# sourceMappingURL=style.css.map */

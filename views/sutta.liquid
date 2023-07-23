@@ -19,6 +19,7 @@ permalink: "suttas/{{ post.id | slugify }}.html"
             <article>
                 <div class="scroll-wrapper">
                     <div class="max-width-wrapper">
+                        {% include "partials/_pagination.liquid" %}
                         <h1>{{ post.title }}</h1>
                         {% if post.subtitle != "" %}
                             <h2>{{ post.subtitle }}</h2>
@@ -28,16 +29,7 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                         <section id="content">
                             {{ post.content }}
                         </section>
-                        {% if post.tags.length > 0 %}
-                            <ul>
-                                tags:
-                                {% for tag in post.tags %}
-                                    <li>
-                                        <a href="/tags/{{ tag | slugify }}.html">{{ tag }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
+                        {% include "partials/_tags.liquid" %}
                         <a href="suttas/{{ post.id | slugify }}.html">read more</a>
                     </div>
                 </div>
@@ -112,6 +104,8 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                         <a href="/tags">tags</a>
                         |
                         <a href="/about">about</a>
+                        |
+                        {% include "partials/_social.liquid" %}
                     </div>
                     <button id="toggle-sutta" data-status="hidden">
                         read {{ suttas.all_suttas[post.id].name }}
