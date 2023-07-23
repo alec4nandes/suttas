@@ -30,7 +30,7 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                             {{ post.content }}
                         </section>
                         {% include "partials/_tags.liquid" %}
-                        <a href="suttas/{{ post.id | slugify }}.html">read more</a>
+                        {% include "partials/_pagination.liquid" %}
                     </div>
                 </div>
             </article>

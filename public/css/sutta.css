@@ -17,6 +17,21 @@ main {
   height: 100%;
   position: relative;
 }
+main .pagination {
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+  font-size: 0.8rem;
+}
+main .pagination > span {
+  flex: 1;
+}
+main .pagination > span:last-child {
+  text-align: right;
+}
+main .pagination > span.alone {
+  text-align: center;
+}
 main .scroll-wrapper {
   width: 100%;
   box-sizing: border-box;
@@ -72,6 +87,7 @@ main article .scroll-wrapper #content p:first-child::first-letter {
 }
 main article .scroll-wrapper .tags.commas {
   font-weight: bold;
+  margin-bottom: 30px;
 }
 main #sutta {
   height: 100%;

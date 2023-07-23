@@ -18,6 +18,25 @@ main {
     height: 100%;
     position: relative;
 
+    .pagination {
+        display: flex;
+        gap: 20px;
+        justify-content: space-evenly;
+        font-size: 0.8rem;
+
+        & > span {
+            flex: 1;
+
+            &:last-child {
+                text-align: right;
+            }
+
+            &.alone {
+                text-align: center;
+            }
+        }
+    }
+
     .scroll-wrapper {
         width: 100%;
         box-sizing: border-box;
@@ -84,6 +103,7 @@ main {
 
             .tags.commas {
                 font-weight: bold;
+                margin-bottom: 30px;
             }
         }
     }
