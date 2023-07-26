@@ -5,11 +5,11 @@ const notes = JSON.parse(
     allLines = getAllLines(),
     noteButtons = document
         .querySelector("#note-buttons")
-        .querySelectorAll("button");
+        ?.querySelectorAll("button");
 
 console.log(notes);
 
-noteButtons.forEach((button, i) => {
+noteButtons?.forEach((button, i) => {
     button.onclick = () => getLinesHTML(notes[i]);
 });
 

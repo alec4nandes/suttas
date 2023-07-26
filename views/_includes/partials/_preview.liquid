@@ -6,8 +6,10 @@
                 <a href="/suttas/{{ post.id | slugify }}.html">{{ post.title }}</a>
             </h2>
             <h3>{{ post.subtitle }}</h3>
-            <p class="date">{{ post.date.seconds }}</p>
-            <p class="sutta-name">Sutta: {{ suttas.all_suttas[post.id].name }}</p>
+            <div>
+                <p class="date">{{ post.date.seconds }}</p>
+                <p class="sutta-name">Sutta: {{ suttas.all_suttas[post.id].name }}</p>
+            </div>
             <a class="read-more-link" href="/suttas/{{ post.id | slugify }}.html">read more</a>
         </div>
     </div>

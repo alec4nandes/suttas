@@ -3,7 +3,7 @@
 @import "./colors.scss";
 
 :root {
-    --nav-height: 60px;
+    --nav-height: 80px;
 }
 
 html,
@@ -25,6 +25,15 @@ a {
     }
 }
 
+button {
+    font-size: 1rem;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+}
+
 main {
     height: 100%;
     position: relative;
@@ -33,7 +42,7 @@ main {
         display: flex;
         gap: 20px;
         justify-content: space-evenly;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         margin-bottom: 30px;
 
         & > span {
@@ -144,11 +153,13 @@ main {
             }
 
             #content {
+                padding-top: 30px;
+
                 p:first-child::first-letter {
                     float: left;
-                    font-size: 3.5rem;
-                    line-height: 0.65;
-                    margin: 0.1em 0.1em 0.2em 0;
+                    font-size: 3rem;
+                    line-height: 0.8;
+                    margin: 0.1em 0.1em 0.1em 0;
                 }
             }
 
@@ -169,7 +180,7 @@ main {
         transition: top 1.2s;
 
         #note-buttons {
-            min-height: calc(var(--nav-height) / 2);
+            min-height: calc(var(--nav-height) * 0.4);
             background-color: $bg-color;
             display: flex;
             flex-wrap: wrap;
@@ -178,8 +189,8 @@ main {
             text-align: center;
 
             button {
-                height: calc(var(--nav-height) / 2);
-                width: calc(var(--nav-height) / 2);
+                height: calc(var(--nav-height) * 0.4);
+                width: calc(var(--nav-height) * 0.4);
                 appearance: none;
                 background-color: $link-color;
                 border: 0;
@@ -239,11 +250,11 @@ main {
             background-color: $bg-color;
 
             & > * {
-                height: 50%;
                 width: 100%;
             }
 
             #nav-links {
+                height: 40%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -262,6 +273,7 @@ main {
             }
 
             #toggle-sutta {
+                height: 60%;
                 appearance: none;
                 background-color: $link-color;
                 border: 0;

@@ -1,7 +1,15 @@
 @import "./social.css";
 @import "./comma-list.css";
+html,
+body {
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
 :root {
-  --nav-height: 60px;
+  --nav-height: 80px;
 }
 
 html,
@@ -22,6 +30,15 @@ a:hover {
   color: #7da3ad;
 }
 
+button {
+  font-size: 1rem;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
 main {
   height: 100%;
   position: relative;
@@ -30,7 +47,7 @@ main .pagination {
   display: flex;
   gap: 20px;
   justify-content: space-evenly;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin-bottom: 30px;
 }
 main .pagination > span {
@@ -122,11 +139,14 @@ main article .scroll-wrapper #heading-and-image figure figcaption {
     width: 100%;
   }
 }
+main article .scroll-wrapper #content {
+  padding-top: 30px;
+}
 main article .scroll-wrapper #content p:first-child::first-letter {
   float: left;
-  font-size: 3.5rem;
-  line-height: 0.65;
-  margin: 0.1em 0.1em 0.2em 0;
+  font-size: 3rem;
+  line-height: 0.8;
+  margin: 0.1em 0.1em 0.1em 0;
 }
 main article .scroll-wrapper .tags.commas {
   font-weight: bold;
@@ -142,7 +162,7 @@ main #sutta {
   transition: top 1.2s;
 }
 main #sutta #note-buttons {
-  min-height: calc(var(--nav-height) / 2);
+  min-height: calc(var(--nav-height) * 0.4);
   background-color: #e9d0ac;
   display: flex;
   flex-wrap: wrap;
@@ -151,8 +171,8 @@ main #sutta #note-buttons {
   text-align: center;
 }
 main #sutta #note-buttons button {
-  height: calc(var(--nav-height) / 2);
-  width: calc(var(--nav-height) / 2);
+  height: calc(var(--nav-height) * 0.4);
+  width: calc(var(--nav-height) * 0.4);
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -196,10 +216,10 @@ main #sutta nav {
   background-color: #e9d0ac;
 }
 main #sutta nav > * {
-  height: 50%;
   width: 100%;
 }
 main #sutta nav #nav-links {
+  height: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -213,6 +233,7 @@ main #sutta nav #nav-links #social a {
   display: flex;
 }
 main #sutta nav #toggle-sutta {
+  height: 60%;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;

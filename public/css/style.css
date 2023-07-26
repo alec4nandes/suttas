@@ -1,5 +1,13 @@
 @import "./social.css";
 @import "./comma-list.css";
+html,
+body {
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
 html {
   height: 100%;
 }
@@ -98,7 +106,8 @@ main article {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  gap: 8px;
+  padding: 8px;
   text-align: center;
 }
 main article.newest-post {
@@ -149,8 +158,12 @@ main article #heading-and-image #heading h1 {
 main article #heading-and-image #heading h2 {
   font-size: 1.5rem;
 }
-main article #heading-and-image #heading .sutta-name {
+main article #heading-and-image #heading .date {
   font-style: italic;
+  margin-bottom: 0;
+}
+main article #heading-and-image #heading .sutta-name {
+  margin-top: 0;
 }
 main article #heading-and-image #heading .read-more-link {
   width: -moz-fit-content;
@@ -193,7 +206,6 @@ main article .tags-wrapper ul.tags.commas {
   background-color: #f6e5cc;
   border: 9px double #fff0dd;
   box-sizing: border-box;
-  margin: 15px 0 0;
   padding: 5px;
 }
 @media only screen and (max-width: 545px) {
