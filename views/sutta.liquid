@@ -39,11 +39,13 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                 </div>
             </article>
             <section id="sutta">
-                <div id="note-buttons">
-                    {% for note in suttas.all_suttas[post.id].notes %}
-                        <button>{{ forloop.index }}</button>
-                    {% endfor %}
-                </div>
+                {% if suttas.all_suttas[post.id].notes.length > 0 %}
+                    <div id="note-buttons">
+                        {% for note in suttas.all_suttas[post.id].notes %}
+                            <button>{{ forloop.index }}</button>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 <div class="scroll-wrapper">
                     <div class="max-width-wrapper">
                         <div id="hierarchy">

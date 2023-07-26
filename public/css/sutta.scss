@@ -1,5 +1,6 @@
 @import "./social.css";
 @import "./comma-list.css";
+@import "./colors.scss";
 
 :root {
     --nav-height: 60px;
@@ -11,7 +12,16 @@ body {
 }
 
 body {
+    background-color: $article-box-bg;
     margin: 0;
+}
+
+a {
+    color: $link-color;
+
+    &:hover {
+        color: $link-hover;
+    }
 }
 
 main {
@@ -106,12 +116,16 @@ main {
 
                 figure {
                     width: 65%;
-                    background-color: #eee;
+                    background-color: $tags-bg;
                     flex: 1;
                     margin: 0;
 
-                    img {
-                        width: 100%;
+                    a {
+                        display: inline-flex;
+
+                        img {
+                            width: 100%;
+                        }
                     }
 
                     figcaption {
@@ -154,8 +168,29 @@ main {
         transition: top 1.2s;
 
         #note-buttons {
-            background-color: #777;
+            min-height: calc(var(--nav-height) / 2);
+            background-color: $bg-color;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            justify-content: center;
             text-align: center;
+
+            button {
+                height: calc(var(--nav-height) / 2);
+                width: calc(var(--nav-height) / 2);
+                appearance: none;
+                background-color: $link-color;
+                border: 0;
+                border-radius: 0;
+                color: #fff;
+                font-weight: bold;
+
+                &:hover {
+                    background-color: $link-hover;
+                    cursor: pointer;
+                }
+            }
         }
 
         .scroll-wrapper {
@@ -191,7 +226,7 @@ main {
                         }
 
                         .highlight {
-                            background-color: #777;
+                            background-color: $link-color;
                         }
                     }
                 }
@@ -200,7 +235,7 @@ main {
 
         nav {
             height: var(--nav-height);
-            background-color: #777;
+            background-color: $bg-color;
 
             & > * {
                 height: 50%;
@@ -212,14 +247,29 @@ main {
                 align-items: center;
                 justify-content: center;
                 gap: 10px;
+
+                a {
+                    text-decoration: none;
+                    text-transform: uppercase;
+                }
+
+                #social {
+                    a {
+                        display: flex;
+                    }
+                }
             }
 
             #toggle-sutta {
                 appearance: none;
-                background-color: lavender;
+                background-color: $link-color;
                 border: 0;
+                border-radius: 0;
+                color: #fff;
+                font-weight: bold;
 
                 &:hover {
+                    background-color: $link-hover;
                     cursor: pointer;
                 }
             }

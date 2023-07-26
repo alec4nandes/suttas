@@ -106,14 +106,14 @@ main article.newest-post {
   display: flex;
   flex-wrap: wrap;
 }
-main article.newest-post #heading-and-image #figure {
+main article.newest-post #heading-and-image figure {
   width: 65%;
 }
 main article.newest-post #heading-and-image #heading {
   width: 35%;
 }
 @media only screen and (max-width: 675px) {
-  main article.newest-post #heading-and-image #figure,
+  main article.newest-post #heading-and-image figure,
   main article.newest-post #heading-and-image #heading {
     width: 100%;
   }

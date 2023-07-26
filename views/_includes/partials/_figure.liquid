@@ -1,6 +1,8 @@
 {% if post.image_url != "" %}
     <figure>
-        <img src="{{ post.image_url }}" />
+        <a href="/suttas/{{ post.id | slugify }}.html">
+            <img src="{{ post.image_url }}" />
+        </a>
         {% if post.image_caption != "" %}
             <figcaption>{{ post.image_caption }}</figcaption>
         {% endif %}

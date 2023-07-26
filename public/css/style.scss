@@ -1,13 +1,6 @@
 @import "./social.css";
 @import "./comma-list.css";
-
-$article-box-bg: #fff0dd;
-$bg-color: #e9d0ac;
-$link-color: #287386;
-$link-hover: #7da3ad;
-$nav-bg: #ffd49d;
-$tags-bg: #f6e5cc;
-$text-color: #513931;
+@import "./colors.scss";
 
 html {
     height: 100%;
@@ -132,7 +125,7 @@ main {
             flex-wrap: wrap;
 
             #heading-and-image {
-                #figure {
+                figure {
                     width: 65%;
                 }
 
@@ -141,7 +134,7 @@ main {
                 }
 
                 @media only screen and (max-width: 675px) {
-                    #figure,
+                    figure,
                     #heading {
                         width: 100%;
                     }
@@ -190,7 +183,7 @@ main {
 
                 .read-more-link {
                     width: fit-content;
-                    background-color: #287386;
+                    background-color: $link-color;
                     border-radius: 6px;
                     color: #fff;
                     margin: 0 auto;

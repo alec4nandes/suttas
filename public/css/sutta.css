@@ -10,7 +10,15 @@ body {
 }
 
 body {
+  background-color: #fff0dd;
   margin: 0;
+}
+
+a {
+  color: #287386;
+}
+a:hover {
+  color: #7da3ad;
 }
 
 main {
@@ -93,11 +101,14 @@ main article .scroll-wrapper #heading-and-image #heading .date {
 }
 main article .scroll-wrapper #heading-and-image figure {
   width: 65%;
-  background-color: #eee;
+  background-color: #f6e5cc;
   flex: 1;
   margin: 0;
 }
-main article .scroll-wrapper #heading-and-image figure img {
+main article .scroll-wrapper #heading-and-image figure a {
+  display: inline-flex;
+}
+main article .scroll-wrapper #heading-and-image figure a img {
   width: 100%;
 }
 main article .scroll-wrapper #heading-and-image figure figcaption {
@@ -130,8 +141,29 @@ main #sutta {
   transition: top 1.2s;
 }
 main #sutta #note-buttons {
-  background-color: #777;
+  min-height: calc(var(--nav-height) / 2);
+  background-color: #e9d0ac;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: center;
   text-align: center;
+}
+main #sutta #note-buttons button {
+  height: calc(var(--nav-height) / 2);
+  width: calc(var(--nav-height) / 2);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #287386;
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+  font-weight: bold;
+}
+main #sutta #note-buttons button:hover {
+  background-color: #7da3ad;
+  cursor: pointer;
 }
 main #sutta .scroll-wrapper {
   flex: 1;
@@ -156,11 +188,11 @@ main #sutta .scroll-wrapper table#text tr td.line-number {
   -ms-user-select: none; /* IE 10 and IE 11 */
 }
 main #sutta .scroll-wrapper table#text tr td .highlight {
-  background-color: #777;
+  background-color: #287386;
 }
 main #sutta nav {
   height: var(--nav-height);
-  background-color: #777;
+  background-color: #e9d0ac;
 }
 main #sutta nav > * {
   height: 50%;
@@ -172,13 +204,24 @@ main #sutta nav #nav-links {
   justify-content: center;
   gap: 10px;
 }
+main #sutta nav #nav-links a {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+main #sutta nav #nav-links #social a {
+  display: flex;
+}
 main #sutta nav #toggle-sutta {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background-color: lavender;
+  background-color: #287386;
   border: 0;
+  border-radius: 0;
+  color: #fff;
+  font-weight: bold;
 }
 main #sutta nav #toggle-sutta:hover {
+  background-color: #7da3ad;
   cursor: pointer;
 }/*# sourceMappingURL=sutta.css.map */
