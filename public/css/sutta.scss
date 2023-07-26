@@ -23,6 +23,7 @@ main {
         gap: 20px;
         justify-content: space-evenly;
         font-size: 0.8rem;
+        margin-bottom: 30px;
 
         & > span {
             flex: 1;
@@ -63,32 +64,67 @@ main {
         .scroll-wrapper {
             height: 100%;
 
-            h1,
-            h2,
-            .date,
-            figure {
-                text-align: center;
-            }
+            #heading-and-image {
+                display: flex;
+                flex: 1;
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
 
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            figure {
-                width: 100%;
-                background-color: #eee;
-                margin: 0 0 2.4rem;
-
-                img {
-                    width: 100%;
+                #heading,
+                figure {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
                 }
 
-                figcaption {
-                    font-style: italic;
+                #heading {
+                    width: 35%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    h1,
+                    h2,
+                    p {
+                        margin: 0;
+                        text-align: center;
+                    }
+
+                    h1 {
+                        font-size: 2rem;
+                    }
+
+                    h2 {
+                        font-size: 1.5rem;
+                    }
+
+                    .date {
+                        font-style: italic;
+                    }
+                }
+
+                figure {
+                    width: 65%;
+                    background-color: #eee;
+                    flex: 1;
+                    margin: 0;
+
+                    img {
+                        width: 100%;
+                    }
+
+                    figcaption {
+                        font-style: italic;
+                        text-align: center;
+                    }
+                }
+
+                @media only screen and (max-width: 675px) {
+                    figure,
+                    #heading {
+                        width: 100%;
+                    }
                 }
             }
 

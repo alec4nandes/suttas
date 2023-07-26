@@ -100,15 +100,16 @@ main {
     $gap: 15px; // sass variable for media query below
     --min-width: 250px; // native variable for mixed-unit calc()
     $min-width: 250px; // sass variable for media query below
+    $margin: 15px;
 
-    max-width: 1000px;
+    max-width: 900px;
     box-sizing: border-box;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap);
     justify-content: center;
-    padding: 0 clamp(15px, 5vw, 60px);
+    padding: 0 $margin;
 
     article {
         $article-padding: 15px;
@@ -131,69 +132,96 @@ main {
             flex-wrap: wrap;
 
             #heading-and-image {
-                display: flex;
-                flex: 1;
-                flex-wrap: wrap;
-                justify-content: center;
-
-                #heading,
-                figure {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
+                #figure {
+                    width: 65%;
                 }
 
                 #heading {
-                    min-width: 200px;
-                    width: 25%;
-                    box-sizing: border-box;
-                    padding: 0 15px;
+                    width: 35%;
                 }
 
-                figure {
-                    min-width: 400px;
-                    flex: 1;
+                @media only screen and (max-width: 675px) {
+                    #figure,
+                    #heading {
+                        width: 100%;
+                    }
                 }
-            }
-
-            .tags {
-                width: 100%;
             }
         }
 
-        figure {
-            width: 100%;
-            background-color: $tags-bg;
-            border: 9px double $article-box-bg;
-            box-sizing: border-box;
-            display: inline-flex;
-            flex-direction: column;
-            margin: 0;
+        #heading-and-image {
+            display: flex;
+            flex: 1;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
 
-            img {
-                width: 100%;
+            #heading,
+            figure {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
 
-            figcaption {
+            #heading {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                h2,
+                h3,
+                p {
+                    margin: 0;
+                    text-align: center;
+                }
+
+                h1 {
+                    font-size: 2rem;
+                }
+
+                h2 {
+                    font-size: 1.5rem;
+                }
+
+                .sutta-name {
+                    font-style: italic;
+                }
+
+                .read-more-link {
+                    width: fit-content;
+                    background-color: #287386;
+                    border-radius: 6px;
+                    color: #fff;
+                    margin: 0 auto;
+                    padding: 5px 8px;
+                    text-decoration: none;
+
+                    &:hover {
+                        background-color: $link-hover;
+                    }
+                }
+            }
+
+            figure {
+                width: 100%;
                 background-color: $tags-bg;
-                padding: 5px;
-                font-style: italic;
-            }
-        }
+                border: 9px double $article-box-bg;
+                box-sizing: border-box;
+                display: inline-flex;
+                flex: 1;
+                flex-direction: column;
+                margin: 0;
 
-        .sutta-name {
-            font-style: italic;
-        }
+                img {
+                    width: 100%;
+                }
 
-        .read-more-link {
-            background-color: #287386;
-            border-radius: 6px;
-            color: #fff;
-            padding: 5px 8px;
-            text-decoration: none;
-
-            &:hover {
-                background-color: $link-hover;
+                figcaption {
+                    background-color: $tags-bg;
+                    padding: 5px;
+                    font-style: italic;
+                }
             }
         }
 
@@ -213,7 +241,7 @@ main {
         }
     }
 
-    @media only screen and (max-width: ($min-width * 2 + $gap)) {
+    @media only screen and (max-width: ($margin * 2 + $min-width * 2 + $gap)) {
         article {
             max-width: 100%;
 

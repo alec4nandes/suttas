@@ -20,12 +20,16 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                 <div class="scroll-wrapper">
                     <div class="max-width-wrapper">
                         {% include "partials/_pagination.liquid" %}
-                        <h1>{{ post.title }}</h1>
-                        {% if post.subtitle != "" %}
-                            <h2>{{ post.subtitle }}</h2>
-                        {% endif %}
-                        <p class="date">{{ post.date.seconds }}</p>
-                        {% include "partials/_figure.liquid" %}
+                        <div id="heading-and-image">
+                            <div id="heading">
+                                <h1>{{ post.title }}</h1>
+                                {% if post.subtitle != "" %}
+                                    <h2>{{ post.subtitle }}</h2>
+                                {% endif %}
+                                <p class="date">{{ post.date.seconds }}</p>
+                            </div>
+                            {% include "partials/_figure.liquid" %}
+                        </div>
                         <section id="content">
                             {{ post.content }}
                         </section>

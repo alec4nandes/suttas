@@ -79,14 +79,14 @@ footer {
 main {
   --gap: 15px;
   --min-width: 250px;
-  max-width: 1000px;
+  max-width: 900px;
   box-sizing: border-box;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap);
   justify-content: center;
-  padding: 0 clamp(15px, 5vw, 60px);
+  padding: 0 15px;
 }
 main article {
   width: 100%;
@@ -106,60 +106,82 @@ main article.newest-post {
   display: flex;
   flex-wrap: wrap;
 }
-main article.newest-post #heading-and-image {
+main article.newest-post #heading-and-image #figure {
+  width: 65%;
+}
+main article.newest-post #heading-and-image #heading {
+  width: 35%;
+}
+@media only screen and (max-width: 675px) {
+  main article.newest-post #heading-and-image #figure,
+  main article.newest-post #heading-and-image #heading {
+    width: 100%;
+  }
+}
+main article #heading-and-image {
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  gap: 15px;
   justify-content: center;
 }
-main article.newest-post #heading-and-image #heading,
-main article.newest-post #heading-and-image figure {
+main article #heading-and-image #heading,
+main article #heading-and-image figure {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-main article.newest-post #heading-and-image #heading {
-  min-width: 200px;
-  width: 25%;
-  box-sizing: border-box;
-  padding: 0 15px;
-}
-main article.newest-post #heading-and-image figure {
-  min-width: 400px;
-  flex: 1;
-}
-main article.newest-post .tags {
+main article #heading-and-image #heading {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-main article figure {
+main article #heading-and-image #heading h2,
+main article #heading-and-image #heading h3,
+main article #heading-and-image #heading p {
+  margin: 0;
+  text-align: center;
+}
+main article #heading-and-image #heading h1 {
+  font-size: 2rem;
+}
+main article #heading-and-image #heading h2 {
+  font-size: 1.5rem;
+}
+main article #heading-and-image #heading .sutta-name {
+  font-style: italic;
+}
+main article #heading-and-image #heading .read-more-link {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #287386;
+  border-radius: 6px;
+  color: #fff;
+  margin: 0 auto;
+  padding: 5px 8px;
+  text-decoration: none;
+}
+main article #heading-and-image #heading .read-more-link:hover {
+  background-color: #7da3ad;
+}
+main article #heading-and-image figure {
   width: 100%;
   background-color: #f6e5cc;
   border: 9px double #fff0dd;
   box-sizing: border-box;
   display: inline-flex;
+  flex: 1;
   flex-direction: column;
   margin: 0;
 }
-main article figure img {
+main article #heading-and-image figure img {
   width: 100%;
 }
-main article figure figcaption {
+main article #heading-and-image figure figcaption {
   background-color: #f6e5cc;
   padding: 5px;
   font-style: italic;
-}
-main article .sutta-name {
-  font-style: italic;
-}
-main article .read-more-link {
-  background-color: #287386;
-  border-radius: 6px;
-  color: #fff;
-  padding: 5px 8px;
-  text-decoration: none;
-}
-main article .read-more-link:hover {
-  background-color: #7da3ad;
 }
 main article .tags-wrapper {
   display: flex;
@@ -174,7 +196,7 @@ main article .tags-wrapper ul.tags.commas {
   margin: 15px 0 0;
   padding: 5px;
 }
-@media only screen and (max-width: 515px) {
+@media only screen and (max-width: 545px) {
   main article {
     max-width: 100%;
   }

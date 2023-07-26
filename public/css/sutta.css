@@ -22,6 +22,7 @@ main .pagination {
   gap: 20px;
   justify-content: space-evenly;
   font-size: 0.8rem;
+  margin-bottom: 30px;
 }
 main .pagination > span {
   flex: 1;
@@ -56,28 +57,58 @@ main article {
 main article .scroll-wrapper {
   height: 100%;
 }
-main article .scroll-wrapper h1,
-main article .scroll-wrapper h2,
-main article .scroll-wrapper .date,
-main article .scroll-wrapper figure {
+main article .scroll-wrapper #heading-and-image {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+main article .scroll-wrapper #heading-and-image #heading,
+main article .scroll-wrapper #heading-and-image figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+main article .scroll-wrapper #heading-and-image #heading {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+main article .scroll-wrapper #heading-and-image #heading h1,
+main article .scroll-wrapper #heading-and-image #heading h2,
+main article .scroll-wrapper #heading-and-image #heading p {
+  margin: 0;
   text-align: center;
 }
-main article .scroll-wrapper h1 {
+main article .scroll-wrapper #heading-and-image #heading h1 {
   font-size: 2rem;
 }
-main article .scroll-wrapper h2 {
+main article .scroll-wrapper #heading-and-image #heading h2 {
   font-size: 1.5rem;
 }
-main article .scroll-wrapper figure {
-  width: 100%;
-  background-color: #eee;
-  margin: 0 0 2.4rem;
-}
-main article .scroll-wrapper figure img {
-  width: 100%;
-}
-main article .scroll-wrapper figure figcaption {
+main article .scroll-wrapper #heading-and-image #heading .date {
   font-style: italic;
+}
+main article .scroll-wrapper #heading-and-image figure {
+  width: 65%;
+  background-color: #eee;
+  flex: 1;
+  margin: 0;
+}
+main article .scroll-wrapper #heading-and-image figure img {
+  width: 100%;
+}
+main article .scroll-wrapper #heading-and-image figure figcaption {
+  font-style: italic;
+  text-align: center;
+}
+@media only screen and (max-width: 675px) {
+  main article .scroll-wrapper #heading-and-image figure,
+  main article .scroll-wrapper #heading-and-image #heading {
+    width: 100%;
+  }
 }
 main article .scroll-wrapper #content p:first-child::first-letter {
   float: left;
