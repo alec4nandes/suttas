@@ -12,7 +12,7 @@ body {
 }
 
 body {
-    background-color: $article-box-bg;
+    background-color: $tags-bg;
     color: $text-color;
     margin: 0;
 }
@@ -126,7 +126,7 @@ main {
 
                 figure {
                     width: 65%;
-                    background-color: $tags-bg;
+                    background-color: $article-box-bg;
                     flex: 1;
                     margin: 0;
 

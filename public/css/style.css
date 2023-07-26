@@ -8,17 +8,19 @@ body {
   -ms-text-size-adjust: none;
 }
 
-html {
-  height: 100%;
-}
-
 body {
-  min-height: 100%;
+  height: 100vh;
   color: #513931;
   background-color: #e9d0ac;
+  background-image: url(/assets/bg-floral.jpg);
+  background-size: cover;
+  margin: 0;
+}
+body #scrolling-bg-wrapper {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  margin: 0;
+  overflow: auto;
 }
 
 a {
@@ -35,7 +37,7 @@ footer {
 
 header {
   height: 140px;
-  background-color: #fff0dd;
+  border-bottom: 5px solid #e9d0ac;
   margin-bottom: 50px;
 }
 header,
@@ -47,6 +49,8 @@ header #heading-text {
   align-items: center;
   justify-content: center;
   flex: 1;
+  background-image: linear-gradient(to bottom, #513931, #a78868);
+  color: #fff0dd;
 }
 header #heading-text h1 {
   display: flex;
@@ -59,7 +63,6 @@ header #heading-text h2 {
 }
 header nav {
   background-color: #f6e5cc;
-  border-bottom: 9px double #fff0dd;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,13 +78,19 @@ header nav #social a {
 
 footer {
   height: 80px;
-  background-color: #f6e5cc;
-  border-top: 9px double #fff0dd;
+  background-image: linear-gradient(to top, #513931, #a78868);
+  border-top: 5px solid #e9d0ac;
+  color: #fff0dd;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 50px;
   padding: 15px;
+}
+footer .admin-link {
+  color: #fff0dd;
+  font-style: italic;
+  text-decoration: none;
 }
 
 main {
@@ -100,8 +109,8 @@ main article {
   width: 100%;
   max-width: calc(50% - var(--gap) / 2);
   min-width: var(--min-width);
-  background-color: #fff0dd;
-  border: 9px double #e9d0ac;
+  background-color: #f6e5cc;
+  border: 5px solid #e9d0ac;
   border-radius: 20px;
   box-sizing: border-box;
   display: flex;
@@ -180,19 +189,22 @@ main article #heading-and-image #heading .read-more-link:hover {
 }
 main article #heading-and-image figure {
   width: 100%;
-  background-color: #f6e5cc;
-  border: 9px double #fff0dd;
   box-sizing: border-box;
   display: inline-flex;
   flex: 1;
   flex-direction: column;
   margin: 0;
 }
-main article #heading-and-image figure img {
+main article #heading-and-image figure > a {
+  display: inline-flex;
+}
+main article #heading-and-image figure > a img {
   width: 100%;
+  border-radius: 10px 10px 0 0;
 }
 main article #heading-and-image figure figcaption {
-  background-color: #f6e5cc;
+  background-color: #fff0dd;
+  border-radius: 0 0 10px 10px;
   padding: 5px;
   font-style: italic;
 }
@@ -203,8 +215,8 @@ main article .tags-wrapper {
 }
 main article .tags-wrapper ul.tags.commas {
   width: 100%;
-  background-color: #f6e5cc;
-  border: 9px double #fff0dd;
+  background-color: #fff0dd;
+  border-radius: 10px;
   box-sizing: border-box;
   padding: 5px;
 }
