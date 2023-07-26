@@ -7,32 +7,30 @@
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
-        <div id="scrolling-bg-wrapper">
-            <header>
-                <div id="heading-text">
-                    <h1>Sutta Basket</h1>
-                    <h2>all tags</h2>
-                </div>
-                <nav>
-                    <a href="/">home</a>
-                    |
-                    <a href="/about">about</a>
-                    |
-                    {% include "partials/_social.liquid" %}
-                </nav>
-            </header>
-            <main>
-                <ul>
-                    {% for tag in posts.tags %}
-                        <li>
-                            <a href="/tags/{{ tag[0] | slugify }}.html">
-                                {{ tag[0] }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </main>
-            {% include "partials/_footer.liquid" %}
-        </div>
+        <header>
+            <div id="heading-text">
+                <h1>Sutta Basket</h1>
+                <h2>all tags</h2>
+            </div>
+            <nav>
+                <a href="/">home</a>
+                |
+                <a href="/about">about</a>
+                |
+                {% include "partials/_social.liquid" %}
+            </nav>
+        </header>
+        <main>
+            <ul>
+                {% for tag in posts.tags %}
+                    <li>
+                        <a href="/tags/{{ tag[0] | slugify }}.html">
+                            {{ tag[0] }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </main>
+        {% include "partials/_footer.liquid" %}
     </body>
 </html>

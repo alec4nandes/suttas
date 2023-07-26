@@ -8,19 +8,21 @@ body {
   -ms-text-size-adjust: none;
 }
 
-body {
-  height: 100vh;
-  color: #513931;
-  background-color: #e9d0ac;
-  background-image: url(/assets/bg-floral.jpg);
-  background-size: cover;
-  margin: 0;
-}
-body #scrolling-bg-wrapper {
+html {
   height: 100%;
+}
+
+body {
+  min-height: 100%;
+  color: #513931;
+  background-attachment: fixed;
+  background-color: #e9d0ac;
+  background-image: url("/assets/wicker.jpg");
+  background-position: center;
+  background-size: 200px;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  margin: 0;
 }
 
 a {

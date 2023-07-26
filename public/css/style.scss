@@ -2,22 +2,21 @@
 @import "./comma-list.css";
 @import "./colors.scss";
 
-body {
-    height: 100vh;
-    color: $text-color;
-    // doesn't work on mobile (use scrolling bg wrapper):
-    // background-attachment: fixed;
-    background-color: $bg-color;
-    background-image: url(/assets/bg-floral.jpg);
-    background-size: cover;
-    margin: 0;
+html {
+    height: 100%;
+}
 
-    #scrolling-bg-wrapper {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-    }
+body {
+    min-height: 100%;
+    color: $text-color;
+    background-attachment: fixed;
+    background-color: $bg-color;
+    background-image: url("/assets/wicker.jpg");
+    background-position: center;
+    background-size: 200px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 }
 
 a {
