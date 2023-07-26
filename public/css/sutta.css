@@ -34,11 +34,6 @@ button {
   font-size: 1rem;
 }
 
-p {
-  font-size: 1.1rem;
-  line-height: 1.5rem;
-}
-
 main {
   height: 100%;
   position: relative;
@@ -79,6 +74,10 @@ main #sutta .max-width-wrapper {
 main article {
   height: calc(100% - var(--nav-height));
   bottom: 0;
+}
+main article p {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
 }
 main article .scroll-wrapper {
   height: 100%;

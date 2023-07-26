@@ -29,11 +29,6 @@ button {
     font-size: 1rem;
 }
 
-p {
-    font-size: 1.1rem;
-    line-height: 1.5rem;
-}
-
 main {
     height: 100%;
     position: relative;
@@ -80,6 +75,11 @@ main {
     article {
         height: calc(100% - var(--nav-height));
         bottom: 0;
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.5rem;
+        }
 
         .scroll-wrapper {
             height: 100%;
