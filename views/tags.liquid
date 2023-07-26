@@ -4,11 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sutta Basket &mdash; All Tags</title>
-        <link rel="stylesheet" href="/css/tags.css">
+        <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
         <header>
-            <h1>Sutta Basket &mdash; All Tags</h1>
+            <div id="heading-text">
+                <h1>Sutta Basket</h1>
+                <h2>all tags</h2>
+            </div>
             <nav>
                 <a href="/">home</a>
                 |
@@ -28,5 +31,6 @@
                 {% endfor %}
             </ul>
         </main>
+        {% include "partials/_footer.liquid" %}
     </body>
 </html>

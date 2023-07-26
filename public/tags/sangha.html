@@ -9,8 +9,10 @@
     </head>
     <body>
         <header>
-            <h1>Sutta Basket Tags</h1>
-            <h2>tag: sangha</h2>
+            <div id="heading-text">
+                <h1>Sutta Basket Tags</h1>
+                <h2>tag: sangha</h2>
+            </div>
             <nav>
                 <a href="/">home</a>
                 |
@@ -44,17 +46,6 @@
             
                 <article >
     <div id="heading-and-image">
-        <div id="heading">
-            <div>
-                <h2>
-                    <a href="/suttas/an8-62.html">Praesent quis massa quis ante dignissim porta.</a>
-                </h2>
-                <h3>Proin consectetur ligula diam, vitae faucibus mi congue eget.</h3>
-                <p class="date">1690040940</p>
-                <p class="sutta-name">Sutta: Alaṁsutta</p>
-                <a href="/suttas/an8-62.html">read more</a>
-            </div>
-        </div>
         
     <figure>
         <img src="/assets/blog/buddha-statue-1.jpg" />
@@ -63,8 +54,20 @@
         
     </figure>
 
+        <div id="heading">
+            <div>
+                <h2>
+                    <a href="/suttas/an8-62.html">Praesent quis massa quis ante dignissim porta.</a>
+                </h2>
+                <h3>Proin consectetur ligula diam, vitae faucibus mi congue eget.</h3>
+                <p class="date">1690040940</p>
+                <p class="sutta-name">Sutta: Alaṁsutta</p>
+                <a class="read-more-link" href="/suttas/an8-62.html">read more</a>
+            </div>
+        </div>
     </div>
-    
+    <div class="tags-wrapper">
+        
     <ul class="tags commas">
         tags:
         
@@ -86,9 +89,17 @@
         
     </ul>
 
+    </div>
 </article>
             
         </main>
+        <footer>
+    <div>
+        <em>&copy; 2023 Alec Fernandes</em>
+        <br/>
+        <a href="/admin">admin</a>
+    </div>
+</footer>
 
         <script src="/scripts/format-local-dates.js"></script>
     </body>

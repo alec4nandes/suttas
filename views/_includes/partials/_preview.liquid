@@ -1,5 +1,6 @@
 <article {% if isHome == true and forloop.index == 1 %}class="newest-post"{% endif %}>
     <div id="heading-and-image">
+        {% include "partials/_figure.liquid" %}
         <div id="heading">
             <div>
                 <h2>
@@ -8,10 +9,11 @@
                 <h3>{{ post.subtitle }}</h3>
                 <p class="date">{{ post.date.seconds }}</p>
                 <p class="sutta-name">Sutta: {{ suttas.all_suttas[post.id].name }}</p>
-                <a href="/suttas/{{ post.id | slugify }}.html">read more</a>
+                <a class="read-more-link" href="/suttas/{{ post.id | slugify }}.html">read more</a>
             </div>
         </div>
-        {% include "partials/_figure.liquid" %}
     </div>
-    {% include "partials/_tags.liquid" %}
+    <div class="tags-wrapper">
+        {% include "partials/_tags.liquid" %}
+    </div>
 </article>

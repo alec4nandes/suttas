@@ -1,12 +1,78 @@
 @import "./social.css";
 @import "./comma-list.css";
+html {
+  height: 100%;
+}
+
 body {
+  min-height: 100%;
+  color: #513931;
+  background-color: #e9d0ac;
+  display: flex;
+  flex-direction: column;
   margin: 0;
+}
+
+a {
+  color: #287386;
+}
+a:hover {
+  color: #7da3ad;
 }
 
 header,
 footer {
   text-align: center;
+}
+
+header {
+  height: 140px;
+  background-color: #fff0dd;
+  margin-bottom: 50px;
+}
+header,
+header #heading-text {
+  display: flex;
+  flex-direction: column;
+}
+header #heading-text {
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+header #heading-text h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header #heading-text h1,
+header #heading-text h2 {
+  margin: 0;
+}
+header nav {
+  background-color: #f6e5cc;
+  border-bottom: 9px double #fff0dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  text-transform: uppercase;
+}
+header nav a {
+  text-decoration: none;
+}
+header nav #social a {
+  display: flex;
+}
+
+footer {
+  height: 80px;
+  background-color: #f6e5cc;
+  border-top: 9px double #fff0dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
   padding: 15px;
 }
 
@@ -14,18 +80,24 @@ main {
   --gap: 15px;
   --min-width: 250px;
   max-width: 1000px;
+  box-sizing: border-box;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap);
   justify-content: center;
+  padding: 0 clamp(15px, 5vw, 60px);
 }
 main article {
   width: 100%;
   max-width: calc(50% - var(--gap) / 2);
   min-width: var(--min-width);
-  background-color: #eee;
+  background-color: #fff0dd;
+  border: 9px double #e9d0ac;
+  border-radius: 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   padding: 15px;
   text-align: center;
 }
@@ -59,26 +131,48 @@ main article.newest-post #heading-and-image figure {
 main article.newest-post .tags {
   width: 100%;
 }
-main article .sutta-name {
-  font-style: italic;
-}
 main article figure {
   width: 100%;
-  background-color: #ddd;
+  background-color: #f6e5cc;
+  border: 9px double #fff0dd;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
   margin: 0;
 }
 main article figure img {
   width: 100%;
 }
 main article figure figcaption {
+  background-color: #f6e5cc;
+  padding: 5px;
   font-style: italic;
 }
-main article ul.tags.commas {
+main article .sutta-name {
+  font-style: italic;
+}
+main article .read-more-link {
+  background-color: #287386;
+  border-radius: 6px;
+  color: #fff;
+  padding: 5px 8px;
+  text-decoration: none;
+}
+main article .read-more-link:hover {
+  background-color: #7da3ad;
+}
+main article .tags-wrapper {
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+}
+main article .tags-wrapper ul.tags.commas {
   width: 100%;
-  background-color: #ccc;
+  background-color: #f6e5cc;
+  border: 9px double #fff0dd;
   box-sizing: border-box;
   margin: 15px 0 0;
-  padding: 10px;
+  padding: 5px;
 }
 @media only screen and (max-width: 515px) {
   main article {

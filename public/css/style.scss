@@ -1,13 +1,97 @@
 @import "./social.css";
 @import "./comma-list.css";
 
+$article-box-bg: #fff0dd;
+$bg-color: #e9d0ac;
+$link-color: #287386;
+$link-hover: #7da3ad;
+$nav-bg: #ffd49d;
+$tags-bg: #f6e5cc;
+$text-color: #513931;
+
+html {
+    height: 100%;
+}
+
 body {
+    min-height: 100%;
+    color: $text-color;
+    background-color: $bg-color;
+    display: flex;
+    flex-direction: column;
     margin: 0;
+}
+
+a {
+    color: $link-color;
+
+    &:hover {
+        color: $link-hover;
+    }
 }
 
 header,
 footer {
     text-align: center;
+}
+
+header {
+    height: 140px;
+    background-color: $article-box-bg;
+    margin-bottom: 50px;
+
+    &,
+    #heading-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #heading-text {
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+
+        h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1,
+        h2 {
+            margin: 0;
+        }
+    }
+
+    nav {
+        background-color: $tags-bg;
+        border-bottom: 9px double $article-box-bg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        text-transform: uppercase;
+
+        a {
+            text-decoration: none;
+        }
+
+        #social {
+            a {
+                display: flex;
+            }
+        }
+    }
+}
+
+footer {
+    height: 80px;
+    background-color: $tags-bg;
+    border-top: 9px double $article-box-bg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
     padding: 15px;
 }
 
@@ -18,11 +102,13 @@ main {
     $min-width: 250px; // sass variable for media query below
 
     max-width: 1000px;
+    box-sizing: border-box;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap);
     justify-content: center;
+    padding: 0 clamp(15px, 5vw, 60px);
 
     article {
         $article-padding: 15px;
@@ -30,8 +116,12 @@ main {
         width: 100%;
         max-width: calc(50% - (var(--gap) / 2));
         min-width: var(--min-width);
-        background-color: #eee;
+        background-color: $article-box-bg;
+        border: 9px double $bg-color;
+        border-radius: 20px;
         box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
         padding: $article-padding;
         text-align: center;
 
@@ -71,13 +161,13 @@ main {
             }
         }
 
-        .sutta-name {
-            font-style: italic;
-        }
-
         figure {
             width: 100%;
-            background-color: #ddd;
+            background-color: $tags-bg;
+            border: 9px double $article-box-bg;
+            box-sizing: border-box;
+            display: inline-flex;
+            flex-direction: column;
             margin: 0;
 
             img {
@@ -85,16 +175,41 @@ main {
             }
 
             figcaption {
+                background-color: $tags-bg;
+                padding: 5px;
                 font-style: italic;
             }
         }
 
-        ul.tags.commas {
-            width: 100%;
-            background-color: #ccc;
-            box-sizing: border-box;
-            margin: 15px 0 0;
-            padding: 10px;
+        .sutta-name {
+            font-style: italic;
+        }
+
+        .read-more-link {
+            background-color: #287386;
+            border-radius: 6px;
+            color: #fff;
+            padding: 5px 8px;
+            text-decoration: none;
+
+            &:hover {
+                background-color: $link-hover;
+            }
+        }
+
+        .tags-wrapper {
+            display: flex;
+            align-items: flex-end;
+            flex: 1;
+
+            ul.tags.commas {
+                width: 100%;
+                background-color: $tags-bg;
+                border: 9px double $article-box-bg;
+                box-sizing: border-box;
+                margin: 15px 0 0;
+                padding: 5px;
+            }
         }
     }
 

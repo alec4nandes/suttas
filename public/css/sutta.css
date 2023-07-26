@@ -46,7 +46,7 @@ main #sutta {
 }
 main article .max-width-wrapper,
 main #sutta .max-width-wrapper {
-  max-width: 900px;
+  max-width: 800px;
   margin: auto;
 }
 main article {

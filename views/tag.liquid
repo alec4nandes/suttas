@@ -16,8 +16,10 @@ permalink: "tags/{{ tag[0] | slugify }}.html"
     </head>
     <body>
         <header>
-            <h1>Sutta Basket Tags</h1>
-            <h2>tag: {{ tag[0] }}</h2>
+            <div id="heading-text">
+                <h1>Sutta Basket Tags</h1>
+                <h2>tag: {{ tag[0] }}</h2>
+            </div>
             <nav>
                 <a href="/">home</a>
                 |
@@ -33,6 +35,7 @@ permalink: "tags/{{ tag[0] | slugify }}.html"
                 {% include "partials/_preview.liquid" %}
             {% endfor %}
         </main>
+        {% include "partials/_footer.liquid" %}
 
         <script src="/scripts/format-local-dates.js"></script>
     </body>

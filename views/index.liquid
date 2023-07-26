@@ -8,7 +8,9 @@
     </head>
     <body>
         <header>
-            <h1>Sutta Basket</h1>
+            <div id="heading-text">
+                <h1>Sutta Basket</h1>
+            </div>
             <nav>
                 <a href="/tags">tags</a>
                 |
@@ -23,9 +25,8 @@
                 {% include "partials/_preview.liquid" %}
             {% endfor %}
         </main>
-        <footer>
-            <a href="/admin">admin</a>
-        </footer>
+        {% include "partials/_footer.liquid" %}
+
         <script src="/scripts/format-local-dates.js"></script>
     </body>
 </html>
