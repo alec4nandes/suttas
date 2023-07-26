@@ -180,7 +180,11 @@ main #sutta #note-buttons button {
   border: 0;
   border-radius: 0;
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
+  line-height: 0;
 }
 main #sutta #note-buttons button:hover {
   background-color: #7da3ad;

@@ -196,7 +196,11 @@ main {
                 border: 0;
                 border-radius: 0;
                 color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 font-weight: bold;
+                line-height: 0;
 
                 &:hover {
                     background-color: $link-hover;
