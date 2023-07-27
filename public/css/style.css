@@ -145,6 +145,7 @@ main.solid-bg {
 }
 main.solid-bg ul {
   font-weight: bold;
+  padding-left: 0;
 }
 main article {
   width: 100%;
