@@ -1,5 +1,6 @@
 @import "./social.css";
 @import "./comma-list.css";
+@import "./fonts.css";
 @import "./colors.scss";
 
 html {
@@ -16,6 +17,7 @@ body {
     background-size: 200px;
     display: flex;
     flex-direction: column;
+    font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
     margin: 0;
 }
 
@@ -27,6 +29,27 @@ a {
     }
 }
 
+h1,
+h2 {
+    font-family: "Just Another Hand";
+}
+
+h1 {
+    background-image: url("../assets/wicker3.jpg");
+    background-position: center;
+    background-size: 200px;
+    font-family: "Just Another Hand";
+    font-size: 4rem;
+    font-weight: normal;
+    line-height: 4rem;
+    position: relative;
+    top: 0.25rem;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 header,
 footer {
     text-align: center;
@@ -35,20 +58,24 @@ footer {
 header {
     height: 140px;
     border-bottom: 5px solid $bg-color;
-    margin-bottom: 50px;
 
     &,
-    #heading-text {
+    #header-text {
         display: flex;
         flex-direction: column;
     }
 
-    #heading-text {
+    #header-text {
         align-items: center;
         justify-content: center;
         flex: 1;
         background-image: linear-gradient(to bottom, #513931, #a78868);
         color: $tags-bg;
+
+        h1,
+        h2 {
+            margin: 0;
+        }
 
         h1 {
             display: flex;
@@ -56,9 +83,10 @@ header {
             justify-content: center;
         }
 
-        h1,
         h2 {
-            margin: 0;
+            font-size: 2rem;
+            font-weight: normal;
+            line-height: 1.5rem;
         }
     }
 
@@ -71,6 +99,7 @@ header {
         text-transform: uppercase;
 
         a {
+            font-weight: bold;
             text-decoration: none;
         }
 
@@ -90,7 +119,6 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
     padding: 15px;
 
     .admin-link {
@@ -114,7 +142,19 @@ main {
     flex-wrap: wrap;
     gap: var(--gap);
     justify-content: center;
-    padding: 0 $margin;
+    padding: 50px $margin;
+
+    &.solid-bg {
+        width: 100%;
+        background-color: $bg-color;
+        flex: 1;
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+
+        ul {
+            font-weight: bold;
+        }
+    }
 
     article {
         $article-padding: 8px;
@@ -128,7 +168,7 @@ main {
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 20px;
         padding: $article-padding;
         text-align: center;
 
@@ -136,43 +176,49 @@ main {
             max-width: 100%;
             display: flex;
             flex-wrap: wrap;
+            gap: 8px;
 
-            #heading-and-image {
-                figure {
-                    width: 65%;
+            .heading-and-image {
+                --image-gap: 15px;
+
+                gap: var(--image-gap);
+
+                .image-preview {
+                    width: calc(65% - var(--image-gap));
+                    margin: auto;
                 }
 
-                #heading {
+                .heading {
                     width: 35%;
                 }
+            }
+        }
 
-                @media only screen and (max-width: 675px) {
-                    figure,
-                    #heading {
+        @media only screen and (max-width: 675px) {
+            &.newest-post {
+                gap: 20px;
+
+                .heading-and-image {
+                    .image-preview,
+                    .heading {
                         width: 100%;
                     }
                 }
             }
         }
 
-        #heading-and-image {
+        .heading-and-image {
             display: flex;
             flex: 1;
             flex-wrap: wrap;
             gap: 15px;
             justify-content: center;
 
-            #heading,
-            figure {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            #heading {
+            .heading {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
                 gap: 20px;
 
                 h2,
@@ -187,7 +233,13 @@ main {
                 }
 
                 h2 {
-                    font-size: 1.5rem;
+                    font-size: 2.5rem;
+                    font-weight: normal;
+                    line-height: 2.3rem;
+
+                    a {
+                        text-decoration: none;
+                    }
                 }
 
                 .date {
@@ -214,28 +266,15 @@ main {
                 }
             }
 
-            figure {
+            .image-preview {
                 width: 100%;
                 box-sizing: border-box;
-                display: inline-flex;
-                flex: 1;
-                flex-direction: column;
+                display: flex;
                 margin: 0;
 
-                & > a {
-                    display: inline-flex;
-
-                    img {
-                        width: 100%;
-                        border-radius: 10px 10px 0 0;
-                    }
-                }
-
-                figcaption {
-                    background-color: $tags-bg;
-                    border-radius: 0 0 10px 10px;
-                    padding: 5px;
-                    font-style: italic;
+                img {
+                    width: 100%;
+                    border-radius: 10px;
                 }
             }
         }
@@ -258,14 +297,6 @@ main {
     @media only screen and (max-width: ($margin * 2 + $min-width * 2 + $gap)) {
         article {
             max-width: 100%;
-
-            &.newest-post {
-                #heading-and-image {
-                    figure {
-                        min-width: 100%;
-                    }
-                }
-            }
         }
     }
 }

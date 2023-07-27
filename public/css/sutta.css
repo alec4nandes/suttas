@@ -1,5 +1,6 @@
 @import "./social.css";
 @import "./comma-list.css";
+@import "./fonts.css";
 html,
 body {
   text-size-adjust: none;
@@ -21,6 +22,11 @@ body {
   background-color: #fff0dd;
   color: #513931;
   margin: 0;
+}
+
+body,
+button {
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
 }
 
 a {
@@ -83,11 +89,11 @@ main article .scroll-wrapper {
   height: 100%;
 }
 main article .scroll-wrapper #heading-and-image {
+  --gap: 15px;
   display: flex;
-  flex: 1;
   flex-wrap: wrap;
-  gap: 15px;
   justify-content: center;
+  gap: var(--gap);
 }
 main article .scroll-wrapper #heading-and-image #heading,
 main article .scroll-wrapper #heading-and-image figure {
@@ -101,23 +107,27 @@ main article .scroll-wrapper #heading-and-image #heading {
   flex-direction: column;
   gap: 20px;
 }
+main article .scroll-wrapper #heading-and-image #heading h1 {
+  font-family: "Just Another Hand";
+  font-size: 3rem;
+  font-weight: normal;
+  line-height: 3rem;
+}
 main article .scroll-wrapper #heading-and-image #heading h1,
 main article .scroll-wrapper #heading-and-image #heading h2,
 main article .scroll-wrapper #heading-and-image #heading p {
   margin: 0;
   text-align: center;
 }
-main article .scroll-wrapper #heading-and-image #heading h1 {
-  font-size: 2rem;
-}
 main article .scroll-wrapper #heading-and-image #heading h2 {
   font-size: 1.5rem;
+  line-height: 2rem;
 }
 main article .scroll-wrapper #heading-and-image #heading .date {
   font-style: italic;
 }
 main article .scroll-wrapper #heading-and-image figure {
-  width: 65%;
+  width: calc(65% - var(--gap));
   background-color: #f6e5cc;
   flex: 1;
   margin: 0;
@@ -129,10 +139,14 @@ main article .scroll-wrapper #heading-and-image figure a img {
   width: 100%;
 }
 main article .scroll-wrapper #heading-and-image figure figcaption {
+  font-size: 0.9rem;
   font-style: italic;
   text-align: center;
 }
 @media only screen and (max-width: 675px) {
+  main article .scroll-wrapper #heading-and-image {
+    gap: 30px;
+  }
   main article .scroll-wrapper #heading-and-image figure,
   main article .scroll-wrapper #heading-and-image #heading {
     width: 100%;
@@ -143,12 +157,12 @@ main article .scroll-wrapper #content {
 }
 main article .scroll-wrapper #content p:first-child::first-letter {
   float: left;
+  font-family: "Just Another Hand";
   font-size: 3rem;
   line-height: 0.8;
   margin: 0.1em 0.1em 0.1em 0;
 }
 main article .scroll-wrapper .tags.commas {
-  font-weight: bold;
   margin-bottom: 30px;
 }
 main #sutta {
@@ -227,6 +241,7 @@ main #sutta nav #nav-links {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  font-weight: bold;
 }
 main #sutta nav #nav-links a {
   text-decoration: none;
@@ -244,7 +259,6 @@ main #sutta nav #toggle-sutta {
   border: 0;
   border-radius: 0;
   color: #fff;
-  font-weight: bold;
 }
 main #sutta nav #toggle-sutta:hover {
   background-color: #7da3ad;

@@ -1,5 +1,6 @@
 @import "./social.css";
 @import "./comma-list.css";
+@import "./fonts.css";
 html,
 body {
   text-size-adjust: none;
@@ -22,6 +23,7 @@ body {
   background-size: 200px;
   display: flex;
   flex-direction: column;
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
   margin: 0;
 }
 
@@ -32,6 +34,26 @@ a:hover {
   color: #7da3ad;
 }
 
+h1,
+h2 {
+  font-family: "Just Another Hand";
+}
+
+h1 {
+  background-image: url("../assets/wicker3.jpg");
+  background-position: center;
+  background-size: 200px;
+  font-family: "Just Another Hand";
+  font-size: 4rem;
+  font-weight: normal;
+  line-height: 4rem;
+  position: relative;
+  top: 0.25rem;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 header,
 footer {
   text-align: center;
@@ -40,28 +62,32 @@ footer {
 header {
   height: 140px;
   border-bottom: 5px solid #e9d0ac;
-  margin-bottom: 50px;
 }
 header,
-header #heading-text {
+header #header-text {
   display: flex;
   flex-direction: column;
 }
-header #heading-text {
+header #header-text {
   align-items: center;
   justify-content: center;
   flex: 1;
   background-image: linear-gradient(to bottom, #513931, #a78868);
   color: #fff0dd;
 }
-header #heading-text h1 {
+header #header-text h1,
+header #header-text h2 {
+  margin: 0;
+}
+header #header-text h1 {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-header #heading-text h1,
-header #heading-text h2 {
-  margin: 0;
+header #header-text h2 {
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 1.5rem;
 }
 header nav {
   background-color: #f6e5cc;
@@ -72,6 +98,7 @@ header nav {
   text-transform: uppercase;
 }
 header nav a {
+  font-weight: bold;
   text-decoration: none;
 }
 header nav #social a {
@@ -86,7 +113,6 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
   padding: 15px;
 }
 footer .admin-link {
@@ -105,7 +131,17 @@ main {
   flex-wrap: wrap;
   gap: var(--gap);
   justify-content: center;
-  padding: 0 15px;
+  padding: 50px 15px;
+}
+main.solid-bg {
+  width: 100%;
+  background-color: #e9d0ac;
+  flex: 1;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+main.solid-bg ul {
+  font-weight: bold;
 }
 main article {
   width: 100%;
@@ -117,7 +153,7 @@ main article {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 20px;
   padding: 8px;
   text-align: center;
 }
@@ -125,58 +161,67 @@ main article.newest-post {
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
 }
-main article.newest-post #heading-and-image figure {
-  width: 65%;
+main article.newest-post .heading-and-image {
+  --image-gap: 15px;
+  gap: var(--image-gap);
 }
-main article.newest-post #heading-and-image #heading {
+main article.newest-post .heading-and-image .image-preview {
+  width: calc(65% - var(--image-gap));
+  margin: auto;
+}
+main article.newest-post .heading-and-image .heading {
   width: 35%;
 }
 @media only screen and (max-width: 675px) {
-  main article.newest-post #heading-and-image figure,
-  main article.newest-post #heading-and-image #heading {
+  main article.newest-post {
+    gap: 20px;
+  }
+  main article.newest-post .heading-and-image .image-preview,
+  main article.newest-post .heading-and-image .heading {
     width: 100%;
   }
 }
-main article #heading-and-image {
+main article .heading-and-image {
   display: flex;
   flex: 1;
   flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
 }
-main article #heading-and-image #heading,
-main article #heading-and-image figure {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-main article #heading-and-image #heading {
+main article .heading-and-image .heading {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
 }
-main article #heading-and-image #heading h2,
-main article #heading-and-image #heading h3,
-main article #heading-and-image #heading p {
+main article .heading-and-image .heading h2,
+main article .heading-and-image .heading h3,
+main article .heading-and-image .heading p {
   margin: 0;
   text-align: center;
 }
-main article #heading-and-image #heading h1 {
+main article .heading-and-image .heading h1 {
   font-size: 2rem;
 }
-main article #heading-and-image #heading h2 {
-  font-size: 1.5rem;
+main article .heading-and-image .heading h2 {
+  font-size: 2.5rem;
+  font-weight: normal;
+  line-height: 2.3rem;
 }
-main article #heading-and-image #heading .date {
+main article .heading-and-image .heading h2 a {
+  text-decoration: none;
+}
+main article .heading-and-image .heading .date {
   font-style: italic;
   margin-bottom: 0;
 }
-main article #heading-and-image #heading .sutta-name {
+main article .heading-and-image .heading .sutta-name {
   margin-top: 0;
 }
-main article #heading-and-image #heading .read-more-link {
+main article .heading-and-image .heading .read-more-link {
   width: -moz-fit-content;
   width: fit-content;
   background-color: #287386;
@@ -186,29 +231,18 @@ main article #heading-and-image #heading .read-more-link {
   padding: 5px 8px;
   text-decoration: none;
 }
-main article #heading-and-image #heading .read-more-link:hover {
+main article .heading-and-image .heading .read-more-link:hover {
   background-color: #7da3ad;
 }
-main article #heading-and-image figure {
+main article .heading-and-image .image-preview {
   width: 100%;
   box-sizing: border-box;
-  display: inline-flex;
-  flex: 1;
-  flex-direction: column;
+  display: flex;
   margin: 0;
 }
-main article #heading-and-image figure > a {
-  display: inline-flex;
-}
-main article #heading-and-image figure > a img {
+main article .heading-and-image .image-preview img {
   width: 100%;
-  border-radius: 10px 10px 0 0;
-}
-main article #heading-and-image figure figcaption {
-  background-color: #fff0dd;
-  border-radius: 0 0 10px 10px;
-  padding: 5px;
-  font-style: italic;
+  border-radius: 10px;
 }
 main article .tags-wrapper {
   display: flex;
@@ -225,8 +259,5 @@ main article .tags-wrapper ul.tags.commas {
 @media only screen and (max-width: 545px) {
   main article {
     max-width: 100%;
-  }
-  main article.newest-post #heading-and-image figure {
-    min-width: 100%;
   }
 }/*# sourceMappingURL=style.css.map */

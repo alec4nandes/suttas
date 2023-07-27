@@ -8,7 +8,7 @@
     </head>
     <body>
         <header>
-            <div id="heading-text">
+            <div id="header-text">
                 <h1>Sutta Basket</h1>
                 <h2>all tags</h2>
             </div>
@@ -20,7 +20,7 @@
                 {% include "partials/_social.liquid" %}
             </nav>
         </header>
-        <main>
+        <main class="solid-bg">
             <ul>
                 {% for tag in posts.tags %}
                     <li>

@@ -1,5 +1,6 @@
 @import "./social.css";
 @import "./comma-list.css";
+@import "./fonts.css";
 @import "./colors.scss";
 
 :root {
@@ -15,6 +16,11 @@ body {
     background-color: $tags-bg;
     color: $text-color;
     margin: 0;
+}
+
+body,
+button {
+    font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
 }
 
 a {
@@ -85,11 +91,12 @@ main {
             height: 100%;
 
             #heading-and-image {
+                --gap: 15px;
+
                 display: flex;
-                flex: 1;
                 flex-wrap: wrap;
-                gap: 15px;
                 justify-content: center;
+                gap: var(--gap);
 
                 #heading,
                 figure {
@@ -104,6 +111,13 @@ main {
                     flex-direction: column;
                     gap: 20px;
 
+                    h1 {
+                        font-family: "Just Another Hand";
+                        font-size: 3rem;
+                        font-weight: normal;
+                        line-height: 3rem;
+                    }
+
                     h1,
                     h2,
                     p {
@@ -111,12 +125,9 @@ main {
                         text-align: center;
                     }
 
-                    h1 {
-                        font-size: 2rem;
-                    }
-
                     h2 {
                         font-size: 1.5rem;
+                        line-height: 2rem;
                     }
 
                     .date {
@@ -125,7 +136,7 @@ main {
                 }
 
                 figure {
-                    width: 65%;
+                    width: calc(65% - var(--gap));
                     background-color: $article-box-bg;
                     flex: 1;
                     margin: 0;
@@ -139,12 +150,17 @@ main {
                     }
 
                     figcaption {
+                        font-size: 0.9rem;
                         font-style: italic;
                         text-align: center;
                     }
                 }
+            }
 
-                @media only screen and (max-width: 675px) {
+            @media only screen and (max-width: 675px) {
+                #heading-and-image {
+                    gap: 30px;
+
                     figure,
                     #heading {
                         width: 100%;
@@ -157,6 +173,7 @@ main {
 
                 p:first-child::first-letter {
                     float: left;
+                    font-family: "Just Another Hand";
                     font-size: 3rem;
                     line-height: 0.8;
                     margin: 0.1em 0.1em 0.1em 0;
@@ -164,7 +181,6 @@ main {
             }
 
             .tags.commas {
-                font-weight: bold;
                 margin-bottom: 30px;
             }
         }
@@ -263,6 +279,7 @@ main {
                 align-items: center;
                 justify-content: center;
                 gap: 10px;
+                font-weight: bold;
 
                 a {
                     text-decoration: none;
@@ -283,7 +300,6 @@ main {
                 border: 0;
                 border-radius: 0;
                 color: #fff;
-                font-weight: bold;
 
                 &:hover {
                     background-color: $link-hover;
