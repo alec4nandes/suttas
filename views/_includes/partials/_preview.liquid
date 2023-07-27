@@ -1,9 +1,11 @@
 <article {% if isHome == true and forloop.index == 1 %}class="newest-post"{% endif %}>
     <div class="heading-and-image">
-        <a class="image-preview" href="/suttas/{{ post.id | slugify }}.html">
-            <img src="{{ post.image_url }}" />
-        </a>
-        <div class="heading">
+        {% if post.image_url != "" %}
+            <a class="image-preview" href="/suttas/{{ post.id | slugify }}.html">
+                <img src="{{ post.image_url }}" />
+            </a>
+        {% endif %}
+        <div {% if post.image_url == "" %}class="heading no-image"{% else %}class="heading"{% endif %}>
             <h2>
                 <a href="/suttas/{{ post.id | slugify }}.html">{{ post.title }}</a>
             </h2>
@@ -15,7 +17,9 @@
             <a class="read-more-link" href="/suttas/{{ post.id | slugify }}.html">read more</a>
         </div>
     </div>
-    <div class="tags-wrapper">
-        {% include "partials/_tags.liquid" %}
-    </div>
+    {% if post.tags.length > 0 %}
+        <div class="tags-wrapper">
+            {% include "partials/_tags.liquid" %}
+        </div>
+    {% endif %}
 </article>

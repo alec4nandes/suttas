@@ -174,7 +174,7 @@ main article.newest-post .heading-and-image .image-preview {
   width: calc(65% - var(--image-gap));
   margin: auto;
 }
-main article.newest-post .heading-and-image .heading {
+main article.newest-post .heading-and-image .heading:not(.no-image) {
   width: 35%;
 }
 @media only screen and (max-width: 675px) {
@@ -261,7 +261,7 @@ main article .tags-wrapper ul.tags.commas {
   box-sizing: border-box;
   padding: 5px;
 }
-@media only screen and (max-width: 545px) {
+@media only screen and (max-width: 560px) {
   main article {
     max-width: 100%;
   }
