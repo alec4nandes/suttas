@@ -12,7 +12,7 @@ permalink: "tags/{{ tag[0] | slugify }}.html"
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% assign title = "Sutta Basket tag &mdash; " | append: tag[0] %}
-        {% assign description = "Read all posts from SuttaBasket.com with the tag `{{ tag[0] }}`" %}
+        {% assign description = "Read all posts from SuttaBasket.com with the tag `" | append: tag[0] | append: "`" %}
         {% include "partials/_metatags_general.liquid" %}
         <link rel="stylesheet" href="/css/style.css">
     </head>

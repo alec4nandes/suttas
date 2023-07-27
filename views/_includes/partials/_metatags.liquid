@@ -1,9 +1,9 @@
 {% assign base = "https://suttas.web.app" %}
 
 {% if post.image_url == "" %}
-    {% assign image_url = "{{ base }}/assets/site-image.jpg" %}
+    {% assign image_url = base | append: "/assets/site-image.jpg" %}
 {% else %}
-    {% assign image_url = "{{ base }}{{ post.image_url }}" %}
+    {% assign image_url = base | append: post.image_url %}
 {% endif %}
 
 <meta
@@ -32,3 +32,10 @@
 <meta name="twitter:title" content="{{ post.title }}" />
 <meta name="twitter:description" content="{{ post.subtitle }}" />
 <meta name="twitter:image" content="{{ image_url }}" />
+
+<link
+    rel="icon"
+    href="/favicon-32x32.png"
+    type="image/png" />
+
+<link rel="manifest" href="/site.webmanifest" />
