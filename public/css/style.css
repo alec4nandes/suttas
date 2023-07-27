@@ -162,8 +162,6 @@ main article {
 }
 main article.newest-post {
   max-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
 }
 main article.newest-post:not(.no-image) {
   gap: 8px;
