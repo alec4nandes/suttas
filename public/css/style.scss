@@ -180,26 +180,29 @@ main {
             max-width: 100%;
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
 
-            .heading-and-image {
-                --image-gap: 15px;
+            &:not(.no-image) {
+                gap: 8px;
 
-                gap: var(--image-gap);
+                .heading-and-image {
+                    --image-gap: 15px;
 
-                .image-preview {
-                    width: calc(65% - var(--image-gap));
-                    margin: auto;
-                }
+                    gap: var(--image-gap);
 
-                .heading:not(.no-image) {
-                    width: 35%;
+                    .image-preview {
+                        width: calc(65% - var(--image-gap));
+                        margin: auto;
+                    }
+
+                    .heading {
+                        width: 35%;
+                    }
                 }
             }
         }
 
         @media only screen and (max-width: 675px) {
-            &.newest-post {
+            &.newest-post:not(.no-image) {
                 gap: 20px;
 
                 .heading-and-image {

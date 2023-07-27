@@ -164,25 +164,27 @@ main article.newest-post {
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;
+}
+main article.newest-post:not(.no-image) {
   gap: 8px;
 }
-main article.newest-post .heading-and-image {
+main article.newest-post:not(.no-image) .heading-and-image {
   --image-gap: 15px;
   gap: var(--image-gap);
 }
-main article.newest-post .heading-and-image .image-preview {
+main article.newest-post:not(.no-image) .heading-and-image .image-preview {
   width: calc(65% - var(--image-gap));
   margin: auto;
 }
-main article.newest-post .heading-and-image .heading:not(.no-image) {
+main article.newest-post:not(.no-image) .heading-and-image .heading {
   width: 35%;
 }
 @media only screen and (max-width: 675px) {
-  main article.newest-post {
+  main article.newest-post:not(.no-image) {
     gap: 20px;
   }
-  main article.newest-post .heading-and-image .image-preview,
-  main article.newest-post .heading-and-image .heading {
+  main article.newest-post:not(.no-image) .heading-and-image .image-preview,
+  main article.newest-post:not(.no-image) .heading-and-image .heading {
     width: 100%;
   }
 }

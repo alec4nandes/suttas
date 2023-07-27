@@ -1,11 +1,11 @@
-<article {% if isHome == true and forloop.index == 1 %}class="newest-post"{% endif %}>
+<article {% if isHome == true and forloop.index == 1 %}{% if post.image_url == "" %}class="newest-post no-image"{% else %}class="newest-post"{% endif %}{% endif %}>
     <div class="heading-and-image">
         {% if post.image_url != "" %}
             <a class="image-preview" href="/suttas/{{ post.id | slugify }}.html">
                 <img src="{{ post.image_url }}" />
             </a>
         {% endif %}
-        <div {% if post.image_url == "" %}class="heading no-image"{% else %}class="heading"{% endif %}>
+        <div class="heading">
             <h2>
                 <a href="/suttas/{{ post.id | slugify }}.html">{{ post.title }}</a>
             </h2>
