@@ -202,13 +202,15 @@ main {
         }
 
         @media only screen and (max-width: 675px) {
-            &.newest-post:not(.no-image) {
-                gap: 20px;
+            &.newest-post {
+                &:not(.no-image) {
+                    gap: 20px;
 
-                .heading-and-image {
-                    .image-preview,
-                    .heading {
-                        width: 100%;
+                    .heading-and-image {
+                        .image-preview,
+                        .heading {
+                            width: 100%;
+                        }
                     }
                 }
             }
