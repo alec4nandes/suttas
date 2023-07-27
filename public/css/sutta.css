@@ -48,7 +48,7 @@ main .pagination {
   display: flex;
   gap: 20px;
   justify-content: space-evenly;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-bottom: 30px;
 }
 main .pagination > span {
@@ -139,7 +139,7 @@ main article .scroll-wrapper #heading-and-image figure a img {
   width: 100%;
 }
 main article .scroll-wrapper #heading-and-image figure figcaption {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-style: italic;
   text-align: center;
 }

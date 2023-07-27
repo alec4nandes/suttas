@@ -214,6 +214,11 @@ main article .heading-and-image .heading h2 {
 main article .heading-and-image .heading h2 a {
   text-decoration: none;
 }
+main article .heading-and-image .heading .date,
+main article .heading-and-image .heading .sutta-name {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
 main article .heading-and-image .heading .date {
   font-style: italic;
   margin-bottom: 0;
