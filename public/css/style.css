@@ -72,7 +72,7 @@ header #header-text {
   align-items: center;
   justify-content: center;
   flex: 1;
-  background-image: linear-gradient(to bottom, #513931, #a78868);
+  background-image: linear-gradient(to bottom, #004b5e, #2d849a);
   color: #fff0dd;
 }
 header #header-text h1,
@@ -85,7 +85,7 @@ header #header-text h1 {
   justify-content: center;
 }
 header #header-text h1.nudge {
-  top: 0.45rem;
+  top: 0.5rem;
 }
 header #header-text h2 {
   font-size: 2rem;
@@ -110,7 +110,7 @@ header nav #social a {
 
 footer {
   height: 80px;
-  background-image: linear-gradient(to top, #513931, #a78868);
+  background-image: linear-gradient(to top, #004b5e, #2d849a);
   border-top: 5px solid #e9d0ac;
   color: #fff0dd;
   display: flex;

@@ -69,7 +69,7 @@ header {
         align-items: center;
         justify-content: center;
         flex: 1;
-        background-image: linear-gradient(to bottom, #513931, #a78868);
+        background-image: linear-gradient(to bottom, #004b5e, #2d849a);
         color: $tags-bg;
 
         h1,
@@ -83,7 +83,7 @@ header {
             justify-content: center;
 
             &.nudge {
-                top: 0.45rem;
+                top: 0.5rem;
             }
         }
 
@@ -117,7 +117,7 @@ header {
 
 footer {
     height: 80px;
-    background-image: linear-gradient(to top, #513931, #a78868);
+    background-image: linear-gradient(to top, #004b5e, #2d849a);
     border-top: 5px solid $bg-color;
     color: $tags-bg;
     display: flex;
