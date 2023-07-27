@@ -119,6 +119,7 @@ export default function BlogForm({ suttaId, getAllSuttaIds }) {
                 />
                 <label htmlFor="date">date:</label>
                 <input
+                    key={dbPost.date?.seconds || "datetime"}
                     name="date"
                     id="date"
                     type="datetime-local"
