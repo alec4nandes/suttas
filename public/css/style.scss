@@ -81,6 +81,10 @@ header {
             display: flex;
             align-items: center;
             justify-content: center;
+
+            &.nudge {
+                top: 0.45rem;
+            }
         }
 
         h2 {
@@ -226,10 +230,6 @@ main {
                 p {
                     margin: 0;
                     text-align: center;
-                }
-
-                h1 {
-                    font-size: 2rem;
                 }
 
                 h2 {
