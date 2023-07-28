@@ -230,7 +230,6 @@ main #sutta .scroll-wrapper table#text tr td .highlight {
 }
 main #sutta nav {
   height: var(--nav-height);
-  background-color: #e9d0ac;
   display: flex;
   flex-direction: column;
 }
@@ -239,6 +238,7 @@ main #sutta nav > * {
   box-sizing: border-box;
 }
 main #sutta nav #nav-links {
+  background-color: #e9d0ac;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -263,6 +263,7 @@ main #sutta nav #toggle-sutta {
   border-radius: 0;
   color: #fff;
   flex: 1;
+  margin: 0;
 }
 main #sutta nav #toggle-sutta:hover {
   background-color: #7da3ad;
