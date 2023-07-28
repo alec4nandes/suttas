@@ -176,7 +176,7 @@ main #sutta {
 }
 main #sutta #note-buttons {
   min-height: calc(var(--nav-height) * 0.4);
-  background-color: #e9d0ac;
+  background-color: #f6e5cc;
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
@@ -238,16 +238,17 @@ main #sutta nav > * {
   box-sizing: border-box;
 }
 main #sutta nav #nav-links {
-  background-color: #e9d0ac;
+  background-color: #f6e5cc;
+  color: #513931;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px 10px;
-  font-weight: bold;
   padding: 5px;
 }
 main #sutta nav #nav-links a {
+  font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
 }
