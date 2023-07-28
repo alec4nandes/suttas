@@ -268,18 +268,22 @@ main {
         nav {
             height: var(--nav-height);
             background-color: $bg-color;
+            display: flex;
+            flex-direction: column;
 
             & > * {
                 width: 100%;
+                box-sizing: border-box;
             }
 
             #nav-links {
-                height: 40%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 10px;
+                flex-wrap: wrap;
+                gap: 5px 10px;
                 font-weight: bold;
+                padding: 5px;
 
                 a {
                     text-decoration: none;
@@ -294,12 +298,12 @@ main {
             }
 
             #toggle-sutta {
-                height: 60%;
                 appearance: none;
                 background-color: $link-color;
                 border: 0;
                 border-radius: 0;
                 color: #fff;
+                flex: 1;
 
                 &:hover {
                     background-color: $link-hover;
