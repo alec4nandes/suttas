@@ -4,7 +4,7 @@
 @import "./colors.scss";
 
 :root {
-    --nav-height: 80px;
+    --nav-height: 85px;
 }
 
 html,
@@ -15,6 +15,7 @@ body {
 body {
     background-color: $tags-bg;
     color: $text-color;
+    font-size: 19px;
     margin: 0;
 }
 
@@ -32,7 +33,7 @@ a {
 }
 
 button {
-    font-size: 1rem;
+    font-size: 0.95em;
 }
 
 main {
@@ -43,7 +44,7 @@ main {
         display: flex;
         gap: 20px;
         justify-content: space-evenly;
-        font-size: 1rem;
+        font-size: 0.95em;
         margin-bottom: 30px;
 
         & > span {
@@ -83,8 +84,8 @@ main {
         bottom: 0;
 
         p {
-            font-size: 1.1rem;
-            line-height: 1.5rem;
+            font-size: 1.05em;
+            line-height: 1.4em;
         }
 
         .scroll-wrapper {
@@ -111,13 +112,6 @@ main {
                     flex-direction: column;
                     gap: 20px;
 
-                    h1 {
-                        font-family: "Just Another Hand";
-                        font-size: 3rem;
-                        font-weight: normal;
-                        line-height: 3rem;
-                    }
-
                     h1,
                     h2,
                     p {
@@ -125,9 +119,17 @@ main {
                         text-align: center;
                     }
 
+                    h1 {
+                        font-family: "Just Another Hand", "Times New Roman",
+                            Times, serif;
+                        font-size: 2.8em;
+                        font-weight: normal;
+                        line-height: 1em;
+                    }
+
                     h2 {
-                        font-size: 1.5rem;
-                        line-height: 2rem;
+                        font-size: 1.3em;
+                        line-height: 1.3em;
                     }
 
                     .date {
@@ -150,7 +152,7 @@ main {
                     }
 
                     figcaption {
-                        font-size: 1rem;
+                        font-size: 0.95em;
                         font-style: italic;
                         text-align: center;
                     }
@@ -173,10 +175,11 @@ main {
 
                 p:first-child::first-letter {
                     float: left;
-                    font-family: "Just Another Hand";
-                    font-size: 3rem;
-                    line-height: 0.8;
-                    margin: 0.1em 0.1em 0.1em 0;
+                    font-family: "Just Another Hand", "Times New Roman", Times,
+                        serif;
+                    font-size: 3em;
+                    line-height: 0.8em;
+                    margin: 0.1em 0.1em 0 0;
                 }
             }
 
@@ -196,7 +199,6 @@ main {
         transition: top 1.2s;
 
         #note-buttons {
-            min-height: calc(var(--nav-height) * 0.4);
             background-color: $article-box-bg;
             display: flex;
             flex-wrap: wrap;
@@ -205,8 +207,8 @@ main {
             text-align: center;
 
             button {
-                height: calc(var(--nav-height) * 0.4);
-                width: calc(var(--nav-height) * 0.4);
+                height: 30px;
+                width: 30px;
                 appearance: none;
                 background-color: $link-color;
                 border: 0;
@@ -215,8 +217,10 @@ main {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                font-size: 1rem;
                 font-weight: bold;
                 line-height: 0;
+                padding: 0;
 
                 &:hover {
                     background-color: $link-hover;
@@ -249,7 +253,7 @@ main {
 
                         &.line-number {
                             color: #777;
-                            font-size: 0.75rem;
+                            font-size: 0.75em;
                             padding-right: 8px;
                             text-align: right;
                             user-select: none; /* Standard syntax */
@@ -305,6 +309,7 @@ main {
                 border-radius: 0;
                 color: #fff;
                 flex: 1;
+                font-size: 1.1em;
                 margin: 0;
 
                 &:hover {

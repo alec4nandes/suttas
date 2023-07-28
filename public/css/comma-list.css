@@ -4,10 +4,10 @@ ul.commas {
   flex-direction: row;
   flex-wrap: wrap;
   font-family: "Just Another Hand";
-  font-size: 1.5rem;
+  font-size: 1.3em;
   gap: 1px 5px;
   justify-content: center;
-  line-height: 1.5rem;
+  line-height: 1em;
   margin: 0;
   padding: 0;
 }

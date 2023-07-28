@@ -24,6 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
+  font-size: 19px;
   margin: 0;
 }
 
@@ -36,22 +37,8 @@ a:hover {
 
 h1,
 h2 {
-  font-family: "Just Another Hand";
-}
-
-h1 {
-  background-image: url("../assets/wicker3.jpg");
-  background-position: center;
-  background-size: 200px;
-  font-family: "Just Another Hand";
-  font-size: 4rem;
-  font-weight: normal;
-  line-height: 4.15rem;
-  position: relative;
-  top: 0.15rem;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: "Just Another Hand", "Times New Roman", Times, serif;
+  margin: 0;
 }
 
 header,
@@ -75,22 +62,22 @@ header #header-text {
   color: #fff0dd;
   padding: 10px;
 }
-header #header-text h1,
-header #header-text h2 {
-  margin: 0;
-}
 header #header-text h1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-header #header-text h1.nudge {
-  top: 0.5rem;
+  background-image: url("../assets/wicker3.jpg");
+  background-position: center;
+  background-size: 200px;
+  font-family: "Just Another Hand", "Times New Roman", Times, serif;
+  font-size: 3.5em;
+  font-weight: normal;
+  position: relative;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 header #header-text h2 {
-  font-size: 2rem;
+  font-size: 1.6em;
   font-weight: normal;
-  line-height: 1.5rem;
+  line-height: 1em;
 }
 header nav {
   background-color: #f6e5cc;
@@ -117,6 +104,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Just Another Hand", "Times New Roman", Times, serif;
+  font-size: 1.4em;
   padding: 15px;
 }
 footer .admin-link {
@@ -145,12 +134,15 @@ main.solid-bg {
   width: 100%;
   background-color: #fff0dd;
   flex: 1;
-  font-size: 1.1rem;
-  line-height: 1.5rem;
+  font-size: 1.1em;
+  line-height: 1em;
 }
 main.solid-bg ul {
   font-weight: bold;
   padding-left: 0;
+}
+main.solid-bg ul li {
+  padding-bottom: 8px;
 }
 main article {
   width: 100%;
@@ -212,17 +204,18 @@ main article .heading-and-image .heading p {
   text-align: center;
 }
 main article .heading-and-image .heading h2 {
-  font-size: 2.5rem;
+  font-size: 2.2em;
   font-weight: normal;
-  line-height: 2.3rem;
+  line-height: 1em;
 }
 main article .heading-and-image .heading h2 a {
   text-decoration: none;
 }
+main article .heading-and-image .heading h3,
 main article .heading-and-image .heading .date,
 main article .heading-and-image .heading .sutta-name {
-  font-size: 1.1rem;
-  line-height: 1.5rem;
+  font-size: 1.05em;
+  line-height: 1.4em;
 }
 main article .heading-and-image .heading .date {
   font-style: italic;
