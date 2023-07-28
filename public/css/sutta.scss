@@ -45,6 +45,7 @@ main {
         gap: 20px;
         justify-content: space-evenly;
         font-size: 0.95em;
+        line-height: 1.2em;
         margin-bottom: 30px;
 
         & > span {
@@ -154,6 +155,7 @@ main {
                     figcaption {
                         font-size: 0.95em;
                         font-style: italic;
+                        line-height: 1.2em;
                         text-align: center;
                     }
                 }
