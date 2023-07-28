@@ -18,7 +18,7 @@ body {
   color: #513931;
   background-attachment: fixed;
   background-color: #004b5e;
-  background-image: url("/assets/wicker.jpg");
+  background-image: url("/assets/wicker3.jpg");
   background-position: center;
   background-size: 200px;
   display: flex;
@@ -60,8 +60,7 @@ footer {
 }
 
 header {
-  height: 140px;
-  border-bottom: 5px solid #e9d0ac;
+  min-height: 140px;
 }
 header,
 header #header-text {
@@ -74,6 +73,7 @@ header #header-text {
   flex: 1;
   background-image: linear-gradient(to bottom, #004b5e, #2d849a);
   color: #fff0dd;
+  padding: 10px;
 }
 header #header-text h1,
 header #header-text h2 {
@@ -111,7 +111,6 @@ header nav #social a {
 footer {
   height: 80px;
   background-image: linear-gradient(to top, #004b5e, #2d849a);
-  border-top: 5px solid #e9d0ac;
   color: #fff0dd;
   display: flex;
   align-items: center;
@@ -124,17 +123,21 @@ footer .admin-link {
   text-decoration: none;
 }
 
-main {
-  --gap: 15px;
+:root {
+  --gap: 30px;
+  --margin: 30px;
   --min-width: 250px;
+}
+
+main {
   max-width: 900px;
   box-sizing: border-box;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap);
+  gap: 30px;
   justify-content: center;
-  padding: 50px 15px;
+  padding: 30px 30px;
 }
 main.solid-bg {
   width: 100%;
@@ -150,9 +153,8 @@ main.solid-bg ul {
 main article {
   width: 100%;
   max-width: calc(50% - var(--gap) / 2);
-  min-width: var(--min-width);
+  min-width: 250px;
   background-color: #f6e5cc;
-  border: 5px solid #e9d0ac;
   border-radius: 20px;
   box-sizing: border-box;
   display: flex;
@@ -262,7 +264,11 @@ main article .tags-wrapper ul.tags.commas {
   box-sizing: border-box;
   padding: 5px;
 }
-@media only screen and (max-width: 560px) {
+
+@media only screen and (max-width: 620px) {
+  main {
+    padding: 30px calc(var(--margin) / 2);
+  }
   main article {
     max-width: 100%;
   }
