@@ -121,8 +121,8 @@ main article .scroll-wrapper #heading-and-image #heading h1 {
   line-height: 1em;
 }
 main article .scroll-wrapper #heading-and-image #heading h2 {
-  font-size: 1.3em;
-  line-height: 1.3em;
+  font-size: 1.4em;
+  font-weight: 600;
 }
 main article .scroll-wrapper #heading-and-image #heading .date {
   font-style: italic;
@@ -197,7 +197,7 @@ main #sutta #note-buttons button {
   align-items: center;
   justify-content: center;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
   line-height: 0;
   padding: 0;
 }
@@ -215,7 +215,7 @@ main #sutta .scroll-wrapper #hierarchy details summary, main #sutta .scroll-wrap
   font-style: italic;
 }
 main #sutta .scroll-wrapper table#text tr td.title {
-  font-weight: bold;
+  font-weight: 600;
 }
 main #sutta .scroll-wrapper table#text tr td.line-number {
   color: #777;
@@ -250,7 +250,7 @@ main #sutta nav #nav-links {
   padding: 5px;
 }
 main #sutta nav #nav-links a {
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
 }

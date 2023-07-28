@@ -90,7 +90,7 @@ header nav {
   text-transform: uppercase;
 }
 header nav a {
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
 }
 header nav #social a {
@@ -138,7 +138,7 @@ main.solid-bg {
   line-height: 1em;
 }
 main.solid-bg ul {
-  font-weight: bold;
+  font-weight: 600;
   padding-left: 0;
 }
 main.solid-bg ul li {
@@ -195,7 +195,7 @@ main article .heading-and-image .heading {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
 }
 main article .heading-and-image .heading h2,
 main article .heading-and-image .heading h3,
@@ -211,7 +211,10 @@ main article .heading-and-image .heading h2 {
 main article .heading-and-image .heading h2 a {
   text-decoration: none;
 }
-main article .heading-and-image .heading h3,
+main article .heading-and-image .heading h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+}
 main article .heading-and-image .heading .date,
 main article .heading-and-image .heading .sutta-name {
   font-size: 1.05em;

@@ -123,7 +123,7 @@ textarea {
 button {
   background-color: #e5a537;
   color: #fff;
-  font-weight: bold;
+  font-weight: 600;
 }
 button:hover {
   background-color: orange;
@@ -228,7 +228,7 @@ table tr td.line-number .hidden-regex {
 
 .title {
   margin: 0;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .warning {
