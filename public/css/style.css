@@ -121,6 +121,7 @@ footer .admin-link {
 }
 
 main {
+  width: 100%;
   max-width: 900px;
   box-sizing: border-box;
   margin: auto;
@@ -158,6 +159,7 @@ main article {
   text-align: center;
 }
 main article.newest-post {
+  width: 100%;
   max-width: 100%;
 }
 main article.newest-post:not(.no-image) {

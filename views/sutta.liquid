@@ -21,7 +21,7 @@ permalink: "suttas/{{ post.id | slugify }}.html"
                 <div class="scroll-wrapper">
                     <div class="max-width-wrapper">
                         {% include "partials/_pagination.liquid" %}
-                        <div id="heading-and-image">
+                        <div id="heading-and-image" {% if post.image_url == "" %}class="no-image"{% endif %}>
                             <div id="heading">
                                 <h1>{{ post.title }}</h1>
                                 {% if post.subtitle != "" %}

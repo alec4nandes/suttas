@@ -33,7 +33,7 @@ function getLinesHTML(note) {
         const [lineNum, line] = pair,
             isFirstLine = lineNum === starts_at,
             isLastLine = lineNum === ends_at,
-            isSingleLine = starts_at === ends_at,
+            isSingleLine = !ends_at,
             isTitle = lineNum.includes(".0") || lineNum.includes(":0");
         isFirstLine && (highlighting = true);
         const result = `

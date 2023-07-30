@@ -133,6 +133,7 @@ $margin: 30px;
 $min-width: 250px;
 
 main {
+    width: 100%;
     max-width: 900px;
     box-sizing: border-box;
     margin: auto;
@@ -175,6 +176,7 @@ main {
         text-align: center;
 
         &.newest-post {
+            width: 100%;
             max-width: 100%;
 
             &:not(.no-image) {
