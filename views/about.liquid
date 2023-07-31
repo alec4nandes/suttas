@@ -5,10 +5,12 @@ permalink: "about/index.html"
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% include "partials/_analytics.liquid" %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% assign title = "Sutta Basket &mdash; About" %}
         {% assign description = "Hi, I'm Alec Fernandes, and I run SuttaBasket.com" %}
+        {% assign url = "https://suttabasket.com/about" %}
         {% include "partials/_metatags_general.liquid" %}
         <link rel="stylesheet" href="/css/style.css">
     </head>

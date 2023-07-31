@@ -9,10 +9,13 @@ permalink: "tags/{{ tag[0] | slugify }}.html"
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% include "partials/_analytics.liquid" %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% assign title = "Sutta Basket tag &mdash; " | append: tag[0] %}
         {% assign description = "Read all posts from SuttaBasket.com with the tag `" | append: tag[0] | append: "`" %}
+        {% assign slugged = tag[0] | slugify %}
+        {% assign url = "https://suttabasket.com/tags/" | append: slugged | append: ".html" %}
         {% include "partials/_metatags_general.liquid" %}
         <link rel="stylesheet" href="/css/style.css">
     </head>
