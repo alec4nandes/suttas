@@ -105,12 +105,11 @@ footer {
   align-items: center;
   justify-content: center;
   font-family: "Just Another Hand", "Times New Roman", Times, serif;
-  font-size: 1.4em;
   padding: 15px;
 }
 footer .admin-link {
   color: #fff0dd;
-  font-style: italic;
+  font-size: 1.4em;
   text-decoration: none;
 }
 
