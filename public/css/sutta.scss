@@ -308,7 +308,9 @@ main {
             }
 
             #nav-links {
-                background-color: $accent;
+                background-image: url("/assets/wicker4.jpg");
+                background-position: center;
+                background-size: 200px;
                 color: $text-color;
                 display: flex;
                 align-items: center;
@@ -318,9 +320,14 @@ main {
                 padding: 5px;
 
                 a {
-                    font-weight: 600;
+                    color: inherit;
+                    font-weight: bold;
                     text-decoration: none;
                     text-transform: uppercase;
+
+                    &:hover {
+                        color: $link-hover;
+                    }
                 }
 
                 #social {

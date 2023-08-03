@@ -2,8 +2,6 @@
 
 @media only screen and (max-width: 400px) {
     body {
-        font-size: 17px;
-
         h1,
         h2 {
             font-size: 1.2em !important;
@@ -102,12 +100,6 @@ main {
                 & > * {
                     font-size: 1em;
                     margin: 0;
-                }
-
-                .sutta-name,
-                .date,
-                .tags {
-                    font-size: 0.95em;
                 }
 
                 .sutta-name {

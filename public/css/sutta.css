@@ -260,7 +260,9 @@ main #sutta nav > * {
   box-sizing: border-box;
 }
 main #sutta nav #nav-links {
-  background-color: #f6e5cc;
+  background-image: url("/assets/wicker4.jpg");
+  background-position: center;
+  background-size: 200px;
   color: #513931;
   display: flex;
   align-items: center;
@@ -270,9 +272,13 @@ main #sutta nav #nav-links {
   padding: 5px;
 }
 main #sutta nav #nav-links a {
-  font-weight: 600;
+  color: inherit;
+  font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
+}
+main #sutta nav #nav-links a:hover {
+  color: #32b2d2;
 }
 main #sutta nav #nav-links #social a {
   display: flex;
