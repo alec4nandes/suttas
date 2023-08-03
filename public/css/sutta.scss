@@ -1,7 +1,6 @@
-@import "./social.css";
-@import "./comma-list.css";
-@import "./fonts.css";
 @import "./colors.scss";
+@import "./fonts.css";
+@import "./social.css";
 
 :root {
     --nav-height: 85px;
@@ -13,7 +12,7 @@ body {
 }
 
 body {
-    background-color: $tags-bg;
+    background-color: $bg-color;
     color: $text-color;
     font-size: 19px;
     margin: 0;
@@ -133,7 +132,7 @@ main {
                         font-family: "Melodrama", "Times New Roman", Times,
                             serif;
                         font-size: 2em;
-                        line-height: 1.1em;
+                        line-height: 1.25em;
                     }
 
                     h2 {
@@ -147,7 +146,7 @@ main {
                 }
 
                 figure {
-                    background-color: $article-box-bg;
+                    background-color: $accent;
                     flex: 1;
                     margin: 0;
 
@@ -194,7 +193,26 @@ main {
             }
 
             .tags.commas {
-                margin-bottom: 30px;
+                display: inline-flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1px 5px;
+                justify-content: center;
+                font-weight: bold;
+                margin: 0 0 30px;
+                padding: 0;
+
+                li {
+                    display: inline-flex;
+
+                    &:last-child::after {
+                        content: "";
+                    }
+
+                    &::after {
+                        content: ", ";
+                    }
+                }
             }
         }
     }
@@ -209,7 +227,7 @@ main {
         transition: top 1.2s;
 
         #note-buttons {
-            background-color: $article-box-bg;
+            background-color: $accent;
             display: flex;
             flex-wrap: wrap;
             gap: 7px;
@@ -290,7 +308,7 @@ main {
             }
 
             #nav-links {
-                background-color: $article-box-bg;
+                background-color: $accent;
                 color: $text-color;
                 display: flex;
                 align-items: center;

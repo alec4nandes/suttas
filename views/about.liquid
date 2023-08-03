@@ -12,26 +12,29 @@ permalink: "about/index.html"
         {% assign description = "Hi, I'm Alec Fernandes, and I run SuttaBasket.com" %}
         {% assign url = "https://suttabasket.com/about" %}
         {% include "partials/_metatags_general.liquid" %}
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/basic.css">
+        <link rel="stylesheet" href="/css/info.css">
     </head>
     <body>
         <header>
-            <div id="header-text">
-                <h1>Sutta Basket</h1>
-                <h2>about</h2>
+            <div id="header-wrap">
+                <h2>Sutta Basket</h2>
+                <nav>
+                    <a href="/">home</a>
+                    |
+                    <a href="/tags">tags</a>
+                    |
+                    {% include "partials/_social.liquid" %}
+                </nav>
             </div>
-            <nav>
-                <a href="/">home</a>
-                |
-                <a href="/tags">tags</a>
-                |
-                {% include "partials/_social.liquid" %}
-            </nav>
         </header>
-        <main class="solid-bg">
-            <p>
-                <em>Coming soon!</em>
-            </p>
+        <main>
+            <div id="content">
+                <h1>About Sutta Basket</h1>
+                <p>
+                    <em>Coming soon!</em>
+                </p>
+            </div>
         </main>
         {% include "partials/_footer.liquid" %}
     </body>

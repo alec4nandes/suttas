@@ -1,0 +1,106 @@
+@import "./fonts.css";
+@import "./social.css";
+html,
+body {
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
+:root {
+  --padding: 10px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-color: #fff1de;
+  color: #513931;
+  display: flex;
+  flex-direction: column;
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+a {
+  color: #3d91a5;
+  text-decoration: none;
+}
+a:hover {
+  color: #32b2d2;
+}
+
+h1,
+h2 {
+  font-family: "Melodrama", Arial, Helvetica, sans-serif;
+}
+
+header,
+footer {
+  background-image: url("/assets/wicker4.jpg");
+  background-position: center;
+  background-size: 200px;
+}
+header a,
+footer a {
+  color: inherit;
+  font-weight: bold;
+}
+
+header {
+  background-color: #f6e5cc;
+  padding: 0 10px;
+  position: relative;
+}
+header #header-wrap {
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  padding: 10px;
+  z-index: 2;
+}
+header #header-wrap > * {
+  flex: 1;
+}
+header #header-wrap h1,
+header #header-wrap h2 {
+  font-size: 1.5em;
+  line-height: 1.05;
+  margin: 0;
+}
+header #header-wrap h1 em,
+header #header-wrap h2 em {
+  font-size: 0.8em;
+}
+header #header-wrap nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  text-transform: uppercase;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+footer {
+  height: 80px;
+  background-color: #f6e5cc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=basic.css.map */

@@ -21,24 +21,24 @@ permalink: "tags/{{ tag[0] | slugify }}.html"
     </head>
     <body>
         <header>
-            <div id="header-text">
-                <h1>Sutta Basket</h1>
-                <h2>tag: {{ tag[0] }}</h2>
+            <div id="header-wrap">
+                <h1>Sutta Basket tag:
+                    <em>{{ tag[0] }}</em>
+                </h1>
+                <nav>
+                    <a href="/">home</a>
+                    |
+                    <a href="/tags">tags</a>
+                    |
+                    <a href="/about">about</a>
+                    |
+                    {% include "partials/_social.liquid" %}
+                </nav>
             </div>
-            <nav>
-                <a href="/">home</a>
-                |
-                <a href="/tags">tags</a>
-                |
-                <a href="/about">about</a>
-                |
-                {% include "partials/_social.liquid" %}
-            </nav>
         </header>
         <main>
-            {% for post in tag[1] %}
-                {% include "partials/_preview.liquid" %}
-            {% endfor %}
+            {% assign posts = tag[1] %}
+            {% include "partials/_grid.liquid" %}
         </main>
         {% include "partials/_footer.liquid" %}
 

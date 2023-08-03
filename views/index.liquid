@@ -1,34 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        {% include "partials/_analytics.liquid" %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% assign title = "Sutta Basket" %}
-        {% assign description = "Sutta Basket &mdash; unpacking Buddhist wisdom" %}
-        {% assign url = "https://suttabasket.com" %}
-        {% include "partials/_metatags_general.liquid" %}
+        <title>Blog</title>
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
         <header>
-            <div id="header-text">
+            <div id="header-wrap">
                 <h1>Sutta Basket</h1>
-                <h2>unpacking Buddhist wisdom</h2>
+                <nav>
+                    <a href="/tags">tags</a>
+                    |
+                    <a href="/about">about</a>
+                    |
+                    {% include "partials/_social.liquid" %}
+                </nav>
             </div>
-            <nav>
-                <a href="/tags">tags</a>
-                |
-                <a href="/about">about</a>
-                |
-                {% include "partials/_social.liquid" %}
-            </nav>
         </header>
         <main>
-            {% assign isHome = true %}
-            {% for post in posts.all_posts %}
-                {% include "partials/_preview.liquid" %}
-            {% endfor %}
+            {% assign posts = posts.all_posts %}
+            {% include "partials/_grid.liquid" %}
         </main>
         {% include "partials/_footer.liquid" %}
 

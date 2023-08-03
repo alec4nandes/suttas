@@ -8,32 +8,35 @@
         {% assign description = "See all the different types of posts on SuttaBasket.com" %}
         {% assign url = "https://suttabasket.com/tags" %}
         {% include "partials/_metatags_general.liquid" %}
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/basic.css">
+        <link rel="stylesheet" href="/css/info.css">
     </head>
     <body>
         <header>
-            <div id="header-text">
-                <h1>Sutta Basket</h1>
-                <h2>all tags</h2>
+            <div id="header-wrap">
+                <h2>Sutta Basket</h2>
+                <nav>
+                    <a href="/">home</a>
+                    |
+                    <a href="/about">about</a>
+                    |
+                    {% include "partials/_social.liquid" %}
+                </nav>
             </div>
-            <nav>
-                <a href="/">home</a>
-                |
-                <a href="/about">about</a>
-                |
-                {% include "partials/_social.liquid" %}
-            </nav>
         </header>
-        <main class="solid-bg">
-            <ul>
-                {% for tag in posts.tags %}
-                    <li>
-                        <a href="/tags/{{ tag[0] | slugify }}.html">
-                            {{ tag[0] }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
+        <main>
+            <div id="content">
+                <h1>All Tags</h1>
+                <ul>
+                    {% for tag in posts.tags %}
+                        <li>
+                            <a href="/tags/{{ tag[0] | slugify }}.html">
+                                {{ tag[0] }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </main>
         {% include "partials/_footer.liquid" %}
     </body>

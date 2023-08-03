@@ -1,6 +1,5 @@
-@import "./social.css";
-@import "./comma-list.css";
 @import "./fonts.css";
+@import "./social.css";
 html,
 body {
   text-size-adjust: none;
@@ -19,7 +18,7 @@ body {
 }
 
 body {
-  background-color: #fff0dd;
+  background-color: #fff1de;
   color: #513931;
   font-size: 19px;
   margin: 0;
@@ -31,10 +30,10 @@ button {
 }
 
 a {
-  color: #287386;
+  color: #3d91a5;
 }
 a:hover {
-  color: #7da3ad;
+  color: #32b2d2;
 }
 
 button {
@@ -123,7 +122,7 @@ main article .scroll-wrapper #heading-and-image #heading p {
 main article .scroll-wrapper #heading-and-image #heading h1 {
   font-family: "Melodrama", "Times New Roman", Times, serif;
   font-size: 2em;
-  line-height: 1.1em;
+  line-height: 1.25em;
 }
 main article .scroll-wrapper #heading-and-image #heading h2 {
   font-size: 1.4em;
@@ -169,7 +168,23 @@ main article .scroll-wrapper #content p:first-child::first-letter {
   margin: 0.1em 0.1em 0 0;
 }
 main article .scroll-wrapper .tags.commas {
-  margin-bottom: 30px;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1px 5px;
+  justify-content: center;
+  font-weight: bold;
+  margin: 0 0 30px;
+  padding: 0;
+}
+main article .scroll-wrapper .tags.commas li {
+  display: inline-flex;
+}
+main article .scroll-wrapper .tags.commas li:last-child::after {
+  content: "";
+}
+main article .scroll-wrapper .tags.commas li::after {
+  content: ", ";
 }
 main #sutta {
   height: 100%;
@@ -194,7 +209,7 @@ main #sutta #note-buttons button {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background-color: #287386;
+  background-color: #3d91a5;
   border: 0;
   border-radius: 0;
   color: #fff;
@@ -207,7 +222,7 @@ main #sutta #note-buttons button {
   padding: 0;
 }
 main #sutta #note-buttons button:hover {
-  background-color: #7da3ad;
+  background-color: #32b2d2;
   cursor: pointer;
 }
 main #sutta .scroll-wrapper {
@@ -233,7 +248,7 @@ main #sutta .scroll-wrapper table#text tr td.line-number {
   -ms-user-select: none; /* IE 10 and IE 11 */
 }
 main #sutta .scroll-wrapper table#text tr td .highlight {
-  background-color: #287386;
+  background-color: #3d91a5;
 }
 main #sutta nav {
   height: var(--nav-height);
@@ -266,7 +281,7 @@ main #sutta nav #toggle-sutta {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background-color: #287386;
+  background-color: #3d91a5;
   border: 0;
   border-radius: 0;
   color: #fff;
@@ -275,6 +290,6 @@ main #sutta nav #toggle-sutta {
   margin: 0;
 }
 main #sutta nav #toggle-sutta:hover {
-  background-color: #7da3ad;
+  background-color: #32b2d2;
   cursor: pointer;
 }/*# sourceMappingURL=sutta.css.map */

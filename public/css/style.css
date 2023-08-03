@@ -1,6 +1,5 @@
-@import "./social.css";
-@import "./comma-list.css";
 @import "./fonts.css";
+@import "./social.css";
 html,
 body {
   text-size-adjust: none;
@@ -9,267 +8,237 @@ body {
   -ms-text-size-adjust: none;
 }
 
+:root {
+  --padding: 10px;
+}
+
 html {
   height: 100%;
 }
 
 body {
   min-height: 100%;
+  background-color: #fff1de;
   color: #513931;
-  background-attachment: fixed;
-  background-color: #004b5e;
-  background-image: url("/assets/wicker3.jpg");
-  background-position: center;
-  background-size: 200px;
   display: flex;
   flex-direction: column;
   font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
-  font-size: 19px;
+  font-size: 18px;
   margin: 0;
 }
 
 a {
-  color: #287386;
+  color: #3d91a5;
+  text-decoration: none;
 }
 a:hover {
-  color: #7da3ad;
+  color: #32b2d2;
 }
 
 h1,
 h2 {
-  font-family: "Melodrama", "Times New Roman", Times, serif;
-  margin: 0;
+  font-family: "Melodrama", Arial, Helvetica, sans-serif;
 }
 
 header,
 footer {
-  text-align: center;
+  background-image: url("/assets/wicker4.jpg");
+  background-position: center;
+  background-size: 200px;
+}
+header a,
+footer a {
+  color: inherit;
+  font-weight: bold;
 }
 
 header {
-  min-height: 140px;
+  background-color: #f6e5cc;
+  padding: 0 10px;
+  position: relative;
 }
-header,
-header #header-text {
+header #header-wrap {
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  padding: 10px;
+  z-index: 2;
 }
-header #header-text {
+header #header-wrap > * {
+  flex: 1;
+}
+header #header-wrap h1,
+header #header-wrap h2 {
+  font-size: 1.5em;
+  line-height: 1.05;
+  margin: 0;
+}
+header #header-wrap h1 em,
+header #header-wrap h2 em {
+  font-size: 0.8em;
+}
+header #header-wrap nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  text-transform: uppercase;
+}
+
+main {
+  display: flex;
   align-items: center;
   justify-content: center;
   flex: 1;
-  background-image: linear-gradient(to bottom, #004b5e, #2d849a);
-  color: #fff0dd;
-  padding: 10px;
-}
-header #header-text h1 {
-  background-image: url("../assets/wicker3.jpg");
-  background-position: center;
-  background-size: 200px;
-  font-family: "Melodrama", "Times New Roman", Times, serif;
-  font-size: 3.5em;
-  font-weight: normal;
-  line-height: 1;
-  position: relative;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-header #header-text h2 {
-  font-size: 1.6em;
-  font-weight: normal;
-  line-height: 1em;
-}
-header nav {
-  background-color: #f6e5cc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 5px 10px;
-  padding: 5px;
-  text-transform: uppercase;
-}
-header nav a {
-  font-weight: 600;
-  text-decoration: none;
-}
-header nav #social a {
-  display: flex;
 }
 
 footer {
   height: 80px;
-  background-image: linear-gradient(to top, #004b5e, #2d849a);
-  color: #fff0dd;
+  background-color: #f6e5cc;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Melodrama", "Times New Roman", Times, serif;
-  padding: 15px;
-}
-footer .admin-link {
-  color: #fff0dd;
-  font-size: 1.4em;
-  text-decoration: none;
 }
 
-:root {
-  --gap: 30px;
-  --margin: 30px;
-  --min-width: 250px;
-}
-
-main {
-  width: 100%;
-  max-width: 900px;
-  box-sizing: border-box;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  padding: 30px 30px;
-}
-main.solid-bg {
-  width: 100%;
-  background-color: #fff0dd;
-  flex: 1;
-  font-size: 1.1em;
-  line-height: 1em;
-}
-main.solid-bg ul {
-  font-weight: 600;
-  padding-left: 0;
-}
-main.solid-bg ul li {
-  padding-bottom: 8px;
-}
-main article {
-  width: 100%;
-  max-width: calc(50% - var(--gap) / 2);
-  min-width: 250px;
-  background-color: #f6e5cc;
-  border-radius: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 8px;
-  text-align: center;
-}
-main article.newest-post {
-  width: 100%;
-  max-width: 100%;
-}
-main article.newest-post:not(.no-image) {
-  gap: 8px;
-}
-main article.newest-post:not(.no-image) .heading-and-image {
-  --image-gap: 15px;
-  gap: var(--image-gap);
-}
-main article.newest-post:not(.no-image) .heading-and-image .image-preview {
-  width: calc(65% - var(--image-gap));
-  margin: auto;
-}
-main article.newest-post:not(.no-image) .heading-and-image .heading {
-  width: 35%;
-}
-@media only screen and (max-width: 675px) {
-  main article.newest-post:not(.no-image) {
-    gap: 20px;
+@media only screen and (max-width: 400px) {
+  body {
+    font-size: 17px;
   }
-  main article.newest-post:not(.no-image) .heading-and-image .image-preview,
-  main article.newest-post:not(.no-image) .heading-and-image .heading {
-    width: 100%;
+  body h1,
+  body h2 {
+    font-size: 1.2em !important;
   }
 }
-main article .heading-and-image {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-}
-main article .heading-and-image .heading {
+main #main-wrap {
+  height: -moz-fit-content;
+  height: fit-content;
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, 300px);
+  margin: 10px;
+}
+main #main-wrap article {
+  height: 300px;
+  box-sizing: border-box;
   display: flex;
+  justify-content: flex-end;
   flex-direction: column;
+  padding: 10px;
+  position: relative;
+}
+main #main-wrap article:hover .preview, main #main-wrap article#lead-story:hover .preview {
+  background-color: #fff;
+}
+main #main-wrap article.no-image, main #main-wrap article#lead-story {
+  align-items: center;
   justify-content: center;
-  gap: 15px;
 }
-main article .heading-and-image .heading h2,
-main article .heading-and-image .heading h3,
-main article .heading-and-image .heading p {
-  margin: 0;
-  text-align: center;
-}
-main article .heading-and-image .heading h2 {
-  font-size: 2.2em;
-  font-weight: normal;
-  line-height: 1em;
-}
-main article .heading-and-image .heading h2 a {
-  text-decoration: none;
-}
-main article .heading-and-image .heading h3 {
-  font-size: 1.25em;
-  font-weight: 600;
-}
-main article .heading-and-image .heading .date,
-main article .heading-and-image .heading .sutta-name {
-  font-size: 1.05em;
-  line-height: 1.4em;
-}
-main article .heading-and-image .heading .date {
-  font-style: italic;
-  margin-bottom: 0;
-}
-main article .heading-and-image .heading .sutta-name {
-  margin-top: 0;
-}
-main article .heading-and-image .heading .read-more-link {
+main #main-wrap article.no-image .preview, main #main-wrap article#lead-story .preview {
+  max-width: 85%;
   width: -moz-fit-content;
   width: fit-content;
-  background-color: #287386;
-  border-radius: 6px;
-  color: #fff;
-  margin: 0 auto;
-  padding: 5px 8px;
-  text-decoration: none;
+  position: relative;
+  top: 0;
+  left: 0;
+  text-align: center;
 }
-main article .heading-and-image .heading .read-more-link:hover {
-  background-color: #7da3ad;
+main #main-wrap article.no-image .preview {
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
 }
-main article .heading-and-image .image-preview {
-  width: 100%;
+main #main-wrap article#lead-story {
+  height: 600px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+main #main-wrap article#lead-story .preview h2 {
+  font-size: 1.6em;
+  line-height: 1.25em;
+}
+main #main-wrap article#lead-story .preview h3 {
+  font-size: 1.3em;
+  margin: 15px auto;
+}
+main #main-wrap article a.box-link {
+  height: calc(100% - 2 * var(--padding));
+  width: calc(100% - 2 * var(--padding));
+  background-position: center;
+  background-size: cover;
+  display: block;
+  position: absolute;
+}
+main #main-wrap article .preview {
+  width: 85%;
+  background-color: rgba(255, 244, 236, 0.96);
+  border: 1px solid #aaa;
+  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
-  display: flex;
+  padding: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+main #main-wrap article .preview > * {
+  font-size: 1em;
   margin: 0;
 }
-main article .heading-and-image .image-preview img {
-  width: 100%;
-  border-radius: 10px;
+main #main-wrap article .preview .sutta-name,
+main #main-wrap article .preview .date,
+main #main-wrap article .preview .tags {
+  font-size: 0.95em;
 }
-main article .tags-wrapper {
-  display: flex;
-  align-items: flex-end;
-  flex: 1;
+main #main-wrap article .preview .sutta-name {
+  font-weight: bold;
+  margin: 5px 0;
 }
-main article .tags-wrapper ul.tags.commas {
-  width: 100%;
-  background-color: #fff0dd;
-  border-radius: 10px;
+main #main-wrap article .preview .date,
+main #main-wrap article .preview .tags {
+  margin: 5px 0 0;
+}
+main #main-wrap article .preview .date {
+  font-style: italic;
+}
+main #main-wrap article .preview .tags {
   box-sizing: border-box;
-  padding: 5px;
+  font-weight: bold;
 }
 
-@media only screen and (max-width: 620px) {
-  main {
-    padding: 30px calc(var(--margin) / 2);
+@media only screen and (max-width: 1220px) {
+  main #main-wrap {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
   }
-  main article {
-    max-width: 100%;
+  main #main-wrap:not(.wrap-1):not(.wrap-2) {
+    max-width: 900px !important;
+  }
+}
+@media only screen and (max-width: 920px) {
+  main #main-wrap {
+    max-width: 600px !important;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+}
+@media only screen and (max-width: 620px) {
+  main #main-wrap {
+    display: initial;
+  }
+  main #main-wrap article, main #main-wrap article#lead-story {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: calc(100vw - 2 * var(--padding));
+  }
+  main #main-wrap article#lead-story {
+    min-height: calc(1.5 * (100vw - 2 * var(--padding)));
+  }
+  main #main-wrap article:not(#lead-story) {
+    min-height: calc(100vw - 2 * var(--padding));
   }
 }/*# sourceMappingURL=style.css.map */
