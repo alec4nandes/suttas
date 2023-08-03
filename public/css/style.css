@@ -199,6 +199,7 @@ main #main-wrap article .preview {
   border: 1px solid #aaa;
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
+  font-size: 1.05em;
   padding: 10px;
   position: absolute;
   top: 10px;
