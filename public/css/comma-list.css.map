@@ -1,1 +1,1 @@
-{"version":3,"sources":["comma-list.scss","comma-list.css"],"names":[],"mappings":"AAAQ,qBAAA;AAER;EACI,oBAAA;EACA,mBAAA;EACA,eAAA;EACA,gCAAA;EACA,gBAAA;EACA,YAAA;EACA,uBAAA;EACA,gBAAA;EACA,SAAA;EACA,UAAA;ACAJ;ADEI;EACI,oBAAA;ACAR;ADEQ;EACI,WAAA;ACAZ;ADGQ;EACI,aAAA;ACDZ","file":"comma-list.css"}
+{"version":3,"sources":["comma-list.scss","comma-list.css"],"names":[],"mappings":"AAAQ,qBAAA;AAER;EACI,oBAAA;EACA,mBAAA;EACA,eAAA;EACA,YAAA;EACA,uBAAA;EACA,iBAAA;EACA,SAAA;EACA,UAAA;ACAJ;ADEI;EACI,oBAAA;ACAR;ADEQ;EACI,WAAA;ACAZ;ADGQ;EACI,aAAA;ACDZ","file":"comma-list.css"}

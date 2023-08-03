@@ -1,0 +1,215 @@
+@import "/css/fonts.css";
+@import "/css/social.css";
+:root {
+  --padding: 10px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-color: #fff1de;
+  color: #513931;
+  display: flex;
+  flex-direction: column;
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+a {
+  color: #3d91a5;
+  text-decoration: none;
+}
+a:hover {
+  color: #32b2d2;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Melodrama", Arial, Helvetica, sans-serif;
+}
+
+header,
+footer {
+  background-image: url("/assets/wicker4.jpg");
+  background-position: center;
+  background-size: 200px;
+}
+header a,
+footer a {
+  color: inherit;
+  font-weight: bold;
+}
+
+header {
+  background-color: #f6e5cc;
+  padding: 0 10px;
+  position: relative;
+}
+header #header-wrap {
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  padding: 10px;
+  z-index: 2;
+}
+header #header-wrap > * {
+  flex: 1;
+}
+header #header-wrap h1 {
+  margin: 0;
+}
+header #header-wrap nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  text-transform: uppercase;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+main #main-wrap {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, 300px);
+  margin: 10px;
+}
+
+@media only screen and (max-width: 1220px) {
+  main #main-wrap {
+    max-width: 900px !important;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+  }
+}
+@media only screen and (max-width: 920px) {
+  main #main-wrap {
+    max-width: 600px !important;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+}
+@media only screen and (max-width: 620px) {
+  main #main-wrap {
+    display: initial;
+  }
+  main #main-wrap article {
+    height: calc(100vw - 2 * var(--padding));
+    width: calc(100vw - 2 * var(--padding));
+  }
+  main #main-wrap article#lead-story {
+    height: calc(1.5 * (100vw - 2 * var(--padding)));
+    max-height: 600px;
+  }
+}
+article {
+  height: 300px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 10px;
+  position: relative;
+}
+article:hover .preview, article#lead-story:hover .preview {
+  background-color: #fff;
+}
+article.no-image, article#lead-story {
+  align-items: center;
+  justify-content: center;
+}
+article.no-image .preview, article#lead-story .preview {
+  max-width: 85%;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+article.no-image .preview {
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}
+article#lead-story {
+  height: 600px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+article#lead-story .preview h2 {
+  font-size: 1.6em;
+}
+article#lead-story .preview h3 {
+  font-size: 1.3em;
+  font-weight: normal;
+  margin: 15px auto;
+}
+article a.box-link {
+  height: calc(100% - 2 * var(--padding));
+  width: calc(100% - 2 * var(--padding));
+  background-color: #b9e0ea;
+  background-position: center;
+  background-size: cover;
+  display: block;
+  position: absolute;
+}
+article .preview {
+  width: 85%;
+  background-color: rgba(255, 244, 236, 0.96);
+  border: 1px solid #aaa;
+  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  padding: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+article .preview > * {
+  font-size: 1em;
+  margin: 0;
+}
+article .preview .sutta-name,
+article .preview .date,
+article .preview .tags {
+  font-size: 0.9em;
+}
+article .preview .sutta-name {
+  font-weight: bold;
+  margin: 5px 0;
+}
+article .preview .date,
+article .preview .tags {
+  margin: 5px 0 0;
+}
+article .preview .date {
+  font-style: italic;
+}
+article .preview .tags {
+  box-sizing: border-box;
+}
+
+footer {
+  height: 80px;
+  background-color: #f6e5cc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=style2.css.map */

@@ -1,8 +1,10 @@
 #social {
     display: flex;
+    align-items: center;
     gap: 0 10px;
 
     a {
+        display: flex;
         text-decoration: none;
 
         img {

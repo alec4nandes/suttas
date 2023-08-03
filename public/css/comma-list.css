@@ -3,11 +3,9 @@ ul.commas {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
-  font-family: "Just Another Hand";
-  font-size: 1.4em;
   gap: 1px 5px;
   justify-content: center;
-  line-height: 1em;
+  font-weight: bold;
   margin: 0;
   padding: 0;
 }

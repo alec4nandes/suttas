@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blog</title>
+        <link rel="stylesheet" href="/css/style2.css">
+    </head>
+    <body>
+        <header>
+            <div id="header-wrap">
+                <h1>Sutta Basket</h1>
+                <nav>
+                    <a href="/tags">tags</a>
+                    |
+                    <a href="/about">about</a>
+                    |
+                    {% include "partials/_social.liquid" %}
+                </nav>
+            </div>
+        </header>
+        <main>
+            {% assign count = posts.all_posts.length %}
+            {% comment %} width matches $dim in style.css {% endcomment %}
+            {% assign width = 300 %}
+            {% if count < 4 %}
+                {% assign max_width = count | plus: 1 | times: width %}
+            {% else %}
+                {% assign max_width = 4 | times: width %}
+            {% endif %}
+            <div id="main-wrap" style="max-width: {{ max_width }}px">
+                {% for post in posts.all_posts %}
+                    <article {% if forloop.index == 1 %}id="lead-story"{% endif %} {% if post.image_url == "" %}class="no-image"{% endif %}>
+                        <a
+                            class="box-link"
+                            href="/suttas/{{ post.id | slugify }}.html"
+                            {% if post.image_url == "" %}
+                                style="background-image: url('/assets/wicker4.jpg');
+                                    background-size: 200px"
+                            {% else %}
+                                style="background-image: url('{{ post.image_url }}')"
+                            {% endif %}
+                        ></a>
+                        <div class="preview">
+                            <h2>
+                                <a href="/suttas/{{ post.id | slugify }}.html">
+                                    {{ post.title }}
+                                </a>
+                            </h2>
+                            {% if forloop.index == 1 and post.subtitle != "" %}
+                                <h3>{{ post.subtitle }}</h3>
+                            {% endif %}
+                            <p class="sutta-name">
+                                {{ suttas.all_suttas[post.id].name }}
+                            </p>
+                            <p class="date">{{ post.date.seconds }}</p>
+                            {% if post.tags.length > 0 %}
+                                <p class="tags">
+                                    tags:
+                                    {% for tag in post.tags %}
+                                        <a href="/tags/{{ tag | slugify }}.html">{{ tag }}</a>
+                                        {%- if forloop.last != true %},{% endif %}
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </main>
+        {% include "partials/_footer.liquid" %}
+
+        <script src="/scripts/format-local-dates.js"></script>
+    </body>
+</html>

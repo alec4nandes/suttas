@@ -37,7 +37,7 @@ a:hover {
 
 h1,
 h2 {
-  font-family: "Just Another Hand", "Times New Roman", Times, serif;
+  font-family: "Melodrama", "Times New Roman", Times, serif;
   margin: 0;
 }
 
@@ -66,7 +66,7 @@ header #header-text h1 {
   background-image: url("../assets/wicker3.jpg");
   background-position: center;
   background-size: 200px;
-  font-family: "Just Another Hand", "Times New Roman", Times, serif;
+  font-family: "Melodrama", "Times New Roman", Times, serif;
   font-size: 3.5em;
   font-weight: normal;
   line-height: 1;
@@ -105,7 +105,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Just Another Hand", "Times New Roman", Times, serif;
+  font-family: "Melodrama", "Times New Roman", Times, serif;
   padding: 15px;
 }
 footer .admin-link {
