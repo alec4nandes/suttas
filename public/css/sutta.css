@@ -87,20 +87,27 @@ main article p {
   line-height: 1.4em;
 }
 main article .scroll-wrapper {
+  --gap: 15px;
   height: 100%;
 }
-main article .scroll-wrapper #heading-and-image {
-  --gap: 15px;
+main article .scroll-wrapper #heading-and-image.no-image {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  gap: calc(2 * var(--gap));
+}
+main article .scroll-wrapper #heading-and-image:not(.no-image) {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   gap: var(--gap);
 }
 main article .scroll-wrapper #heading-and-image:not(.no-image) #heading {
-  width: 35%;
+  width: 100%;
 }
 main article .scroll-wrapper #heading-and-image:not(.no-image) figure {
-  width: calc(65% - var(--gap));
+  width: 100%;
+  grid-column-start: 2;
+  grid-column-end: 4;
 }
 main article .scroll-wrapper #heading-and-image #heading,
 main article .scroll-wrapper #heading-and-image figure {
@@ -149,12 +156,10 @@ main article .scroll-wrapper #heading-and-image figure figcaption {
   text-align: center;
 }
 @media only screen and (max-width: 675px) {
-  main article .scroll-wrapper #heading-and-image {
-    gap: 30px;
-  }
-  main article .scroll-wrapper #heading-and-image:not(.no-image) figure,
-  main article .scroll-wrapper #heading-and-image:not(.no-image) #heading {
-    width: 100%;
+  main article .scroll-wrapper #heading-and-image:not(.no-image) {
+    display: flex;
+    flex-direction: column;
+    gap: calc(2 * var(--gap));
   }
 }
 main article .scroll-wrapper #content {
