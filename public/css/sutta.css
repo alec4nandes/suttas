@@ -9,7 +9,7 @@ body {
 }
 
 :root {
-  --nav-height: 85px;
+  --nav-height: 90px;
 }
 
 html,
@@ -120,7 +120,7 @@ main article .scroll-wrapper #heading-and-image #heading p {
   text-align: center;
 }
 main article .scroll-wrapper #heading-and-image #heading h1 {
-  font-family: "Melodrama", "Times New Roman", Times, serif;
+  font-family: "Courgette", "Times New Roman", Times, serif;
   font-size: 2em;
   line-height: 1.25em;
 }
@@ -162,7 +162,7 @@ main article .scroll-wrapper #content {
 }
 main article .scroll-wrapper #content p:first-child::first-letter {
   float: left;
-  font-family: "Melodrama", "Times New Roman", Times, serif;
+  font-family: "Courgette", "Times New Roman", Times, serif;
   font-size: 3em;
   line-height: 0.8em;
   margin: 0.1em 0.1em 0 0;

@@ -1,6 +1,6 @@
 @import "./basic.scss";
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 425px) {
     body {
         h1,
         h2 {
@@ -18,11 +18,20 @@
 main {
     #main-wrap {
         height: fit-content;
+        max-width: 4 * $dim;
         width: 100%;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax($dim, 1fr));
         grid-template-rows: repeat(auto-fit, $dim);
         margin: $padding;
+
+        &.wrap-1 {
+            max-width: 2 * $dim;
+        }
+
+        &.wrap-2 {
+            max-width: 3 * $dim;
+        }
 
         article {
             height: $dim;

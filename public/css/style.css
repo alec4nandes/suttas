@@ -37,7 +37,7 @@ a:hover {
 
 h1,
 h2 {
-  font-family: "Melodrama", Arial, Helvetica, sans-serif;
+  font-family: "Courgette", Arial, Helvetica, sans-serif;
 }
 
 header,
@@ -74,13 +74,16 @@ header #header-wrap > * {
 }
 header #header-wrap h1,
 header #header-wrap h2 {
-  font-size: 1.8em;
-  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6em;
+  font-weight: bold;
   line-height: 1.05;
   margin: 0;
 }
 header #header-wrap h1 em,
 header #header-wrap h2 em {
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
   font-size: 0.8em;
 }
 header #header-wrap nav {
@@ -92,7 +95,7 @@ header #header-wrap nav {
   text-transform: uppercase;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 425px) {
   body header #header-wrap h1,
   body header #header-wrap h2 {
     font-size: 1.4em !important;
@@ -112,7 +115,7 @@ footer {
   justify-content: center;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 425px) {
   body h1,
   body h2 {
     font-size: 1.2em !important;
@@ -124,11 +127,18 @@ footer {
 main #main-wrap {
   height: -moz-fit-content;
   height: fit-content;
+  max-width: 1200px;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: repeat(auto-fit, 300px);
   margin: 10px;
+}
+main #main-wrap.wrap-1 {
+  max-width: 600px;
+}
+main #main-wrap.wrap-2 {
+  max-width: 900px;
 }
 main #main-wrap article {
   height: 300px;

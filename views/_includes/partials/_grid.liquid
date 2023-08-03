@@ -1,23 +1,10 @@
-{% assign count = posts.length %}
-{% comment %} width matches $dim in style.css {% endcomment %}
-{% assign is_fixed = count < 3 %}
-{% assign width = 300 %}
-{% if is_fixed %}
-    {% assign max_width = count | plus: 1 | times: width %}
-{% else %}
-    {% assign max_width = 4 | times: width %}
-{% endif %}
-<div
-    id="main-wrap"
-    class="wrap-{{ count }}"
-    style="max-width: {{ max_width }}px">
+<div id="main-wrap" class="wrap-{{ posts.length }}">
     {% for post in posts %}
         <article {% if forloop.index == 1 %}id="lead-story"{% endif %} {% if post.image_url == "" %}class="no-image"{% endif %}>
             <a
                 class="box-link"
                 href="/suttas/{{ post.id | slugify }}.html"
-                {% if post.image_url == "" %}style="background-image: url('/assets/wicker4.jpg');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            background-size: 200px"{% else %}style="background-image: url('{{ post.image_url }}')"{% endif %}></a>
+                {% if post.image_url == "" %}style="background-image: url('/assets/wicker4.jpg'); background-size: 200px"{% else %}style="background-image: url('{{ post.image_url }}')"{% endif %}></a>
             <div class="preview">
                 <h2>
                     <a href="/suttas/{{ post.id | slugify }}.html">

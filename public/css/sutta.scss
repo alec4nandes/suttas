@@ -3,7 +3,7 @@
 @import "./social.css";
 
 :root {
-    --nav-height: 85px;
+    --nav-height: 90px;
 }
 
 html,
@@ -129,7 +129,7 @@ main {
                     }
 
                     h1 {
-                        font-family: "Melodrama", "Times New Roman", Times,
+                        font-family: "Courgette", "Times New Roman", Times,
                             serif;
                         font-size: 2em;
                         line-height: 1.25em;
@@ -185,7 +185,7 @@ main {
 
                 p:first-child::first-letter {
                     float: left;
-                    font-family: "Melodrama", "Times New Roman", Times, serif;
+                    font-family: "Courgette", "Times New Roman", Times, serif;
                     font-size: 3em;
                     line-height: 0.8em;
                     margin: 0.1em 0.1em 0 0;

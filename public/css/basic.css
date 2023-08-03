@@ -37,7 +37,7 @@ a:hover {
 
 h1,
 h2 {
-  font-family: "Melodrama", Arial, Helvetica, sans-serif;
+  font-family: "Courgette", Arial, Helvetica, sans-serif;
 }
 
 header,
@@ -74,13 +74,16 @@ header #header-wrap > * {
 }
 header #header-wrap h1,
 header #header-wrap h2 {
-  font-size: 1.8em;
-  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6em;
+  font-weight: bold;
   line-height: 1.05;
   margin: 0;
 }
 header #header-wrap h1 em,
 header #header-wrap h2 em {
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
   font-size: 0.8em;
 }
 header #header-wrap nav {
@@ -92,7 +95,7 @@ header #header-wrap nav {
   text-transform: uppercase;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 425px) {
   body header #header-wrap h1,
   body header #header-wrap h2 {
     font-size: 1.4em !important;
