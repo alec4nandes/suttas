@@ -81,9 +81,9 @@ main #sutta .max-width-wrapper {
 main article {
   height: calc(100% - var(--nav-height));
   bottom: 0;
+  font-size: 1.05em;
 }
 main article p {
-  font-size: 1.05em;
   line-height: 1.4em;
 }
 main article .scroll-wrapper {

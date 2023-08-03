@@ -82,9 +82,9 @@ main {
     article {
         height: calc(100% - var(--nav-height));
         bottom: 0;
+        font-size: 1.05em;
 
         p {
-            font-size: 1.05em;
             line-height: 1.4em;
         }
 

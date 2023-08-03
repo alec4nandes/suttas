@@ -1,5 +1,7 @@
 main {
   box-sizing: border-box;
+  font-size: 1.05em;
+  line-height: 1.4em;
   padding: 10px;
   text-align: center;
 }
@@ -8,4 +10,7 @@ main h1 {
 }
 main ul {
   text-align: left;
+}
+main ul a {
+  font-weight: bold;
 }/*# sourceMappingURL=info.css.map */

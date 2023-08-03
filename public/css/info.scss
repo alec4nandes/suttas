@@ -1,5 +1,7 @@
 main {
     box-sizing: border-box;
+    font-size: 1.05em;
+    line-height: 1.4em;
     padding: 10px;
     text-align: center;
 
@@ -9,5 +11,9 @@ main {
 
     ul {
         text-align: left;
+
+        a {
+            font-weight: bold;
+        }
     }
 }
