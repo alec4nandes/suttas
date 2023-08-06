@@ -44,10 +44,7 @@ export default async function getSuttaData({
         Object.entries(lines).forEach(
             ([key, value]) => (lines[key] = organizeLines(value))
         );
-        // discard the prefix top key, since we just want
-        // the section and line numbers (prefix same for all)
-        const result = Object.values(lines)[0];
-        return result;
+        return lines;
     }
 
     // this function organizes all lines by line
