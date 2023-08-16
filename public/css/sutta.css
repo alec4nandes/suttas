@@ -18,22 +18,22 @@ body {
 }
 
 body {
-  background-color: #fff1de;
-  color: #513931;
+  background-color: #eee;
+  color: #111;
   font-size: 19px;
   margin: 0;
 }
 
 body,
 button {
-  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
+  font-family: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans", source-sans-pro, sans-serif;
 }
 
 a {
   color: #3d91a5;
 }
 a:hover {
-  color: #32b2d2;
+  color: #000;
 }
 
 button {
@@ -127,19 +127,20 @@ main article .scroll-wrapper #heading-and-image #heading p {
   text-align: center;
 }
 main article .scroll-wrapper #heading-and-image #heading h1 {
-  font-family: "Courgette", "Times New Roman", Times, serif;
+  font-family: Rockwell, "Rockwell Nova", "Roboto Slab", "DejaVu Serif", "Sitka Small", serif;
   font-size: 2em;
-  line-height: 1.25em;
+  line-height: 1.2em;
 }
 main article .scroll-wrapper #heading-and-image #heading h2 {
   font-size: 1.4em;
-  font-weight: 600;
+  font-weight: 400;
 }
 main article .scroll-wrapper #heading-and-image #heading .date {
+  color: #777;
   font-style: italic;
 }
 main article .scroll-wrapper #heading-and-image figure {
-  background-color: #f6e5cc;
+  background-color: #ddd;
   flex: 1;
   margin: 0;
 }
@@ -167,7 +168,7 @@ main article .scroll-wrapper #content {
 }
 main article .scroll-wrapper #content p:first-child::first-letter {
   float: left;
-  font-family: "Courgette", "Times New Roman", Times, serif;
+  font-family: Rockwell, "Rockwell Nova", "Roboto Slab", "DejaVu Serif", "Sitka Small", serif;
   font-size: 3em;
   line-height: 0.8em;
   margin: 0.1em 0.1em 0 0;
@@ -193,7 +194,7 @@ main article .scroll-wrapper .tags.commas li::after {
 }
 main #sutta {
   height: 100%;
-  background-color: #333;
+  background-color: #111;
   color: #eee;
   display: flex;
   flex-direction: column;
@@ -206,6 +207,7 @@ main #sutta #note-buttons {
   flex-wrap: wrap;
   gap: 7px;
   justify-content: center;
+  filter: invert(1);
   text-align: center;
 }
 main #sutta #note-buttons button {
@@ -214,7 +216,7 @@ main #sutta #note-buttons button {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background-color: #3d91a5;
+  background-color: #513931;
   border: 0;
   border-radius: 0;
   color: #fff;
@@ -227,7 +229,7 @@ main #sutta #note-buttons button {
   padding: 0;
 }
 main #sutta #note-buttons button:hover {
-  background-color: #32b2d2;
+  background-color: #000;
   cursor: pointer;
 }
 main #sutta .scroll-wrapper {
@@ -274,6 +276,7 @@ main #sutta nav #nav-links {
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px 10px;
+  filter: invert(1);
   padding: 5px;
 }
 main #sutta nav #nav-links a {
@@ -283,7 +286,7 @@ main #sutta nav #nav-links a {
   text-transform: uppercase;
 }
 main #sutta nav #nav-links a:hover {
-  color: #32b2d2;
+  color: #000;
 }
 main #sutta nav #nav-links #social a {
   display: flex;
@@ -301,6 +304,7 @@ main #sutta nav #toggle-sutta {
   margin: 0;
 }
 main #sutta nav #toggle-sutta:hover {
-  background-color: #32b2d2;
+  background-color: #513931;
   cursor: pointer;
+  filter: invert(1);
 }/*# sourceMappingURL=sutta.css.map */

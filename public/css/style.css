@@ -18,11 +18,11 @@ html {
 
 body {
   min-height: 100%;
-  background-color: #fff1de;
-  color: #513931;
+  background-color: #eee;
+  color: #111;
   display: flex;
   flex-direction: column;
-  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
+  font-family: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans", source-sans-pro, sans-serif;
   font-size: 19px;
   margin: 0;
 }
@@ -32,12 +32,12 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #32b2d2;
+  color: #000;
 }
 
 h1,
 h2 {
-  font-family: "Courgette", Arial, Helvetica, sans-serif;
+  font-family: Rockwell, "Rockwell Nova", "Roboto Slab", "DejaVu Serif", "Sitka Small", serif;
 }
 
 header,
@@ -45,10 +45,11 @@ footer {
   background-image: url("/assets/wicker4.jpg");
   background-position: center;
   background-size: 200px;
+  filter: invert(1);
 }
 header a,
 footer a {
-  color: inherit;
+  color: #513931;
   font-weight: bold;
 }
 
@@ -83,7 +84,6 @@ header #header-wrap h2 {
 }
 header #header-wrap h1 em,
 header #header-wrap h2 em {
-  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
   font-size: 0.8em;
 }
 header #header-wrap nav {
@@ -116,12 +116,11 @@ footer {
 }
 
 @media only screen and (max-width: 425px) {
-  body h1,
-  body h2 {
+  body h1 {
     font-size: 1.2em !important;
   }
-  .preview h2 {
-    line-height: 1.4em !important;
+  body h2 {
+    font-size: 1.4em !important;
   }
 }
 main #main-wrap {
@@ -179,10 +178,11 @@ main #main-wrap article#lead-story {
 }
 main #main-wrap article#lead-story .preview h2 {
   font-size: 1.6em;
-  line-height: 1.25em;
+  line-height: 1.2em;
 }
 main #main-wrap article#lead-story .preview h3 {
   font-size: 1.3em;
+  font-weight: 400;
   margin: 15px auto;
 }
 main #main-wrap article a.box-link {
@@ -195,7 +195,7 @@ main #main-wrap article a.box-link {
 }
 main #main-wrap article .preview {
   width: 85%;
-  background-color: rgba(255, 244, 236, 0.96);
+  background-color: rgba(255, 255, 255, 0.96);
   border: 1px solid #aaa;
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
@@ -218,6 +218,7 @@ main #main-wrap article .preview .tags {
   margin: 5px 0 0;
 }
 main #main-wrap article .preview .date {
+  color: #777;
   font-style: italic;
 }
 main #main-wrap article .preview .tags {

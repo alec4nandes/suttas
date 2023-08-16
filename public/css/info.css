@@ -6,6 +6,7 @@ main {
   text-align: center;
 }
 main h1 {
+  line-height: 1em;
   text-align: center;
 }
 main ul {
